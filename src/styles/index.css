@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background-color: #050F16;
+  color: white;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient( to right, #345474, #6281A2, #6281A2, #4e6f92, #345474);
+  width: 400px;
+  padding: 20px 20px 0 20px;
+}
+
+.profile {
+  border-style: solid;
+  border-width: 4px;
+  border-image: linear-gradient(45deg, #C9A285, #4E3F51) 1;
+}
+
+.socials-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-divider {
+  display: flex;
+  width: 180px;
+  height: 40px;
+  margin: 8px 0 4px 0;
+  overflow-x: visible;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.213);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-desc {
+  width: 120px;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.social-button {
+  text-decoration: none;
+  color: white;
+}
+
+.social-img {
+  margin: 0 0 0 10px;
+}
+
+.technology {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  margin: 4px 0 0 0;
+}
+
+.technology > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0 0 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 10px;
+  position: relative;
+  padding: 0;
+}
+
+.progress {
+  height: 70%;
+  width: 80%;
+  background-color: #4899ef;
+  border-radius: 10px;
+  margin: 3px 0 0 3px
+}
+
+.right{
+  margin-left: 20px
+}
