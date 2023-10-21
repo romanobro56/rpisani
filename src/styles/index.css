@@ -17,14 +17,21 @@ body, html {
   flex-direction: column;
   align-items: center;
   background: linear-gradient( to right, #6281A2, #6281A2, #6281A2, #6281A2, #345474);
-  width: 430px;
   padding: 20px 20px 0 20px;
+}
+
+.technologies-container { 
+  background-color: #ffffff;
+  padding: 0px 24px 24px 24px;
+  border-radius: 10px;
+  margin: 8px 0 18px 0;
 }
 
 .profile {
   border-style: solid;
   border-width: 4px;
-  border-image: linear-gradient(45deg, #C9A285, #4E3F51) 1;
+  border-color: #afc5d4;
+  border-radius: 60%;
 }
 
 .socials-container {
@@ -35,14 +42,14 @@ body, html {
 
 .social-divider {
   display: flex;
-  width: 180px;
+  width: 178px;
   height: 40px;
   margin: 8px 0 4px 0;
   overflow-x: visible;
   padding: 10px;
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.213);
-  backdrop-filter: blur(5px);
+  backdrop-filter: hue-rotate(-10deg) brightness(110%);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }

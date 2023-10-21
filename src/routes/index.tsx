@@ -70,13 +70,13 @@ export default function Home() {
               <a class='social-button' href='https://www.linkedin.com/in/roman-pisani/'>
                 <div class='social-divider'>
                   <p class='social-desc'>Connect with me on LinkedIn:</p>
-                  <img class='social-img' src='linkedin.png' height='34px' width='34px'></img>
+                  <img class='social-img' src='LinkedIn.webp' height='34px' width='34px'></img>
                 </div>
               </a>
               <a class='social-button' href='https://github.com/romanobro56'>
                 <div class='social-divider'>
                   <p class='social-desc'>Or, check out my Github here:</p>
-                  <img class='social-img' src='github.png' height='34px' width='34px'></img>
+                  <img class='social-img' src='GitHub.webp' height='34px' width='34px'></img>
                 </div>
               </a>
             </div>

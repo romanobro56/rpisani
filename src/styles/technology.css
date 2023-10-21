@@ -1,11 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&family=Raleway:wght@600&display=swap');
+
+
 .technology {
   display: flex;
   flex-direction: column;
-  width: 170px;
-  margin: 4px 0 0 0;
+  width: 150px;
+  margin: 10px 0 0 0;
+}
+
+.technology-top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .technology-logo {
-  max-width: 50px;
-  max-height: 40px;
+  max-width: 30px;
+  max-height: 30px;
+  top: 50%
+}
+
+.technology-title {
+  font-family: 'Raleway';
+  color: black;
+}
+
+.progress-container {
+  border-radius: 6px;
+  border-style: solid;
+  border-color: #565656;
+  border-width: 1px;
+  background-color: white;
+  width: 140px;
+  height: 18px;
+  padding: 4px 4px 0 4px;
+}
+
+.progress-bar { 
+  height: 15px;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+}
+
+.progress2 { 
+  width: 20%;
+}
+
+.progress4 { 
+  width: 40%;
+}
+
+.progress5 { 
+  width: 50%;
+}
+
+.progress6 { 
+  width: 60%;
+}
+
+.progress7 { 
+  width: 70%;
 }
