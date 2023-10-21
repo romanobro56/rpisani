@@ -1,4 +1,66 @@
+import { For, createSignal } from "solid-js";
+import { Technology } from '../components/Technology'
+import '../styles/index.css'
+
 export default function Home() {
+  const [technologies, setTechnologies] = createSignal([
+    {
+      name: 'JavaScript',
+      progress: '7'
+    },
+    {
+      name: 'SolidJS',
+      progress: '7'
+    },
+    {
+      name: 'TypeScript',
+      progress: '5'
+    },
+    {
+      name: 'HTML',
+      progress: '7'
+    },
+    {
+      name: 'CSS',
+      progress: '6'
+    },
+    {
+      name: 'React',
+      progress: '6'
+    },
+    {
+      name: 'NodeJS',
+      progress: '7'
+    },
+    {
+      name: 'MongoDB',
+      progress: '7'
+    },
+    {
+      name: 'Python',
+      progress: '4'
+    },
+    {
+      name: 'Java',
+      progress: '6'
+    },
+    {
+      name: 'C ++',
+      progress: '2'
+    },
+    {
+      name: 'Tailwind',
+      progress: '5'
+    },
+    {
+      name: 'Git',
+      progress: '6'
+    },
+    {
+      name: 'VSCode',
+      progress: '7'
+    },
+  ])
   return (
     <main>
       <div class='main-container'>
@@ -19,118 +81,13 @@ export default function Home() {
               </a>
             </div>
           <div class='technologies-container'>
-            <div class='technology'>
-              <div>
-                <img src='javascript.png' height='35px' width='35px'></img>
-                <p>Javascript</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='typescript.png' height='35px' width='35px'></img>
-                <p>Typescript</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='html.png' height='35px' width='35px'></img>
-                <p>HTML</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='css.png' height='35px' width='35px'></img>
-                <p>CSS</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='git.png' height='35px' width='35px'></img>
-                <p>Git</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='mongodb.png' height='35px' width='35px'></img>
-                <p>MongoDB</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='react.png' height='35px' width='35px'></img>
-                <p>React</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='nextjs.svg' height='35px' width='35px'></img>
-                <p>NextJS</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='tailwind.png' height='35px' width='35px'></img>
-                <p>TailwindCSS</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='python.png' height='35px' width='35px'></img>
-                <p>Python</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='cpp.png' height='35px' width='35px'></img>
-                <p>C++</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
-            <div class='technology'>
-              <div>
-                <img src='vscode.png' height='35px' width='35px'></img>
-                <p>VSCode</p>
-              </div>
-              <div class='progress-bar'>
-                <div class='progress'></div>
-              </div>
-            </div>
+            <For each={technologies()}>{(thisTechnology, i) =>
+              <Technology technologyName={thisTechnology.name} progressNum={thisTechnology.progress}></Technology>
+            }</For>
           </div>
         </div>
         <div class='right'>
-          <h1>Hi, I'm Roman Pisani</h1>
+          <h1 class="name">Hi, I'm Roman Pisani 👋</h1>
           <p>I'm a software developer attending the University of Massachusetts Amherst</p>
           <div class='projects-container'>
             <h2>My Projects</h2>

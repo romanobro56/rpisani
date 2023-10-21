@@ -10,7 +10,6 @@ import {
   Scripts,
   Title,
 } from "solid-start"
-import './styles/index.css'
 
 export default function Root() {
   return (
