@@ -1,0 +1,108 @@
+.project {
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+  min-height: 300px;
+  position: absolute;
+  top: 50px;
+  box-sizing: border-box;
+  padding: 10px;
+} 
+
+.project-title {
+  font-size: 30px;
+  font-family: 'Poppins'
+}
+
+.carousel-index_0 {
+  z-index: 5;
+  right: 25%;
+  background-color: red;
+}
+
+.carousel-index_1 {
+  z-index: 4;
+  transform: rotate(1deg);
+  left: calc(25% + 30px);
+  background-color: blue;
+}
+
+.carousel-index_2 {
+  z-index: 3;
+  transform: rotate(2deg);
+  position: absolute;
+  top: 50px;
+  left: calc(25% + 60px);
+  background-color: yellow;
+}
+
+.carousel-index_3 {
+  z-index: 2;
+  transform: rotate(3deg);
+  position: absolute;
+  top: 50px;
+  left: calc(25% + 90px);
+  background-color: green;
+}
+
+.carousel-index_4 {
+  z-index: 1;
+  transform: rotate(4deg);
+  left: calc(25% + 120px);
+}
+
+.carousel-index_5 {
+  z-index: 0;
+  transform: rotate(5deg);
+  left: calc(25% + 150px);
+}
+
+.carousel-index_-1 {
+  z-index: 4;
+  transform: rotate(-1deg);
+  position: absolute;
+  top: 50px;
+  right: calc(25% + 30px);
+  background-color: blue;
+}
+
+.carousel-index_-2 {
+  right: calc(25% + 60px);
+  z-index: 3;
+  transform: rotate(-2deg);
+  background-color: yellow;
+}
+
+.carousel-index_-3 {
+  right: calc(25% + 90px);
+  z-index: 2;
+  transform: rotate(-3deg);
+  background-color: green;
+}
+
+.carousel-index_-4 {
+  right: calc(25% + 120px);
+  z-index: 1;
+  transform: rotate(-4deg);
+}
+
+.carousel-index_-5 {
+  right: calc(25% + 150px);
+  z-index: 0;
+  transform: rotate(-5deg);
+}
+
+.live-image {
+  width: 20px;
+  height: 20px;
+}
+
+.github-image {
+  width: 20px;
+  height: 20px;
+}
+
+.project-image {
+  width: 20px;
+  height: 20px;
+}

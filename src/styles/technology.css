@@ -5,13 +5,14 @@
   display: flex;
   flex-direction: column;
   width: 150px;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
 }
 
 .technology-top-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 4px 0 4px;
 }
 
 .technology-logo {
@@ -40,24 +41,4 @@
   height: 15px;
   background-color: #1a1a1a;
   border-radius: 5px;
-}
-
-.progress2 { 
-  width: 20%;
-}
-
-.progress4 { 
-  width: 40%;
-}
-
-.progress5 { 
-  width: 50%;
-}
-
-.progress6 { 
-  width: 60%;
-}
-
-.progress7 { 
-  width: 70%;
 }

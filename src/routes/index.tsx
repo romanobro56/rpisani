@@ -1,66 +1,24 @@
-import { For, createSignal } from "solid-js";
+import { For, Show, createEffect, createSignal } from "solid-js";
+import { isServer } from "solid-js/web";
+import { technologiesData, projectsData } from "../data/experience"
 import { Technology } from '../components/Technology'
 import '../styles/index.css'
+import Project from "~/components/Project";
+
+export const [carouselIndex, setCarouselIndex] = createSignal(0)
 
 export default function Home() {
-  const [technologies, setTechnologies] = createSignal([
-    {
-      name: 'JavaScript',
-      progress: '7'
-    },
-    {
-      name: 'SolidJS',
-      progress: '7'
-    },
-    {
-      name: 'TypeScript',
-      progress: '5'
-    },
-    {
-      name: 'HTML',
-      progress: '7'
-    },
-    {
-      name: 'CSS',
-      progress: '6'
-    },
-    {
-      name: 'React',
-      progress: '6'
-    },
-    {
-      name: 'NodeJS',
-      progress: '7'
-    },
-    {
-      name: 'MongoDB',
-      progress: '7'
-    },
-    {
-      name: 'Python',
-      progress: '4'
-    },
-    {
-      name: 'Java',
-      progress: '6'
-    },
-    {
-      name: 'C ++',
-      progress: '2'
-    },
-    {
-      name: 'Tailwind',
-      progress: '5'
-    },
-    {
-      name: 'Git',
-      progress: '6'
-    },
-    {
-      name: 'VSCode',
-      progress: '7'
-    },
-  ])
+  const [technologies, setTechnologies] = createSignal(technologiesData)
+  const [projects, setProjects] = createSignal(projectsData)
+
+  createEffect(async () => {
+    const projectjs = await import ('../scripts/carousel.js')
+    if (!isServer) {
+      projectjs.adjustMargin()
+      window.onresize = projectjs.positionCards
+    }
+  })
+
   return (
     <main>
       <div class='main-container'>
@@ -88,26 +46,37 @@ export default function Home() {
         </div>
         <div class='right'>
           <h1 class="name">Hi, I'm Roman Pisani 👋</h1>
-          <p>I'm a software developer attending the University of Massachusetts Amherst</p>
+          <p class='desc'>I'm a software developer attending the University of Massachusetts Amherst</p>
+         <div class='projects-container'>
+            <h2 class='projects-title'>My Projects</h2>
+  
+              <div class='carousel-container'>
+                <For each={projects()}>{(thisProject, i) => 
+                  <Project 
+                    projectName={thisProject.name} 
+                    projectDesc={thisProject.description} 
+                    thisProjectNum={i()}
+                    githubLink=""
+                    liveLink=""
+                    projectImage=""
+                  />
+                }</For>
+              </div>
+              
+              <div class='carousel-buttons'>
+                <Show when={carouselIndex() > 0} fallback={<></>}>
+                  <button class='carousel-decrement' onClick={() => setCarouselIndex((prev) => prev - 1)}>&lt;</button>
+                </Show>
+                <span class='carousel-active-counter'>{carouselIndex() + 1 + '/' + projects().length}</span>
+                <Show when={carouselIndex() < projects().length - 1} fallback={<></>}>
+                  <button class='carousel-increment' onClick={() => setCarouselIndex((prev) => prev + 1)}>&gt;</button>
+                </Show> 
+              </div>
+              
+          </div>
           <div class='projects-container'>
-            <h2>My Projects</h2>
-            <div class='project'>
-              <p class='project-title'>Notes App</p>
-              <p class='project-description'>In this notes app, I developed a full stack application with read and write abilities, from scratch. I included a secure login system and many methods of data manipulation. The goal was to understand the inner workings of an authenticated full stack app. I accomplished this using SolidJS/SolidStart for the frontend, NodeJS and express for the backend/middleware, and MongoDB for the database.</p>
-            </div>
-            <div class='project'>
-              <p class='project-title'>SavageSoccer / Vex Spin Up Robots</p>
-              <p class='project-description'>In working on two robots over the course of my senior year in high school, I learned how to work well in teams and demonstrated leadership for the younger members of the club. In working as one of the main programmers of the robots, I learned a lot about C++, and how to program for automation and asynchonous tasks.</p>
-            </div>
-            <div class='project'>
-              <p class='project-title'>CRUD Site</p>
-              <p class='project-description'>My first full stack website, I enabled access of a database through a web interface.</p>
-            </div>
-            <div class='project'>
-              <p class='project-title'>Retrckr</p>
-              <p class='project-description'>A work in progress, I will create a website that is made to improve upon current systems of habit/personal tracking software. Retrckr will be a website where databases are connected to a live, daily-updating system that encourages the user to complete their daily tasks in the most human way possible. It is being built using NextJS and MongoDB and will feature an authentication system with multiple sign-in options.</p>
-            </div>
-           </div>
+            
+          </div>
           <div class='experience-container'>
             <div class='experience-divider'>
               <p class='experience-title'>Build UMass</p>

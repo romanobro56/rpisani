@@ -9,7 +9,7 @@ export const Technology: Component<{technologyName: string, progressNum: string}
         <p class='technology-title'>{props.technologyName}</p>
       </div>
       <div class='progress-container'>
-        <div class={`progress-bar progress${props.progressNum}`}></div>
+        <div class='progress-bar' style={`width: ${props.progressNum}%`}></div>
       </div>
     </div>
   )
