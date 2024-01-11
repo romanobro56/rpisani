@@ -108,4 +108,37 @@ body, html {
 .carousel-buttons {
   z-index: 10;
   position: relative;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-decrement, .carousel-increment {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  outline: none;
+  cursor: pointer;
+  background-color: hsla(0, 0%, 100%, 0.4);
+  position: absolute;
+}
+
+.carousel-decrement:hover, .carousel-increment:hover {
+  background-color: hsla(0, 0%, 100%, 0.6);
+}
+
+
+.carousel-decrement {
+  left: 0;
+}
+
+.carousel-increment {
+  right: 0;
+}
+
+@media screen and (min-width: 1250px) {
+  .carousel-buttons {
+    margin-top: 350px;
+  }
 }

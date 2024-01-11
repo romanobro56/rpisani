@@ -11,19 +11,12 @@ export default function Home() {
   const [technologies, setTechnologies] = createSignal(technologiesData)
   const [projects, setProjects] = createSignal(projectsData)
 
-  createEffect(async () => {
-    const projectjs = await import ('../scripts/carousel.js')
-    if (!isServer) {
-      projectjs.adjustMargin()
-      window.onresize = projectjs.positionCards
-    }
-  })
 
   return (
     <main>
       <div class='main-container'>
         <div class='left'>
-          <img class='profile' src='https://media.licdn.com/dms/image/D4D03AQH8X3XzN7w97Q/profile-displayphoto-shrink_400_400/0/1695224793399?e=1702512000&v=beta&t=CtUS0H8IczH5qjyuzzKTY7e5aVqInz6E9a4pHctFQW4' height='100px' width='100px'></img>
+          <img class='profile' src='https://media.licdn.com/dms/image/D4D03AQH8X3XzN7w97Q/profile-displayphoto-shrink_400_400/0/1695224793698?e=1708560000&v=beta&t=Fp1UPNMpogYsID5rcR23QoBFcZotOVyAj6PrszSfYgY' height='100px' width='100px'></img>
             <div class='socials-container'>
               <a class='social-button' href='https://www.linkedin.com/in/roman-pisani/'>
                 <div class='social-divider'>
@@ -56,28 +49,29 @@ export default function Home() {
                     projectName={thisProject.name} 
                     projectDesc={thisProject.description} 
                     thisProjectNum={i()}
-                    githubLink=""
-                    liveLink=""
-                    projectImage=""
+                    githubLinks={thisProject.githubLinks}
+                    liveLink={thisProject.liveLink}
+                    projectImage={thisProject.image}
+                    color={thisProject.color}
                   />
                 }</For>
               </div>
               
               <div class='carousel-buttons'>
-                <Show when={carouselIndex() > 0} fallback={<></>}>
+                <Show when={carouselIndex() > 0}>
                   <button class='carousel-decrement' onClick={() => setCarouselIndex((prev) => prev - 1)}>&lt;</button>
                 </Show>
                 <span class='carousel-active-counter'>{carouselIndex() + 1 + '/' + projects().length}</span>
-                <Show when={carouselIndex() < projects().length - 1} fallback={<></>}>
+                <Show when={carouselIndex() < projects().length - 1}>
                   <button class='carousel-increment' onClick={() => setCarouselIndex((prev) => prev + 1)}>&gt;</button>
-                </Show> 
+                </Show>
               </div>
               
           </div>
           <div class='projects-container'>
             
           </div>
-          <div class='experience-container'>
+          {/* <div class='experience-container'>
             <div class='experience-divider'>
               <p class='experience-title'>Build UMass</p>
               <img src='buildumass.png' height='50px' width='50px'></img>
@@ -105,8 +99,8 @@ export default function Home() {
           <div class='hobbies-container'>
             <p class='hobbies-title'>Hobbies</p>
             <p class='hobbies-description'>Outside of programming, I love to play basketball, go to the gym and type fast! You can check out my typing profile here</p>
-          </div>
-        </div>
+          </div> */}
+        </div> 
       </div>
     </main>
   );

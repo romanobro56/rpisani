@@ -1,36 +1,89 @@
 export const projectsData = [
   {
+    name: 'Dorm Buddy',
+    description: 'In my first hackathon, I worked together with a team of Arduino programmers to create an all-in-one dorm monitoring system. The Dorm Buddy is a hub placed above the door of any shared living space that allows its users to indicate the room\'s status with a remote, and check that status, temperature, humidity and more through a web interface. I created the interface using NextJS, NodeJS MongoDB, Express, Bcrypt and plain CSS.',
+    image: 'DormBuddy.webp ',
+    projectImage: "",
+    githubLinks: [
+      {
+        "name": "Site Frontend",
+        "source": "https://github.com/romanobro56/dorm-buddy-site"
+      },
+      {
+        "name": "Site Backend",
+        "source": "https://github.com/romanobro56/dorm-buddy-backend"
+      },
+      {
+        "name": "Arduino Code",
+        "source": "https://github.com/romanobro56/dorm-buddy-backend"
+      },
+      {
+        "name": "Arduino Backend",
+        "source": "https://github.com/romanobro56/dorm-buddy-backend"
+      }
+    ],
+    liveLink: "",
+    color: "#1D7BF2"
+  },
+  {
     name: 'Notes App',
     description: 'In this notes app, I developed a full stack application with read and write abilities, from scratch. I included a secure login system and many methods of data manipulation. The goal was to understand the inner workings of an authenticated full stack app. I accomplished this using SolidJS/SolidStart for the frontend, NodeJS and express for the backend/middleware, and MongoDB for the database.',
     image: 'VSCode.webp',
     projectImage: "",
-    githubLink: "",
-    liveLink: ""
+    githubLinks: [
+      {
+        "name": "Frontend",
+        "source": "https://github.com/romanobro56/notes-frontend"
+      },
+      {
+        "name": "Backend",
+        "source": "https://github.com/romanobro56/notes-backend"
+      }
+    ],
+    liveLink: "",
+    color: "#2b83f3"
   },
   {
     name: 'SavageSoccer / Vex Spin Up Robots',
-    description: 'In working on two robots over the course of my senior year in high school, I learned how to work well in teams and demonstrated leadership for the younger members of the club. In working as one of the main programmers of the robots, I learned a lot about C++, and how to program for automation and asynchonous tasks.',
+    description: 'In working on two robots over the course of my senior year in high school, I learned how to work well in teams and demonstrated leadership for the younger members of the club. In working as one of the main programmers of the robots, I learned a lot about C++, and how to program automation and asynchonous tasks.',
     image: 'VSCode.webp',
     projectImage: "",
-    githubLink: "",
-    liveLink: ""
+    githubLinks: [
+      {
+        "name": "Vex Spin Up",
+        "source": "https://github.com/romanobro56/eric-spinup-bamcroft"
+      },
+      {
+        "name": "Backend",
+        "source": "https://github.com/romanobro56/eric_savagesoccer2022"
+      }
+    ],
+    liveLink: "",
+    color: "#3a8cf4"
+  },
+  {
+    name: 'AutoShorts',
+    description: 'A python app with the ability to generate short-form educational content using various generative AI APIs and python video editing libraries.',
+    image: 'VSCode.webp',
+    projectImage: "",
+    githubLinks: "",
+    liveLink: "",
+    color: "#4894f4"
   },
   {
     name: 'CRUD Site',
     description: 'My first full stack website, I enabled access of a database through a web interface.',
     image: 'VSCode.webp',
     projectImage: "",
-    githubLink: "",
-    liveLink: ""
-  },
-  {
-    name: 'Retrckr',
-    description: 'A work in progress, I will create a website that is made to improve upon current systems of habit/personal tracking software. Retrckr will be a website where databases are connected to a live, daily-updating system that encourages the user to complete their daily tasks in the most human way possible. It is being built using NextJS and MongoDB and will feature an authentication system with multiple sign-in options.',
-    image: 'VSCode.webp',
-    projectImage: "",
-    githubLink: "",
-    liveLink: ""
-  },
+    githubLinks: [
+      {
+        "name": "Crud Site",
+        "source": "https://github.com/romanobro56/crud-node-solid-mongo"
+      }
+    ],
+    liveLink: "",
+    color: "#5ca0f6"
+  }
 ]
 
 export const technologiesData = [
@@ -68,11 +121,11 @@ export const technologiesData = [
   },
   {
     name: 'Python',
-    progress: '46'
+    progress: '56'
   },
   {
     name: 'Java',
-    progress: '60'
+    progress: '40'
   },
   {
     name: 'C ++',
