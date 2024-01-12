@@ -1,5 +1,4 @@
 import { For, Show, createEffect, createSignal } from "solid-js";
-import { isServer } from "solid-js/web";
 import { technologiesData, projectsData } from "../data/experience"
 import { Technology } from '../components/Technology'
 import '../styles/index.css'
@@ -10,7 +9,6 @@ export const [carouselIndex, setCarouselIndex] = createSignal(0)
 export default function Home() {
   const [technologies, setTechnologies] = createSignal(technologiesData)
   const [projects, setProjects] = createSignal(projectsData)
-
 
   return (
     <main>
@@ -71,35 +69,37 @@ export default function Home() {
           <div class='projects-container'>
             
           </div>
-          {/* <div class='experience-container'>
-            <div class='experience-divider'>
+          <div class='experience-container'>
+            <div class='experience-divider build'>
               <p class='experience-title'>Build UMass</p>
               <img src='buildumass.png' height='50px' width='50px'></img>
               <p class='experience-description'>At Build UMass, students work together to create real world apps to help nonprofit organizations in an inrceasingly digital age. I work as a software developer, and you can check out our Instagram here!</p>
             </div>
-            <div class='experience-divider'>
+            <div class='experience-divider innov8'>
               <p class='experience-title'>Innov8</p>
               <img src='innov8.png' height='50px' width='50px'></img>
               <p class='experience-description'>Innov8 is a new club at UMass Amherst that is aimed at helping members with an entreprenurial spirit get started on their projects, and will eventually help them push to production!</p>
             </div>
-            <div class='experience-divider'>
+            <div class='experience-divider mlc'>
               <p class='experience-title'>Machine Learning Club</p>
               <img src='mlc.png' height='50px' width='50px'></img>
               <p class='experience-description'>Machine Learning Club is a lecture-style club where students come to learn about all things machine learning! I attend the beginner series lectures.</p>
             </div>
-            <div class='experience-divider'>
+            <div class='experience-divider robotics'>
               <p class='experience-title'>Robotics Club</p>
               <img src='robotics.png' height='50px' width='50px'></img>
               <p class='experience-description'>In high school, I was a member of Robotics club, where we learned teamwork and how to put together a robot. But more importantly, we had a lot of fun and ate a ton of munchkins!</p>
             </div>
           </div>
+
           <div class='resume-container'>
             <a href='resume.pdf' download><h2>If you want to download my resume, please do so here</h2></a>
           </div>
           <div class='hobbies-container'>
             <p class='hobbies-title'>Hobbies</p>
             <p class='hobbies-description'>Outside of programming, I love to play basketball, go to the gym and type fast! You can check out my typing profile here</p>
-          </div> */}
+          </div>
+
         </div> 
       </div>
     </main>

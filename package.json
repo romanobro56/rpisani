@@ -19,7 +19,8 @@
     "@solidjs/router": "^0.8.3",
     "flickity": "^3.0.0",
     "solid-js": "^1.7.12",
-    "solid-start": "^0.3.6"
+    "solid-start": "^0.3.6",
+    "solid-start-vercel": "^0.3.10"
   },
   "engines": {
     "node": ">=18"

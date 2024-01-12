@@ -79,7 +79,7 @@ body, html {
     #050F16,
     #345474
   );
-  width: 84vw;
+  width: calc(100vw - 200px);
 }
 
 .name {
@@ -128,6 +128,9 @@ body, html {
   background-color: hsla(0, 0%, 100%, 0.6);
 }
 
+.carousel-active-counter {
+  font-family: "Rubik", sans-serif;
+}
 
 .carousel-decrement {
   left: 0;
@@ -135,6 +138,40 @@ body, html {
 
 .carousel-increment {
   right: 0;
+}
+
+.experience-container {
+  width: calc(100vw - 300px);
+  padding: 0 0 0 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.experience-divider {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.build {
+  background-color: #980b27
+}
+
+.innov8 {
+  background-color: #884bc4;
+}
+
+.mlc {
+  background-color: #1a1a1a;
+}
+
+.robotics {
+  background-color: #1849ab;
 }
 
 @media screen and (min-width: 1250px) {

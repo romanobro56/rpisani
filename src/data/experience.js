@@ -23,12 +23,30 @@ export const projectsData = [
       }
     ],
     liveLink: "",
-    color: "#1D7BF2"
+    color: "#7296bc"
+  },
+  {
+    name: 'ETA Research Site',
+    description: 'Alongside a skilled team of UMass Developers, I am currently building a site for showcasing research done by Equitable Transitions to Adulthood. It is built using NextJS and Contentful.',
+    image: 'VSCode.webp',
+    projectImage: "",
+    githubLinks: "",
+    liveLink: "",
+    color: "#7296bc"
+  },
+  {
+    name: 'AutoShorts',
+    description: 'A python app with the ability to generate short-form educational content using various generative AI APIs and python video editing libraries.',
+    image: 'VSCode.webp',
+    projectImage: "",
+    githubLinks: "",
+    liveLink: "",
+    color: "#7296bc"
   },
   {
     name: 'Notes App',
     description: 'In this notes app, I developed a full stack application with read and write abilities, from scratch. I included a secure login system and many methods of data manipulation. The goal was to understand the inner workings of an authenticated full stack app. I accomplished this using SolidJS/SolidStart for the frontend, NodeJS and express for the backend/middleware, and MongoDB for the database.',
-    image: 'VSCode.webp',
+    image: 'Notes.png',
     projectImage: "",
     githubLinks: [
       {
@@ -41,12 +59,12 @@ export const projectsData = [
       }
     ],
     liveLink: "",
-    color: "#2b83f3"
+    color: "#7296bc"
   },
   {
     name: 'SavageSoccer / Vex Spin Up Robots',
     description: 'In working on two robots over the course of my senior year in high school, I learned how to work well in teams and demonstrated leadership for the younger members of the club. In working as one of the main programmers of the robots, I learned a lot about C++, and how to program automation and asynchonous tasks.',
-    image: 'VSCode.webp',
+    image: 'Vex.webp',
     projectImage: "",
     githubLinks: [
       {
@@ -59,16 +77,7 @@ export const projectsData = [
       }
     ],
     liveLink: "",
-    color: "#3a8cf4"
-  },
-  {
-    name: 'AutoShorts',
-    description: 'A python app with the ability to generate short-form educational content using various generative AI APIs and python video editing libraries.',
-    image: 'VSCode.webp',
-    projectImage: "",
-    githubLinks: "",
-    liveLink: "",
-    color: "#4894f4"
+    color: "#7296bc"
   },
   {
     name: 'CRUD Site',
@@ -82,7 +91,7 @@ export const projectsData = [
       }
     ],
     liveLink: "",
-    color: "#5ca0f6"
+    color: "#7296bc"
   }
 ]
 

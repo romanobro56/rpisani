@@ -23,13 +23,6 @@ const Project: Component<projectProps> = (props) => {
     >
       <div class='project-title'>{props.projectName}</div>
       <div class='project-body'>
-        {isCurrentProject() && props.videoSrc ? 
-          <video width="320" height="240" controls>
-            <source src={props.videoSrc} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          : null
-        }
         <div class='project-description'>{props.projectDesc}</div>
         <div class='project-assets-container'>
           <img class='project-image' src={props.projectImage}></img>
