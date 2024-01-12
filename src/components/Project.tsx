@@ -10,17 +10,13 @@ type projectProps = {
   githubLinks: { name: string; source: string; }[] | undefined, 
   liveLink: string | undefined, 
   videoSrc?: string, 
-  color: string | undefined
 }
 
 const Project: Component<projectProps> = (props) => {
 
   const isCurrentProject = () => props.thisProjectNum - carouselIndex() === 0;
   return (
-    <div 
-      class={`project carousel-index_${props.thisProjectNum - carouselIndex()} index_${props.thisProjectNum}`}
-      style={`background-color: ${props.color}`}
-    >
+    <div class={`project carousel-index_${props.thisProjectNum - carouselIndex()} index_${props.thisProjectNum}`}>
       <div class='project-title'>{props.projectName}</div>
       <div class='project-body'>
         <div class='project-description'>{props.projectDesc}</div>

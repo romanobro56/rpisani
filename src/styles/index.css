@@ -17,7 +17,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   background: linear-gradient( to right, #6281A2, #6281A2, #6281A2, #6281A2, #345474);
-  padding: 20px 20px 0 20px;
+  padding: 20px 0 0 20px;
 }
 
 .technologies-container { 
@@ -30,7 +30,7 @@ body, html {
 .profile {
   border-style: solid;
   border-width: 4px;
-  border-color: #afc5d4;
+  border-color: #3287dd;
   border-radius: 60%;
 }
 
@@ -48,6 +48,7 @@ body, html {
   overflow-x: visible;
   padding: 10px;
   border-radius: 10px;
+  background-color:#3287dd;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.213);
   backdrop-filter: hue-rotate(-10deg) brightness(110%);
   -webkit-backdrop-filter: blur(5px);
@@ -141,11 +142,15 @@ body, html {
 }
 
 .experience-container {
-  width: calc(100vw - 300px);
-  padding: 0 0 0 25px;
+  width: calc(100% - 200px);
+  display: flex;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 80px;
+  margin-top: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .experience-divider {
@@ -153,25 +158,30 @@ body, html {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  justify-content: left;
+  padding: 0 30px 0 30px;
   border-radius: 10px;
-  margin: 20px;
 }
 
 .build {
-  background-color: #980b27
+  border: 8px solid #980b27;
 }
 
 .innov8 {
-  background-color: #884bc4;
+  border: 8px solid #884bc4;
 }
 
 .mlc {
-  background-color: #1a1a1a;
+  border: 8px solid #1a1a1a;
 }
 
 .robotics {
-  background-color: #1849ab;
+  border: 8px solid #1849ab;
+}
+
+.experience-divider {
+  border: 8px solid #3287dd;
 }
 
 @media screen and (min-width: 1250px) {

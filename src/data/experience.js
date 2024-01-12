@@ -137,8 +137,8 @@ export const technologiesData = [
     progress: '40'
   },
   {
-    name: 'C ++',
-    progress: '28'
+    name: 'Cpp',
+    progress: '33'
   },
   {
     name: 'Tailwind',

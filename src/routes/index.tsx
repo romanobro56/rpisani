@@ -50,7 +50,6 @@ export default function Home() {
                     githubLinks={thisProject.githubLinks}
                     liveLink={thisProject.liveLink}
                     projectImage={thisProject.image}
-                    color={thisProject.color}
                   />
                 }</For>
               </div>
