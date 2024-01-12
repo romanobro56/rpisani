@@ -14,18 +14,18 @@ export default function Home() {
     <main>
       <div class='main-container'>
         <div class='left'>
-          <img class='profile' src='https://media.licdn.com/dms/image/D4D03AQH8X3XzN7w97Q/profile-displayphoto-shrink_400_400/0/1695224793698?e=1708560000&v=beta&t=Fp1UPNMpogYsID5rcR23QoBFcZotOVyAj6PrszSfYgY' height='100px' width='100px'></img>
+          <img class='profile' src='https://media.licdn.com/dms/image/D4D03AQH8X3XzN7w97Q/profile-displayphoto-shrink_400_400/0/1695224793698?e=1708560000&v=beta&t=Fp1UPNMpogYsID5rcR23QoBFcZotOVyAj6PrszSfYgY' height='100px' width='100px' alt='Roman Profile Picture'></img>
             <div class='socials-container'>
               <a class='social-button' href='https://www.linkedin.com/in/roman-pisani/'>
                 <div class='social-divider'>
                   <p class='social-desc'>Connect with me on LinkedIn:</p>
-                  <img class='social-img' src='LinkedIn.webp' height='34px' width='34px'></img>
+                  <img class='social-img' src='LinkedIn.png' height='34px' width='34px' alt='LinkedIn Logo'></img>
                 </div>
               </a>
               <a class='social-button' href='https://github.com/romanobro56'>
                 <div class='social-divider'>
                   <p class='social-desc'>Or, check out my Github here:</p>
-                  <img class='social-img' src='GitHub.webp' height='34px' width='34px'></img>
+                  <img class='social-img' src='GitHub.webp' height='34px' width='34px' alt='GitHub Logo'></img>
                 </div>
               </a>
             </div>
@@ -71,22 +71,22 @@ export default function Home() {
           <div class='experience-container'>
             <div class='experience-divider build'>
               <p class='experience-title'>Build UMass</p>
-              <img src='buildumass.png' height='50px' width='50px'></img>
+              <img src='BUILDUMass.jpeg' height='50px' width="50px" alt='BUILD UMass Logo'></img>
               <p class='experience-description'>At Build UMass, students work together to create real world apps to help nonprofit organizations in an inrceasingly digital age. I work as a software developer, and you can check out our Instagram here!</p>
             </div>
             <div class='experience-divider innov8'>
               <p class='experience-title'>Innov8</p>
-              <img src='innov8.png' height='50px' width='50px'></img>
+              <img src='Innov8.png' height='50px' width='100px' style={"background-color: white"} alt='Innov8 Logo'></img>
               <p class='experience-description'>Innov8 is a new club at UMass Amherst that is aimed at helping members with an entreprenurial spirit get started on their projects, and will eventually help them push to production!</p>
             </div>
             <div class='experience-divider mlc'>
               <p class='experience-title'>Machine Learning Club</p>
-              <img src='mlc.png' height='50px' width='50px'></img>
+              <img src='MachineLearningClub.webp' height='50px' width='50px' alt='Machine Learning Club Logo'></img>
               <p class='experience-description'>Machine Learning Club is a lecture-style club where students come to learn about all things machine learning! I attend the beginner series lectures.</p>
             </div>
             <div class='experience-divider robotics'>
               <p class='experience-title'>Robotics Club</p>
-              <img src='robotics.png' height='50px' width='50px'></img>
+              <img src='Robotics.jpeg' height='50px' width='50px' alt='Robotics Club Logo'></img>
               <p class='experience-description'>In high school, I was a member of Robotics club, where we learned teamwork and how to put together a robot. But more importantly, we had a lot of fun and ate a ton of munchkins!</p>
             </div>
           </div>
@@ -96,7 +96,17 @@ export default function Home() {
           </div>
           <div class='hobbies-container'>
             <p class='hobbies-title'>Hobbies</p>
-            <p class='hobbies-description'>Outside of programming, I love to play basketball, go to the gym and type fast! You can check out my typing profile here</p>
+            <p class='hobbies-description'>Outside of programming, I love to go to the gym, play basketball and type fast!</p>
+            <div class='hobbies-links'>
+              <a href='https://instagram.com/roman.pisani56'>
+                <img src='Instagram.png' height='50px' width='50px' alt='Instagram Logo'></img>
+                <p class='hobbies-link-desc'>Check out my Instagram!</p>
+              </a>
+              <a href='https://monkeytype.com/profile/5x1YFdKliUbbOSKecWLFZVfv4LZ2?isUid'>
+                <img src='MonkeyType.png' height='50px' width='50px' alt='MonkeyTypeLogo'></img>
+                <p class='hobbies-link-desc'>My typing profile</p>
+              </a>
+            </div>
           </div>
 
         </div> 

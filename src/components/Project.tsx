@@ -21,12 +21,12 @@ const Project: Component<projectProps> = (props) => {
       <div class='project-body'>
         <div class='project-description'>{props.projectDesc}</div>
         <div class='project-assets-container'>
-          <img class='project-image' src={props.projectImage}></img>
+          <img class='project-image' src={props.projectImage} alt='Project Image'></img>
           <div class='project-links-container'>
             <For each={props.githubLinks}>{(thisLink, i) =>
               <a href={thisLink.source}>
                 <div class="project-link">
-                  <img class='github-image' src='GitHub.webp'></img>
+                  <img class='github-image' src='GitHub.webp' alt='GitHub Logo'></img>
                   <p class='github-project-text'>{thisLink.name}</p>
                 </div>
               </a>
@@ -34,7 +34,7 @@ const Project: Component<projectProps> = (props) => {
           </div>
           <a href={props?.liveLink}>
             <div class="project-link">
-              <img class='live-image' src='GitHub.webp'></img>
+              <img class='live-image' src='GitHub.webp' alt='Live Link Logo'></img>
               <p class='live-project-text'>Live</p>
             </div>
           </a>
