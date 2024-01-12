@@ -1,6 +1,6 @@
 import { Component, For } from "solid-js"
 import { carouselIndex } from "../routes/index"
-import "../styles/Project.css"
+import "../styles/project.css"
 
 type projectProps = { 
   projectName: string, 
