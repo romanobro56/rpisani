@@ -72,7 +72,7 @@ export default function Home() {
             <div class='experience-divider build'>
               <p class='experience-title'>Build UMass</p>
               <img src='BUILDUMass.jpeg' height='50px' width="50px" alt='BUILD UMass Logo'></img>
-              <p class='experience-description'>At Build UMass, students work together to create real world apps to help nonprofit organizations in an inrceasingly digital age. I work as a software developer, and you can check out our Instagram here!</p>
+              <p class='experience-description'>At Build UMass, students work together to create real world apps to help nonprofit organizations in an increasingly digital age. I work as a software developer, and you can check out our Instagram <a href='https://www.instagram.com/build.umass/'>here.</a></p>
             </div>
             <div class='experience-divider innov8'>
               <p class='experience-title'>Innov8</p>
@@ -82,31 +82,30 @@ export default function Home() {
             <div class='experience-divider mlc'>
               <p class='experience-title'>Machine Learning Club</p>
               <img src='MachineLearningClub.webp' height='50px' width='50px' alt='Machine Learning Club Logo'></img>
-              <p class='experience-description'>Machine Learning Club is a lecture-style club where students come to learn about all things machine learning! I attend the beginner series lectures.</p>
+              <p class='experience-description'>Machine Learning Club is a lecture-style club where students come to learn about all things machine learning.</p>
             </div>
             <div class='experience-divider robotics'>
               <p class='experience-title'>Robotics Club</p>
               <img src='Robotics.jpeg' height='50px' width='50px' alt='Robotics Club Logo'></img>
-              <p class='experience-description'>In high school, I was a member of Robotics club, where we learned teamwork and how to put together a robot. But more importantly, we had a lot of fun and ate a ton of munchkins!</p>
+              <p class='experience-description'>In high school, I was a member of Robotics club, where we learned teamwork and how to put together a robot. But more importantly, we had a ton of fun.</p>
             </div>
           </div>
-
-          <div class='resume-container'>
-            <a href='resume.pdf' download><h2>If you want to download my resume, please do so here</h2></a>
-          </div>
-          <div class='hobbies-container'>
-            <p class='hobbies-title'>Hobbies</p>
-            <p class='hobbies-description'>Outside of programming, I love to go to the gym, play basketball and type fast!</p>
-            <div class='hobbies-links'>
-              <a href='https://instagram.com/roman.pisani56'>
-                <img src='Instagram.png' height='50px' width='50px' alt='Instagram Logo'></img>
-                <p class='hobbies-link-desc'>Check out my Instagram!</p>
-              </a>
-              <a href='https://monkeytype.com/profile/5x1YFdKliUbbOSKecWLFZVfv4LZ2?isUid'>
-                <img src='MonkeyType.png' height='50px' width='50px' alt='MonkeyTypeLogo'></img>
-                <p class='hobbies-link-desc'>My typing profile</p>
-              </a>
-            </div>
+          <a class='resume-container' href='RomanPisaniResume.pdf' download>
+              <h2 class='resume-text'>If you want to download my resume, please click here</h2>
+          </a>
+          <div class='hobbies-links'>
+            <a href='https://instagram.com/roman.pisani56'>
+              <img src='Instagram.png' height='50px' width='50px' alt='Instagram Logo'></img>
+              <p class='hobbies-link-desc'>Instagram</p>
+            </a>
+            <a href='https://open.spotify.com/user/31uv2eoiwcnvqjfdx2ajkwj2ecem?si=f2d5678b9f4849d5'>
+              <img src='Spotify.webp' height='50px' width='50px' alt='Spotify Logo'></img>
+              <p class='hobbies-link-desc'>Spotify</p>
+            </a>
+            <a href='https://monkeytype.com/profile/5x1YFdKliUbbOSKecWLFZVfv4LZ2?isUid'>
+              <img src='MonkeyType.png' height='50px' width='50px' alt='MonkeyType Logo'></img>
+              <p class='hobbies-link-desc'>MonkeyType</p>
+            </a>
           </div>
 
         </div> 

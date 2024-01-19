@@ -7,6 +7,11 @@ body, html {
   color: white;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .main-container{
   display: flex;
   flex-direction: row;
@@ -175,11 +180,30 @@ body, html {
   border: 8px solid #3287dd;
 } */
 
-.hobbies-links {
+.resume-container {
+  width: calc(100% - 200px);
+  margin-left: 5%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  height: 40px;
+  padding: 10px 0 10px 0;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+}
+
+.resume-text {
+  color: black;
+  font-family: "Rubik", sans-serif;
+}
+
+.hobbies-links {
+  width: calc(100% - 200px);
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .hobbies-links a {
@@ -190,10 +214,12 @@ body, html {
   padding: 10px;
   border-radius: 10px;
   background-color:#ffffff;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.213);
-  backdrop-filter: hue-rotate(-10deg) brightness(110%);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: black;
+  align-items: center;
+}
+
+.hobbies-link-desc {
+  margin-left: 10px;
 }
 
 @media screen and (min-width: 1250px) {
