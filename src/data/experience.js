@@ -137,7 +137,7 @@ export const technologiesData = [
     progress: '40'
   },
   {
-    name: 'Cpp',
+    name: 'C ++',
     progress: '33'
   },
   {

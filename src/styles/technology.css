@@ -2,17 +2,17 @@
 
 
 .technology {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-  width: 150px;
-  margin: 5px 0 0 0;
+  width: 200px;
+  margin:5px;
 }
 
 .technology-top-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 4px 0 4px;
+  margin: 4px;
 }
 
 .technology-logo {
@@ -32,13 +32,14 @@
   border-color: #565656;
   border-width: 1px;
   background-color: white;
-  width: 140px;
+  width: 200px;
   height: 18px;
-  padding: 4px 4px 0 4px;
+  padding: 3px;
 }
 
 .progress-bar { 
   height: 15px;
   background-color: #1a1a1a;
   border-radius: 5px;
+  margin-top: 1.5px;
 }

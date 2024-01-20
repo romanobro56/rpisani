@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   color: white;
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #000428, #004e92); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #000428, #004e92); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 a {
@@ -14,29 +18,9 @@ a {
 
 .main-container{
   display: flex;
-  flex-direction: row;
-}
-
-.left {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  background: linear-gradient( to right, #6281A2, #6281A2, #6281A2, #6281A2, #345474);
-  padding: 20px 0 0 20px;
-}
-
-.technologies-container { 
-  background-color: #ffffff;
-  padding: 5px 24px 24px 24px;
-  border-radius: 10px;
-  margin: 8px 0 18px 0;
-}
-
-.profile {
-  border-style: solid;
-  border-width: 4px;
-  border-color: #3287dd;
-  border-radius: 60%;
+  width: 71.4%;
+  margin: 0 auto;
 }
 
 .socials-container {
@@ -45,55 +29,12 @@ a {
   align-items: center;
 }
 
-.social-divider {
-  display: flex;
-  width: 178px;
-  height: 40px;
-  margin: 8px 0 4px 0;
-  overflow-x: visible;
-  padding: 10px;
-  border-radius: 10px;
-  background-color:#3287dd;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.213);
-  backdrop-filter: hue-rotate(-10deg) brightness(110%);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.social-desc {
-  width: 120px;
-  margin: 0;
-  font-family: 'Rubik', sans-serif;
-}
-
-.social-button {
-  text-decoration: none;
-  color: white;
-}
-
-.social-img {
-  margin: 0 0 0 10px;
-}
-
-.right{
-  background: linear-gradient(to right, 
-    #345474,
-    #050F16,
-    #050F16,
-    #050F16,
-    #050F16,
-    #050F16,
-    #345474
-  );
-  width: calc(100vw - 200px);
-}
-
 .name {
-  margin: 30px 0 0 20px;
+  margin: 80px 0 0 10%;
 }
 
 .desc {
-  margin: 10px 0 0 20px;
+  margin: 10px 0 0 10%;
 }
 
 .projects-container {
@@ -146,43 +87,75 @@ a {
   right: 0;
 }
 
-.experience-container {
-  width: calc(100% - 200px);
+.secondary-container {
+  margin-top: 60px;
   display: flex;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 80px;
-  margin-top: 40px;
-  padding-left: 5%;
-  padding-right: 5%;
+  justify-content: space-between;
+  padding: 10%;
+}
+
+.experience-container {
+  width: 47.5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding-top: 5px;
 }
 
 .experience-divider {
-  width: 90%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: left;
-  padding: 0 30px 0 30px;
-  border-radius: 10px;
+  margin: 5px 10px 5px 10px;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .experience-title {
   font-family: "Rubik", sans-serif;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 500;
   margin: 0;
+  color: #d0d0d0;
 }
 
-/* .experience-divider {
-  border: 8px solid #3287dd;
-} */
+.experience-description {
+  color: #dedede;
+}
+
+.experience-image {
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.build {
+  border-bottom: 2px solid #b2b2b2;
+}
+
+.innov8 {
+  border-bottom: 2px solid #b2b2b2;
+}
+
+.mlc {
+  border-bottom: 2px solid #b2b2b2;
+}
+
+.technologies-contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 47.5%;
+}
 
 .resume-container {
-  width: calc(100% - 200px);
-  margin-left: 5%;
   border-radius: 10px;
   background-color: #ffffff;
   height: 40px;
@@ -197,33 +170,27 @@ a {
   font-family: "Rubik", sans-serif;
 }
 
-.hobbies-links {
-  width: calc(100% - 200px);
-  margin-left: 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-}
 
-.hobbies-links a {
-  display: flex;
-  width: 30%;
-  height: 40px;
-  overflow-x: visible;
-  padding: 10px;
-  border-radius: 10px;
-  background-color:#ffffff;
-  color: black;
-  align-items: center;
-}
-
-.hobbies-link-desc {
-  margin-left: 10px;
-}
 
 @media screen and (min-width: 1250px) {
   .carousel-buttons {
     margin-top: 350px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .experience-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+  .carousel-buttons {
+    margin-top: 350px;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+  .main-container {
+    flex-direction: column;
   }
 }

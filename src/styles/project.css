@@ -8,7 +8,7 @@
   box-sizing: border-box;
   padding: 20px;
   /* box-shadow: 0px 0px 40px #17293a inset; */
-  background-color: #3281d0;
+  background-color: #004b97;
   outline: 1px solid black;
 } 
 
@@ -144,6 +144,45 @@ a:visited, a:link {
 
 }
 
-@media (min-width: 1250px) {
-
+@media (max-width: 1250px) and (min-width: 1000px) {
+  
+  .carousel-index_1 {
+   display: none;
+  }
+  
+  .carousel-index_2 {
+   display: none;
+  }
+  
+  .carousel-index_3 {
+   display: none;
+  }
+  
+  .carousel-index_4 {
+    display: none;
+  }
+  
+  .carousel-index_5 {
+    display: none;
+  }
+  
+  .carousel-index_-1 {
+    display: none;
+  }
+  
+  .carousel-index_-2 {
+    display: none;
+  }
+  
+  .carousel-index_-3 {
+    display: none;
+  }
+  
+  .carousel-index_-4 {
+    display: none;
+  }
+  
+  .carousel-index_-5 {
+    display: none;
+  }
 }
