@@ -97,6 +97,7 @@ export default function Home() {
             </div>
           </div>
           <div class='technologies-contact-container'>
+
             <div class='skills-container'>
        
               <div class='skills-divider'>
@@ -133,7 +134,7 @@ export default function Home() {
                 <p class='skills-item'>GitHub</p>
               </div>
             </div>
-              <a class='resume-container' href='RomanPisaniResume.pdf' download>
+            <a class='resume-container' href='RomanPisaniResume.pdf' download>
                 <h2 class='resume-text'>Resume</h2>
               </a>
           </div>

@@ -143,10 +143,18 @@ a:visited, a:link {
 @media (max-width: 800px) {
   .project { 
     width: 80vw;
+    height: min-content;
+    position: static;
+  }
+  .github-image {
+    display: none;
+  }
+  .project-link {
+    display: none;
   }
 }
 
-@media (max-width: 1250px) and (min-width: 1000px) {
+@media (max-width: 1250px) {
   
   .carousel-index_1 {
    display: none;
