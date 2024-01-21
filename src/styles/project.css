@@ -140,8 +140,10 @@ a:visited, a:link {
   }
 }
 
-@media (min-width: 1250px) {
-
+@media (max-width: 800px) {
+  .project { 
+    width: 80vw;
+  }
 }
 
 @media (max-width: 1250px) and (min-width: 1000px) {
