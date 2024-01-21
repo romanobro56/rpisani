@@ -19,16 +19,16 @@ export default function Home() {
             <p class='desc'>I'm a software developer attending the University of Massachusetts Amherst</p>
           </div>
           <div class='header-right'> 
-            <a class='social-link' href='linkedin.com/in/roman-pisani'>
+            <a class='social-link' href='http://linkedin.com/in/roman-pisani'>
               <img class='social-image' src='LinkedIn.png'></img>
             </a>
-            <a class='social-link' href='github.com/romanobro56'>
+            <a class='social-link' href='http://github.com/romanobro56'>
               <img class='social-image' src='GitHub.webp'></img>
             </a>
-            <a class='social-link' href='mailto:romanp2929@gmail.com'>
+            <a class='social-link' href='http://mailto:romanp2929@gmail.com'>
               <img class='social-image' src='Email.png'></img>
             </a>
-            <a class='social-link' href="instagram.com/roman.pisani56">
+            <a class='social-link' href="http://instagram.com/roman.pisani56">
               <img class='social-image' src='Instagram.png'></img>
             </a>
           </div>
