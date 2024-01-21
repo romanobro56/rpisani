@@ -1,13 +1,11 @@
-import { For, Show, createEffect, createSignal, onMount } from "solid-js";
-import { technologiesData, projectsData } from "../data/experience"
-import { Technology } from '../components/Technology'
+import { For, Show, createEffect, createSignal } from "solid-js";
+import { projectsData } from "../data/experience"
 import '../styles/index.css'
 import Project from "~/components/Project";
 
 export const [carouselIndex, setCarouselIndex] = createSignal(0)
 
 export default function Home() {
-  const [technologies, setTechnologies] = createSignal(technologiesData)
   const [projects, setProjects] = createSignal(projectsData)
   createEffect(async () => {
     // const scroller = await import ('../scripts/side-scroller.js')
@@ -15,8 +13,26 @@ export default function Home() {
   return (
     <main>
       <div class='main-container'>
-        <h1 class="name">Hi, I'm Roman Pisani 👋</h1>
-        <p class='desc'>I'm a software developer attending the University of Massachusetts Amherst</p>
+        <div class='header-container'>
+          <div class="header-left">
+            <h1 class="name">Hi, I'm Roman Pisani 👋</h1>
+            <p class='desc'>I'm a software developer attending the University of Massachusetts Amherst</p>
+          </div>
+          <div class='header-right'> 
+            <a class='social-link' href='linkedin.com/in/roman-pisani'>
+              <img class='social-image' src='LinkedIn.png'></img>
+            </a>
+            <a class='social-link' href='github.com/romanobro56'>
+              <img class='social-image' src='GitHub.webp'></img>
+            </a>
+            <a class='social-link' href='mailto:romanp2929@gmail.com'>
+              <img class='social-image' src='Email.png'></img>
+            </a>
+            <a class='social-link' href="instagram.com/roman.pisani56">
+              <img class='social-image' src='Instagram.png'></img>
+            </a>
+          </div>
+        </div>
 
         <div class='projects-container'>
           <h2 class='projects-title'>My Projects</h2>
@@ -27,7 +43,7 @@ export default function Home() {
                   projectName={thisProject.name} 
                   projectDesc={thisProject.description} 
                   thisProjectNum={i()}
-                  githubLinks={thisProject.githubLinks}
+                  githubLinks={thisProject!.githubLinks}
                   liveLink={thisProject.liveLink}
                   projectImage={thisProject.image}
                 />
@@ -53,7 +69,7 @@ export default function Home() {
                 <p class='experience-title'>Build UMass</p>
                 <img class='experience-image' src='BUILDUMass.jpeg' height='50px' width="50px" alt='BUILD UMass Logo'></img>
               </div>
-              <p class='experience-description'>BUILD UMass is a pro-bono tech consulting group making tech more accessible to non-profits and startups. you can check out our Instagram <a href='https://www.instagram.com/build.umass/'>here.</a></p>
+              <p class='experience-description'>BUILD UMass is a pro-bono tech consulting group making tech more accessible to non-profits and startups. You can check out our Instagram <a href='https://www.instagram.com/build.umass/'>here.</a></p>
             </div>
 
             <div class='experience-divider innov8'>
@@ -77,17 +93,51 @@ export default function Home() {
                 <p class='experience-title'>Robotics Club</p>
                 <img class='experience-image' src='Robotics.jpeg' height='50px' width='50px' alt='Robotics Club Logo'></img>
               </div>
-              <p class='experience-description'>Explored teamwork and robotics assembly in the Robotics Club.</p>
+              <p class='experience-description'>Explored teamwork and robotics assembly in the Franklin High School Robotics Club.</p>
             </div>
           </div>
           <div class='technologies-contact-container'>
-              
+            <div class='skills-container'>
+       
+              <div class='skills-divider'>
+                <p class='skills-title'>Languages</p>
+                <p class='skills-item'>JavaScript</p>
+                <p class='skills-item'>TypeScript</p>
+                <p class='skills-item'>Python</p>
+                <p class='skills-item'>C ++</p>
+                <p class='skills-item'>Java</p>
+              </div>
+              <div class='skills-divider'>
+                <p class='skills-title'>Frameworks</p>
+                <p class='skills-item'>ReactJS</p>
+                <p class='skills-item'>NextJS</p>
+                <p class='skills-item'>SolidJS</p>
+                <p class='skills-item'>ExpressJS</p>
+                <p class='skills-item'>RobotC</p>
+              </div>
+              <div class='skills-divider'>
+                <p class='skills-title'>Libraries</p>
+                <p class='skills-item'>TailwindCSS</p>
+                <p class='skills-item'>Mongoose</p>
+                <p class='skills-item'>DiscordJS</p>
+                <p class='skills-item'>Bcrypt</p>
+                <p class='skills-item'>OpenAI \(python\)</p>
+              </div>
+              <div class='skills-divider'>
+                <p class='skills-title'>Tools</p>
+                <p class='skills-item'>Contentful</p>
+                <p class='skills-item'>MongoDB</p>
+                <p class='skills-item'>Railway</p>
+                <p class='skills-item'>VSCode</p>
+                <p class='skills-item'>Git</p>
+                <p class='skills-item'>GitHub</p>
+              </div>
+            </div>
+              <a class='resume-container' href='RomanPisaniResume.pdf' download>
+                <h2 class='resume-text'>Resume</h2>
+              </a>
           </div>
         </div>
-        <a class='resume-container' href='RomanPisaniResume.pdf' download>
-            <h2 class='resume-text'>Resume</h2>
-        </a>
-
       </div>
     </main>
   );
