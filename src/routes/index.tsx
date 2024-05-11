@@ -8,7 +8,7 @@ export const [carouselIndex, setCarouselIndex] = createSignal(0)
 export default function Home() {
   const [projects, setProjects] = createSignal(projectsData)
   createEffect(async () => {
-    // const scroller = await import ('../scripts/side-scroller.js')
+    
   })
   return (
     <main>
