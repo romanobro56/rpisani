@@ -82,6 +82,15 @@ textarea {
   box-sizing: border-box; /* Handles padding and border */
 }
 
+#gptResponse {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  color: black;
+}
+
 /* Button styling */
 button {
   background: #0077cc;
@@ -97,16 +106,12 @@ button:hover {
   background: #005fa3; /* Darker shade on hover */
 }
 
-#chatgpt {
-  margin-bottom: 300px;
-}
 /* Footer styling */
 footer {
   background: #333333;
   color: #ffffff;
   text-align: center;
-  padding: 20px 0;
-  position: fixed;
+  padding: 5px 0 10px 0;
   width: 100%;
-  bottom: 0;
+  margin-top: 80px;
 }
