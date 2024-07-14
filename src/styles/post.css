@@ -112,6 +112,8 @@ footer {
   color: #ffffff;
   text-align: center;
   padding: 5px 0 10px 0;
+  position: fixed;
   width: 100%;
-  margin-top: 80px;
+  bottom: 0;
+  height: 100px;
 }

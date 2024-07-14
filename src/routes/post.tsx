@@ -4,19 +4,16 @@ import '../styles/post.css'
 
 const post = () => {
 
-  const getResponse = async (message: string) => {
+  const getResponse = (e: MouseEvent) => {
     "use server"
     dotenv.config()
 
     const apiKey = process.env.OPENAI_API_KEY
     const openai = new OpenAI({apiKey})
-   
-    // const completion = await openai.chat.completions.create({
-    //   messages: [{ role: "system", content: message }],
-    //   model: "gpt-3.5-turbo",
-    // });
 
-    // return completion.choices[0].message.content
+    console.log(openai)
+    return
+
   }
 
 
@@ -107,14 +104,7 @@ const post = () => {
               </button>
               <p>Interact with ChatGPT to explore its views on the impact of AI on the workforce. Try asking about specific concepts, or use one of the premade questions above</p>
               <textarea id="userInput" placeholder="Type your question here..."></textarea>
-              <button onClick={(event) => {
-                const userInput = document.getElementById("userInput") as HTMLInputElement
-                event.target.innerHTML = "Loading..."
-                // disable the button
-                event.target.setAttribute("disabled", "true")
-                event.target.setAttribute("disabled", "false")
-                event.target.innerHTML = "Ask"
-              }}>Ask</button>   
+              <button onClick={(event) => getResponse(event)}>Ask</button>
               <div id="gptResponse"></div>
           </section>
           <footer>
