@@ -4,6 +4,20 @@ import '../styles/post.css'
 
 const post = () => {
 
+  const getResponse = (e: MouseEvent) => {
+    "use server"
+    dotenv.config()
+    const apiKey = process.env.OPENAI_API_KEY
+
+    const openai = new OpenAI({apiKey})
+
+    console.log(openai)
+    return
+
+  }
+
+
+
   return (
     <div>
           <header>
@@ -61,7 +75,7 @@ const post = () => {
               <h2>Ask ChatGPT</h2>
               <p>Interact with ChatGPT to explore its views on the impact of AI on the workforce. Try asking about specific concepts.</p>
               <textarea id="userInput" placeholder="Type your question here..."></textarea>
-              <button>Ask</button>
+              <button onClick={(event) => getResponse(event)}>Ask</button>
               <div id="gptResponse"></div>
           </section>
           <footer>
