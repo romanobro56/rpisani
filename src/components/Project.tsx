@@ -1,43 +1,53 @@
-import { Component, For } from "solid-js"
-import { carouselIndex } from "../routes/index"
+import { Component, For, Show, createMemo } from "solid-js"
 import "../styles/project.css"
 
-type projectProps = { 
+type ProjectProps = { 
   projectName: string, 
   projectDesc: string, 
   thisProjectNum: number, 
   projectImage: string, 
-  githubLinks: { name: string; source: string; }[] | undefined, 
-  liveLink: string | undefined, 
+  githubLinks: string | { name: string; source: string; }[], 
+  liveLink?: string, 
   videoSrc?: string, 
+  carouselIndex: () => number  // Add this prop
 }
 
-const Project: Component<projectProps> = (props) => {
+const Project: Component<ProjectProps> = (props) => {
+  // Create a memo that will update when carouselIndex changes
+  const className = createMemo(() => {
+    const index = props.carouselIndex();
+    return `project carousel-index_${props.thisProjectNum - index} index_${props.thisProjectNum}`;
+  });
 
-  const isCurrentProject = () => props.thisProjectNum - carouselIndex() === 0;
   return (
-    <div class={`project carousel-index_${props.thisProjectNum - carouselIndex()} index_${props.thisProjectNum}`}>
+    <div class={className()}>
       <div class='project-title'>{props.projectName}</div>
       <div class='project-body'>
         <div class='project-description'>{props.projectDesc}</div>
         <div class='project-assets-container'>
-          <img class='project-image' src={props.projectImage} alt='Project Image'></img>
+          <img class='project-image' src={props.projectImage} alt='Project Image' />
           <div class='project-links-container'>
-            <For each={props.githubLinks}>{(thisLink, i) =>
-              <a href={thisLink.source}>
-                <div class="project-link">
-                  <img class='github-image' src='GitHub.webp' alt='GitHub Logo'></img>
-                  <p class='github-project-text'>{thisLink.name}</p>
-                </div>
-              </a>
-            }</For>
+            <Show when={Array.isArray(props.githubLinks)}>
+              <For each={props.githubLinks as { name: string; source: string; }[]}>
+                {(thisLink) => (
+                  <a href={thisLink.source}>
+                    <div class="project-link">
+                      <img class='github-image' src='GitHub.webp' alt='GitHub Logo' />
+                      <p class='github-project-text'>{thisLink.name}</p>
+                    </div>
+                  </a>
+                )}
+              </For>
+            </Show>
           </div>
-          <a href={props?.liveLink}>
-            <div class="project-link">
-              <img class='live-image' src='GitHub.webp' alt='Live Link Logo'></img>
-              <p class='live-project-text'>Live</p>
-            </div>
-          </a>
+          <Show when={props.liveLink}>
+            <a href={props.liveLink}>
+              <div class="project-link">
+                <img class='live-image' src='GitHub.webp' alt='Live Link Logo' />
+                <p class='live-project-text'>Live</p>
+              </div>
+            </a>
+          </Show>
         </div>
       </div>
     </div>
