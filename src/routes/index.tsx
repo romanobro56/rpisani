@@ -1,7 +1,8 @@
 import { For, Show, createEffect, createSignal } from "solid-js";
 import { projectsData } from "../data/experience"
 import '../styles/index.css'
-import Project from "~/components/Project";
+import { clientOnly } from "@solidjs/start";
+const Project = clientOnly(() => import("~/components/Project"));
 
 export const [carouselIndex, setCarouselIndex] = createSignal(0)
 
@@ -46,6 +47,7 @@ export default function Home() {
                   githubLinks={thisProject!.githubLinks}
                   liveLink={thisProject.liveLink}
                   projectImage={thisProject.image}
+                  carouselIndex={carouselIndex}  // Add this line
                 />
               }</For>
             </div>
@@ -56,7 +58,11 @@ export default function Home() {
               </Show>
               <span class='carousel-active-counter'>{carouselIndex() + 1 + '/' + projects().length}</span>
               <Show when={carouselIndex() < projects().length - 1}>
-                <button class='carousel-increment' onClick={() => setCarouselIndex((prev) => prev + 1)}>&gt;</button>
+                <button class='carousel-increment' 
+                  onClick={() => {
+                    setCarouselIndex((prev) => prev + 1)
+                  }
+                }>&gt;</button>
               </Show>
             </div>
 

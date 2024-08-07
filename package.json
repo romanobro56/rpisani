@@ -1,5 +1,5 @@
 {
-  "name": "example-basic",
+  "name": "rpisani",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
@@ -14,7 +14,7 @@
     "dotenv": "^16.4.5",
     "openai": "^4.45.0",
     "solid-js": "^1.8.17",
-    "vinxi": "^0.3.11"
+    "vinxi": "^0.4.0"
   },
   "engines": {
     "node": ">=18"
