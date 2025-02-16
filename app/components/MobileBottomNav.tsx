@@ -19,7 +19,7 @@ function MobileBottomNav() {
     return (
         <div id="mobile-nav-container" className={classNames(
             "block",
-            "sm:hidden",
+            "md:hidden",
             "fixed bottom-0",
             "flex flex-col",
             "w-full",
@@ -30,7 +30,7 @@ function MobileBottomNav() {
                 "h-[350px]",
                 "items-center",
                 "justify-around",
-                "bg-white",
+                "bg-gray-400",
                 "dark:bg-[#202020]",
                 "text-[30px]",
                 "py-[80px]",
@@ -48,7 +48,7 @@ function MobileBottomNav() {
 
             <div id="nav-btns-container" className={classNames(
                 "block",
-                "sm:hidden",
+                "md:hidden",
                 "sticky bottom-0",
                 "flex",
                 "justify-between",
@@ -56,8 +56,8 @@ function MobileBottomNav() {
                 "w-full",
                 "h-14",
                 "px-10",
-                "bg-white",
-                "rounded-t-3xl",
+                "bg-gray-400",
+                !open ? "rounded-t-3xl" : "",
                 "dark:bg-[#202020]",
             )}>
                 <Link href="#">
