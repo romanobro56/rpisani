@@ -9,6 +9,7 @@ import { FaInstagram, FaLinkedin, FaLastfmSquare, FaKeyboard } from "react-icons
 import { FaSquareLetterboxd } from "react-icons/fa6";
 
 import MobileBottomNav from './components/MobileBottomNav';
+import BreadCrumb from './components/BreadCrumb';
 
 import CK_LOGO from '@/app/assets/CK_Logo.webp'
 import CK_LOGO_BLACK from '@/app/assets/CK_Logo_Black.webp'
@@ -30,25 +31,7 @@ export default function Home() {
         "md:px-[max(50px,5%)]",
         "md:gap-5",
       )}>
-        <div id="breadcrumb-container" className={classNames(
-          "hidden",
-          "md:flex flex-col",
-          "gap-[20px]",
-          "text-[30px]",
-          "md:px-[10%]",
-          "md:mt-10",
-        )}>
-          <div className={classNames(
-            "flex",
-            "gap-[20px]",
-            rubik.className,
-          )}>
-            <button id="breadcrumb" className={"hover:underline"}>Experience</button>
-            <button id="breadcrumb" className={"hover:underline"}>Software</button>
-            <button id="breadcrumb" className={"hover:underline"}>Creative Works</button>
-          </div>
-          <hr className="md:px-[10%]" />
-        </div>
+        <BreadCrumb />
         <div id="header-container" className={classNames(
           "flex justify-between",
           "md:px-[10%]",
