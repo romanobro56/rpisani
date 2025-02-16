@@ -17,7 +17,6 @@ export default function BreadCrumb() {
             <div className={classNames(
                 "flex",
                 "gap-[20px]",
-                rubik.className,
             )}>
                 <Link id="breadcrumb" href="/" className={"hover:underline"}>Experience</Link>
                 <Link id="breadcrumb" href="/software" className={"hover:underline"}>Software</Link>

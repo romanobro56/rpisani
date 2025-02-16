@@ -14,7 +14,6 @@ export default function Home() {
                 "md:px-[max(50px,5%)]",
                 "md:gap-5",
             )}>
-
                 <BreadCrumb />
                 <div id="content-container" className={"p-[10%] text-3xl"}>
                     Under Construction
