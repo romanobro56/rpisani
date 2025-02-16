@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 import { FiGithub } from "react-icons/fi";
 import { TbBrandYoutube } from "react-icons/tb";
-import { FaInstagram, FaLinkedin, FaLastfmSquare } from "react-icons/fa";
-import { SiMonkeytype } from "react-icons/si";
+import { FaInstagram, FaLinkedin, FaLastfmSquare, FaKeyboard } from "react-icons/fa";
 import { FaSquareLetterboxd } from "react-icons/fa6";
 
 import MobileBottomNav from './components/MobileBottomNav';
@@ -33,17 +32,22 @@ export default function Home() {
       )}>
         <div id="breadcrumb-container" className={classNames(
           "hidden",
-          "md:flex",
+          "md:flex flex-col",
           "gap-[20px]",
-          "rounded-xl",
           "text-[30px]",
           "md:px-[10%]",
           "md:mt-10",
-          rubik.className,
         )}>
-          <button id="breadcrumb" className={"hover:underline"}>Experience</button>
-          <button id="breadcrumb" className={"hover:underline"}>Software</button>
-          <button id="breadcrumb" className={"hover:underline"}>Creative Works</button>
+          <div className={classNames(
+            "flex",
+            "gap-[20px]",
+            rubik.className,
+          )}>
+            <button id="breadcrumb" className={"hover:underline"}>Experience</button>
+            <button id="breadcrumb" className={"hover:underline"}>Software</button>
+            <button id="breadcrumb" className={"hover:underline"}>Creative Works</button>
+          </div>
+          <hr className="md:px-[10%]" />
         </div>
         <div id="header-container" className={classNames(
           "flex justify-between",
@@ -60,18 +64,31 @@ export default function Home() {
             "md:block"
           )}>
             <div id="icons-container" className={classNames(
-              "flex",
+              "flex flex-col",
               "items-center",
-              "[gap:clamp(1rem,2vw,2rem)]",
-              "[margin-left:clamp(1rem,4vw,4rem)]"
+              "gap-4"
             )}>
-              <Link href="https://www.github.com/romanobro56" rel="noopener noreferrer" target="_blank"><FiGithub size={35} /></Link>
-              <Link href="https://www.linkedin.com/in/roman-pisani" rel="noopener noreferrer" target="_blank"><FaLinkedin size={35} /></Link>
-              <Link href="https://youtube.com/@romanpisani8157" rel="noopener noreferrer" target="_blank"><TbBrandYoutube size={35} /></Link>
-              <Link href="https://www.instagram.com/roman.pisani56" rel="noopener noreferrer" target="_blank"><FaInstagram size={35} /></Link>
-              <Link href="https://www.last.fm/user/Romanobro56" rel="noopener noreferrer" target="_blank"><FaLastfmSquare size={35} /></Link>
-              <Link href="https://letterboxd.com/romanobro/" rel="noopener noreferrer" target="_blank"><FaSquareLetterboxd size={35} /></Link>
-              <Link href="https://monkeytype.com/profile/romanobro" rel="noopener noreferrer" target="_blank"><SiMonkeytype size={35} /></Link>
+              <div id="icons-container-top" className={classNames(
+                "flex",
+                "items-center",
+                "[gap:clamp(1rem,2vw,2rem)]",
+                "[margin-left:clamp(1rem,4vw,4rem)]"
+              )}>
+                <Link href="https://www.github.com/romanobro56" rel="noopener noreferrer" target="_blank"><FiGithub size={35} /></Link>
+                <Link href="https://www.linkedin.com/in/roman-pisani" rel="noopener noreferrer" target="_blank"><FaLinkedin size={35} /></Link>
+                <Link href="https://youtube.com/@romanpisani8157" rel="noopener noreferrer" target="_blank"><TbBrandYoutube size={35} /></Link>
+                <Link href="https://www.instagram.com/roman.pisani56" rel="noopener noreferrer" target="_blank"><FaInstagram size={35} /></Link>
+              </div>
+              <div id="icons-container-bottom" className={classNames(
+                "flex",
+                "items-center",
+                "[gap:clamp(1rem,2vw,2rem)]",
+                "[margin-left:clamp(1rem,4vw,4rem)]"
+              )}>
+                <Link href="https://www.last.fm/user/Romanobro56" rel="noopener noreferrer" target="_blank"><FaLastfmSquare size={35} /></Link>
+                <Link href="https://letterboxd.com/romanobro/" rel="noopener noreferrer" target="_blank"><FaSquareLetterboxd size={35} /></Link>
+                <Link href="https://monkeytype.com/profile/romanobro" rel="noopener noreferrer" target="_blank"><FaKeyboard size={35} /></Link>
+              </div>
             </div>
           </div>
         </div>
