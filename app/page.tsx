@@ -7,6 +7,7 @@ import { FiGithub } from "react-icons/fi";
 import { TbBrandYoutube } from "react-icons/tb";
 import { FaInstagram, FaLinkedin, FaLastfmSquare, FaKeyboard } from "react-icons/fa";
 import { FaSquareLetterboxd } from "react-icons/fa6";
+import { MdOutlineFileDownload } from "react-icons/md";
 
 import MobileBottomNav from './components/MobileBottomNav';
 import BreadCrumb from './components/BreadCrumb';
@@ -37,11 +38,40 @@ export default function Home() {
           "md:px-[10%]",
           "md:mt-10"
         )}>
-          <h1 className={classNames(
-            "[font-size:36px]",
-            "leading-[36px]",
-            rubik.className
-          )}>Hi, I'm Roman Pisani</h1>
+          <div id="name-resume-container" className={classNames(
+            "flex", 
+            "flex-col",
+            "justify-between"
+          )}>
+            <h1 className={classNames(
+              "[font-size:36px]",
+              "leading-[36px]",
+              rubik.className
+            )}>Hi, I'm Roman Pisani</h1>
+            <a
+              id='resume-container'
+              href='Roman_Pisani_resume.pdf'
+              download
+              className={classNames(
+                "mt-2",
+                "[font-size:24px]",
+                "text-blue-300",
+                "hover:underline"
+              )}
+            >
+              <h2 id='resume-text' className={classNames(
+                "inline-block",
+                "flex",
+                "items-center",
+                "gap-2",
+                rubik.className
+              )}>
+                Resume
+                <MdOutlineFileDownload />
+              </h2>
+            </a>
+
+          </div>
           <div id="desktop-nav-container" className={classNames(
             "hidden",
             "md:block"
