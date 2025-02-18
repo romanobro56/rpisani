@@ -57,9 +57,9 @@ export default function Home() {
                 "[gap:clamp(1rem,2vw,2rem)]",
                 "[margin-left:clamp(1rem,4vw,4rem)]"
               )}>
-                <Link href="https://www.github.com/romanobro56" rel="noopener noreferrer" target="_blank"><FiGithub size={35} /></Link>
+                <Link href="https://www.github.com/romanobro56" rel="noopener noreferrer" target="_blank"><FiGithub size={32} /></Link>
                 <Link href="https://www.linkedin.com/in/roman-pisani" rel="noopener noreferrer" target="_blank"><FaLinkedin size={35} /></Link>
-                <Link href="https://youtube.com/@romanpisani8157" rel="noopener noreferrer" target="_blank"><TbBrandYoutube size={35} /></Link>
+                <Link href="https://youtube.com/@romanpisani8157" rel="noopener noreferrer" target="_blank"><TbBrandYoutube size={37} /></Link>
                 <Link href="https://www.instagram.com/roman.pisani56" rel="noopener noreferrer" target="_blank"><FaInstagram size={35} /></Link>
               </div>
               <div id="icons-container-bottom" className={classNames(
@@ -69,8 +69,8 @@ export default function Home() {
                 "[margin-left:clamp(1rem,4vw,4rem)]"
               )}>
                 <Link href="https://www.last.fm/user/Romanobro56" rel="noopener noreferrer" target="_blank"><FaLastfmSquare size={35} /></Link>
+                <Link href="https://monkeytype.com/profile/romanobro" rel="noopener noreferrer" target="_blank"><FaKeyboard size={37} /></Link>
                 <Link href="https://letterboxd.com/romanobro/" rel="noopener noreferrer" target="_blank"><FaSquareLetterboxd size={35} /></Link>
-                <Link href="https://monkeytype.com/profile/romanobro" rel="noopener noreferrer" target="_blank"><FaKeyboard size={35} /></Link>
               </div>
             </div>
           </div>
