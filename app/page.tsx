@@ -15,6 +15,7 @@ import BreadCrumb from './components/BreadCrumb';
 import CK_LOGO from '@/app/assets/CK_Logo.webp'
 import CK_LOGO_BLACK from '@/app/assets/CK_Logo_Black.webp'
 import BUILD_LOGO from '@/app/assets/BUILD_Logo.webp'
+import EGG_LOGO from '@/app/assets/egg-logo.svg'
 
 const rubik = Rubik({ subsets: ['latin'] });
 const sunflower = Sunflower({ weight: "300", subsets: ['latin'] })
@@ -39,7 +40,7 @@ export default function Home() {
           "md:mt-10"
         )}>
           <div id="name-resume-container" className={classNames(
-            "flex", 
+            "flex",
             "flex-col",
             "justify-between"
           )}>
@@ -222,6 +223,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div id="easter-egg-container" className="w-full relative bottom-[-20px] flex justify-center items-center">
+        <a href="https://g0ogle-classroom.xyz">
+          <Image src={EGG_LOGO} alt="ssh" width={20} />
+        </a>
       </div>
       <MobileBottomNav />
     </div>
