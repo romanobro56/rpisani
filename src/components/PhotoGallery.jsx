@@ -29,19 +29,25 @@ export default function PhotoGallery({ images }) {
     }));
 
     // Custom render function for the photo album
+
     const renderPhoto = useCallback(({ photo, imageProps }) => {
+        // Force a maximum width with inline styles that will override any other styles
         return (
-            <div className={styles.photoWrapper}>
-                <img
-                    src={photo.src}
-                    alt={photo.alt || "Photo"}
-                    style={{ 
-                        objectFit: "cover",
-                        width: "100%", 
-                        height: "100%" 
-                    }}
-                    {...imageProps}
-                />
+            <div className={styles.photoWrapper} style={{ maxWidth: "400px", margin: "0 auto" }}>
+                <div className={styles.photoContainer} style={{ maxWidth: "100%" }}>
+                    <img
+                        src={photo.src}
+                        alt={photo.alt || "Photo"}
+                        className={styles.galleryImage}
+                        style={{
+                            ...imageProps.style,
+                            maxWidth: "100%",
+                            width: "auto", // Override any width settings
+                            height: "auto", // Maintain aspect ratio
+                        }}
+                    />
+                    {photo.title && <div className={styles.photoTitle}>{photo.title}</div>}
+                </div>
             </div>
         );
     }, []);
@@ -61,7 +67,8 @@ export default function PhotoGallery({ images }) {
             <MasonryPhotoAlbum
                 photos={photos}
                 layout="masonry"
-                spacing={8}
+                spacing={12}
+                columnWidth={400} // Force column width
                 columns={(containerWidth) => {
                     if (containerWidth < 640) return 2;
                     if (containerWidth < 1024) return 3;
@@ -70,7 +77,6 @@ export default function PhotoGallery({ images }) {
                 onClick={({ index }) => setIndex(index)}
                 renderPhoto={renderPhoto}
             />
-            
             <Lightbox
                 slides={slides}
                 open={index >= 0}

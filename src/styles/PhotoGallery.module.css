@@ -1,18 +1,49 @@
 .photoWrapper {
-    position: relative;
-    aspect-ratio: auto;
-    width: 100%;
-    height: 100%;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
     overflow: hidden;
-    border-radius: 4px;
-    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 400px;
 }
 
-.photoWrapper:hover {
-    transform: scale(1.02);
+.photoContainer {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    width: 100%;
+}
+
+.galleryImage {
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    max-width: 100%;
+}
+
+.photoWrapper:hover .galleryImage {
+    transform: scale(1.05);
     cursor: pointer;
 }
 
+.photoTitle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.photoWrapper:hover .photoTitle {
+    opacity: 1;
+}
+
+/* Keep your existing lightbox caption styles */
 .caption {
     color: white;
     text-align: center;
