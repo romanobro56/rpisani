@@ -1,8 +1,6 @@
-"use client"
-import React, { useState } from 'react'
-import classNames from 'classnames'
-import Link from 'next/link'
-import { GiHamburgerMenu } from 'react-icons/gi'
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from "react-icons/io";
 import { FiGithub } from "react-icons/fi";
 import { TbBrandYoutube } from "react-icons/tb";
@@ -13,7 +11,7 @@ function MobileBottomNav() {
     const [open, setOpen] = useState(false);
 
     const toggleOpen = () => {
-        setOpen(!open)
+        setOpen(!open);
     }
 
     return (
@@ -41,9 +39,9 @@ function MobileBottomNav() {
                 open ? "translate-y-0" : "translate-y-full",
                 "absolute bottom-14",
             )}>
-                <Link href="#">Experience</Link>
-                <Link href="#">Software</Link>
-                <Link href="#">Creative Works</Link>
+                <a href="/">Experience</a>
+                <a href="/software">Software</a>
+                <a href="/creations">Creative Works</a>
             </div>
 
             <div id="nav-btns-container" className={classNames(
@@ -60,28 +58,24 @@ function MobileBottomNav() {
                 !open ? "rounded-t-3xl" : "",
                 "dark:bg-[#202020]",
             )}>
-                <Link href="#">
+                <a href="https://github.com/romanobro56" target="_blank" rel="noopener noreferrer">
                     <FiGithub size={40} />
-                </Link>
-                <Link href="#">
+                </a>
+                <a href="https://youtube.com/@romanpisani8157" target="_blank" rel="noopener noreferrer">
                     <TbBrandYoutube size={40} />
-                </Link>
-                <button className="mx-4" onClick={() => {
-                    toggleOpen()
-                }}>
+                </a>
+                <button className="mx-4" onClick={toggleOpen}>
                     {open ? <IoMdClose size={45} /> : <GiHamburgerMenu size={45} />}
                 </button>
-                <Link href="#">
+                <a href="https://www.instagram.com/roman.pisani56" target="_blank" rel="noopener noreferrer">
                     <FaInstagram size={40} />
-                </Link>
-                <Link href="#">
+                </a>
+                <a href="https://www.linkedin.com/in/roman-pisani" target="_blank" rel="noopener noreferrer">
                     <FaLinkedin size={40} />
-                </Link>
+                </a>
             </div>
-
         </div>
-
-    )
+    );
 }
 
-export default MobileBottomNav
+export default MobileBottomNav;

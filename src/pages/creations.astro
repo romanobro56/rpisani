@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro'
+import BreadCrumb from '../components/BreadCrumb.astro';
+import PhotoGallery from '../components/PhotoGallery.jsx';
+import { galleryImages } from '../data/gallery-images.js';
+---
+
+<Layout title="Creative Works - Roman Pisani">
+  <div id="container">
+    <div id="main-container" class="flex flex-col pl-5 pr-8 md:pt-4 md:px-[max(50px,5%)] md:gap-5">
+      <BreadCrumb />
+      <div id="content-container" class="px-[5%] md:px-[10%]">
+        <h1 class="text-3xl mb-8">Creative Works</h1>
+        <p class="text-xl mb-8">Things I've created or had a part in making</p>
+        
+        <PhotoGallery images={galleryImages} client:visible />
+      </div>
+    </div>
+  </div>
+</Layout>
