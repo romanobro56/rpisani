@@ -8,4 +8,5 @@ export default defineConfig({
     tailwind()
   ],
   site: 'https://rpisani.dev',
+  publicDir: 'public'
 });
