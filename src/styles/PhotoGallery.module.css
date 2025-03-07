@@ -1,64 +1,18 @@
-.photoWrapper {
-    margin-bottom: 16px;
-    transition: transform 0.2s;
-    overflow: hidden;
-    width: 100%;
-    max-width: 400px;
-}
-
-.photoContainer {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f8f8f8;
-    width: 100%;
-}
-
-.galleryImage {
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    max-width: 100%;
-}
-
-.photoWrapper:hover .galleryImage {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.photoTitle {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 8px;
-    font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.photoWrapper:hover .photoTitle {
-    opacity: 1;
-}
-
-/* Keep your existing lightbox caption styles */
+/* src/styles/PhotoGallery.module.css */
 .caption {
-    color: white;
+    padding: 10px 20px;
     text-align: center;
-    padding: 12px 24px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.title {
-    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .title {
+    font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.description {
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .description {
     font-size: 1rem;
-    line-height: 1.5;
-}
+    color: #e0e0e0;
+  }
