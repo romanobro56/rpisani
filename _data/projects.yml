@@ -3,14 +3,14 @@ main:
     authors: <strong>Roman Pisani</strong>
     conference_short: Chewy
     conference: Production ML System at Chewy - <strong>Mitigating $35M+ Monthly Revenue Loss</strong>
-    image: ./assets/img/chewy_vet_care.jpg
+    image: ./assets/img/chewy_vet_care.webp
     notes: 95% Prediction Accuracy
     
   - title: "AWS Neptune Knowledge Graph for Clinical Intelligence"
     authors: <strong>Roman Pisani</strong>
     conference_short: Chewy
     conference: Billion-Scale Graph Database Powering LLM Reasoning for Drug Interactions & Veterinary AI
-    image: ./assets/img/knowledge_graph.png
+    image: ./assets/img/knowledge_graph.webp
     notes: 800M+ Records Processed
     
   - title: "Fraud Detection UI System Preventing $50K+ in Monthly Fraud Losses"
@@ -26,5 +26,5 @@ main:
     conference: End-to-End Content Generation System
     pdf: https://github.com/romanobro56
     code: https://github.com/romanobro56
-    image: ./assets/img/rocketreels.png
+    image: ./assets/img/rocketreels.webp
     notes: Production Pipeline
