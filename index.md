@@ -1,0 +1,25 @@
+---
+layout: homepage
+---
+
+## About Me
+
+I'm a **Software Engineer and AI/ML Developer** at the University of Massachusetts Amherst. I specialize in building **production-scale machine learning systems**, **full-stack applications**, and **cloud infrastructure** that drive measurable business impact.
+
+At **Chewy**, I'm currently developing AI systems that have **accelerated prescription processing by 10x** (72 hours → 6 hours). My work includes building knowledge graphs with **billions of clinical records** and production ML models with **95% accuracy**.
+
+Previously at **Intuit Credit Karma**, I architected secure, cross-platform applications that **prevented $20K-$50K in fraud losses** and **reduced customer service calls by 10%**.
+
+I'm passionate about leveraging AI and software engineering to solve complex, high-impact problems.
+
+## News
+
+- **[September 2025]** Returned to Chewy part time working on AI systems
+- **[August 2025]** Won runner up in Chewy's Unbound Program (Most Innovative Use of AI)
+- **[June 2025]** Started AI Engineering internship at Chewy, working on production ML systems
+- **[May 2024]** Completed Software Engineering internship at Intuit Credit Karma
+- **[September 2023]** Became Project Lead at BUILD UMass, leading team of 15
+
+{% include_relative _includes/projects.md %}
+
+{% include_relative _includes/services.md %}

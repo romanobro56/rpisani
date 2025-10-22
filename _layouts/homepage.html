@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <title>{{ site.title }} | {{site.affiliation}}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    {% if site.keywords %}
+    <meta name="keywords" content="{{ site.keywords }}">
+    {% endif %}
+    {% if site.canonical %}
+    <link rel="canonical" href="{{ site.canonical }}"/>
+    {% endif %}
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.canonical }}">
+    <meta property="og:title" content="{{ site.title }} - {{ site.position }}">
+    <meta property="og:description" content="{{ site.description }}">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ site.title }} - {{ site.position }}">
+    <meta name="twitter:description" content="{{ site.description }}">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Roman Pisani",
+      "jobTitle": "Software Engineer & AI/ML Developer",
+      "affiliation": {
+        "@type": "EducationalOrganization",
+        "name": "University of Massachusetts Amherst"
+      },
+      "alumniOf": "University of Massachusetts Amherst",
+      "url": "https://rpisani.dev",
+      "sameAs": [
+        "https://github.com/romanobro56",
+        "https://www.linkedin.com/in/roman-pisani"
+      ],
+      "knowsAbout": ["Machine Learning", "Full Stack Development", "Cloud Computing", "AI Engineering"]
+    }
+    </script>
+    
+    <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
+    <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
+    <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    {% if site.font == "Sans Serif" %}
+    <link rel="stylesheet" href="./assets/css/font_sans_serif.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/font.css">
+    {% endif %}
+    {% if site.auto_dark_mode %}
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/projects.css">
+    {% else %}
+    <link rel="stylesheet" href="./assets/css/style-no-dark-mode.css">
+    <link rel="stylesheet" href="./assets/css/projects-no-dark-mode.css">
+    {% endif %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        
+        {% if site.avatar %}
+        <a class="image avatar"><img src="{{ site.avatar }}" alt="Roman Pisani profile picture" /></a>
+        {% endif %}
+        
+        <h1>{{ site.title }}</h1>
+        
+        {% if site.position %}
+        <position style="font-size:1.10rem;">{{ site.position }}</position>
+        <br>
+        {% endif %}
+        {% if site.affiliation %}
+        <a href="{{ site.affiliation_link }}" rel="noopener"><autocolor>{{ site.affiliation }}</autocolor></a>
+        <br>
+        <autocolor style="font-size:0.9rem;">B.S. Computer Science</autocolor>
+        <br>
+        {% endif %}
+        {% if site.email %}
+        <email>{{ site.email }}</email>
+        {% endif %}
+        
+        <br>
+        <br>
+        <div class="social-icons">
+        {% if site.cv_link %}
+        <a style="margin: 0 5px 0 0" href="{{ site.cv_link }}" aria-label="Download Resume">
+          <i class="ai ai-cv" style="font-size:1.3rem;"></i>
+        </a>
+        {% endif %}
+        {% if site.github_link %}
+        <a style="margin: 0 5px 0 0" href="{{ site.github_link }}" aria-label="GitHub Profile">
+          <i class="fab fa-github"></i>
+        </a>
+        {% endif %}
+        {% if site.linkedin %}
+        <a style="margin: 0 5px 0 0" href="{{ site.linkedin }}" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        {% endif %}
+        </div>
+        <br>
+      </header>
+      <section>
+      {{ content }}
+      <br>
+      {% if site.enable_footnote %}
+      <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
+      {% endif %}
+      </section>
+      <footer>
+        
+      </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    {% if site.google_analytics %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+  </body>
+</html>

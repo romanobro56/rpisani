@@ -1,0 +1,30 @@
+main:
+  - title: "AI-Driven Prescription Triage System: 10x Acceleration in Veterinary Approval Workflows"
+    authors: <strong>Roman Pisani</strong>
+    conference_short: Chewy
+    conference: Production ML System at Chewy - <strong>Mitigating $35M+ Monthly Revenue Loss</strong>
+    image: ./assets/img/chewy_vet_care.jpg
+    notes: 95% Prediction Accuracy
+    
+  - title: "AWS Neptune Knowledge Graph for Clinical Intelligence"
+    authors: <strong>Roman Pisani</strong>
+    conference_short: Chewy
+    conference: Billion-Scale Graph Database Powering LLM Reasoning for Drug Interactions & Veterinary AI
+    image: ./assets/img/knowledge_graph.png
+    notes: 800M+ Records Processed
+    
+  - title: "Fraud Detection UI System Preventing $20K-$50K in Losses"
+    authors: <strong>Roman Pisani</strong>
+    conference_short: Credit Karma
+    conference: Cross-Platform TypeScript React Application with GCP Analytics Integration
+    image: ./assets/img/intuit_credit_karma.jpg
+    notes: 1000+ Fraudulent Attempts Deterred
+  
+  - title: "RocketReels: Automated Generative Media Pipeline for Short-Form Video Creation"
+    authors: <strong>Roman Pisani</strong>
+    conference_short: Personal Project
+    conference: End-to-End Content Generation System
+    pdf: https://github.com/romanobro56
+    code: https://github.com/romanobro56
+    image: ./assets/img/rocketreels.png
+    notes: Production Pipeline

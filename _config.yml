@@ -1,0 +1,53 @@
+# Basic Information 
+title: Roman Pisani
+position: Software Engineer & AI/ML Developer
+affiliation: University of Massachusetts Amherst
+email: romanp2929 (at) gmail.com
+
+# Search Engine Optimization (SEO)
+keywords: Roman Pisani, Software Engineer, AI Engineer, Machine Learning, Full Stack Developer, React, Python, TypeScript, AWS, Computer Science UMass
+description: Roman Pisani is a Software Engineer and AI/ML Developer specializing in full-stack development, machine learning systems, and cloud infrastructure. Currently pursuing Computer Science at UMass Amherst with internship experience at Chewy and Intuit Credit Karma.
+canonical: https://rpisani.dev/
+
+# Links
+google_scholar: 
+cv_link: assets/files/Roman_Pisani_resume.pdf
+github_link: https://github.com/romanobro56
+linkedin: https://www.linkedin.com/in/roman-pisani
+twitter: 
+
+# Images
+avatar: ./assets/img/roman.png
+favicon: ./assets/img/favicon.png
+favicon_dark: ./assets/img/favicon-dark.png
+
+# Footnote
+enable_footnote: false
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Auto Dark Mode
+auto_dark_mode: true
+
+# Font
+font: "Sans Serif"
+
+# Google Analytics ID
+google_analytics: 
+
+# Use this project as a remote theme for GitHub Pages
+remote_theme: yaoyao-liu/minimal-light
+
+# The following files will be removed from the generated website.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - README_zh_Hans.md
+  - README_zh_Hant.md
+  - README_de.md
+  - LICENSE
+  - minimal-light.gemspec
+  - html_source_file/
