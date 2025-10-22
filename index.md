@@ -8,7 +8,7 @@ I'm a **Software Engineer and AI/ML Developer** at the University of Massachuset
 
 At **Chewy**, I'm currently developing AI systems that have **accelerated prescription processing by 10x** (72 hours → 6 hours). My work includes building knowledge graphs with **billions of clinical records** and production ML models with **95% accuracy**.
 
-Previously at **Intuit Credit Karma**, I architected secure, cross-platform applications that **prevented $20K-$50K in fraud losses** and **reduced customer service calls by 10%**.
+Previously at **Intuit Credit Karma**, I architected a secure, cross-platform user flow that **prevents $50K+ in monthly fraud losses** and **reduced customer service calls by 10%**.
 
 I'm passionate about leveraging AI and software engineering to solve complex, high-impact problems.
 

@@ -13,7 +13,7 @@
 <ul style="margin:0 0 5px;">
   <li><autocolor><strong>Intuit Credit Karma</strong> | Charlotte, NC | May 2024 – August 2024</autocolor></li>
   <li><autocolor>Architected 8 cross-platform TypeScript React pages with Apollo GraphQL and banking-grade security</autocolor></li>
-  <li><autocolor>Deterred 1,000+ fraudulent disputes yielding $20K-$50K savings through GCP analytics-driven design</autocolor></li>
+  <li><autocolor>Deterred 1,000+ fraudulent disputes yielding $50K+ monthly savings through GCP analytics-driven design</autocolor></li>
   <li><autocolor>Reduced member service calls by 10% via friction-optimized UX</autocolor></li>
 </ul>
 

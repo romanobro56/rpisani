@@ -13,7 +13,7 @@ main:
     image: ./assets/img/knowledge_graph.png
     notes: 800M+ Records Processed
     
-  - title: "Fraud Detection UI System Preventing $20K-$50K in Losses"
+  - title: "Fraud Detection UI System Preventing $50K+ in Monthly Fraud Losses"
     authors: <strong>Roman Pisani</strong>
     conference_short: Credit Karma
     conference: Cross-Platform TypeScript React Application with GCP Analytics Integration
