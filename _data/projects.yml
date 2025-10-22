@@ -4,6 +4,7 @@ main:
     conference_short: Chewy
     conference: Production ML System at Chewy - <strong>Mitigating $35M+ Monthly Revenue Loss</strong>
     image: ./assets/img/chewy_vet_care.webp
+    image_alt: Chewy veterinary care system dashboard showing prescription triage workflow
     notes: 95% Prediction Accuracy
     
   - title: "AWS Neptune Knowledge Graph for Clinical Intelligence"
@@ -11,6 +12,7 @@ main:
     conference_short: Chewy
     conference: Billion-Scale Graph Database Powering LLM Reasoning for Drug Interactions & Veterinary AI
     image: ./assets/img/knowledge_graph.webp
+    image_alt: Network visualization of AWS Neptune knowledge graph with clinical data nodes
     notes: 800M+ Records Processed
     
   - title: "Fraud Detection UI System Preventing $50K+ in Monthly Fraud Losses"
@@ -18,6 +20,7 @@ main:
     conference_short: Credit Karma
     conference: Cross-Platform TypeScript React Application with GCP Analytics Integration
     image: ./assets/img/intuit_credit_karma.jpg
+    image_alt: Credit Karma fraud detection user interface with analytics dashboard
     notes: 1000+ Fraudulent Attempts Deterred
   
   - title: "RocketReels: Automated Generative Media Pipeline for Short-Form Video Creation"
@@ -27,4 +30,5 @@ main:
     pdf: https://github.com/romanobro56
     code: https://github.com/romanobro56
     image: ./assets/img/rocketreels.webp
+    image_alt: RocketReels video generation pipeline interface showing automated content creation
     notes: Production Pipeline
