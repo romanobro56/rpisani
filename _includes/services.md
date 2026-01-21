@@ -1,7 +1,7 @@
 <h2 id="experience" style="margin: 2px 0px 5px;">Professional Experience</h2>
 
 <div style="margin:0 0 20px;">
-  <h3 style="margin:0 10px 0;">AI Engineering Intern</h3>
+  <h3 style="margin:10px 10px 0;">AI Engineering Intern</h3>
   <ul style="margin:0 0 5px;">
     <li><autocolor><strong>Chewy</strong> | Boston, MA | June 2025 – Present</autocolor></li>
     <li><autocolor>Automated AI-driven triage reducing prescription review time from 72 hours to 6 hours (10x acceleration)</autocolor></li>

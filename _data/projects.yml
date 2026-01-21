@@ -2,7 +2,7 @@ main:
   - title: "AI-Driven Prescription Triage System: 10x Acceleration in Veterinary Approval Workflows"
     authors: <strong>Roman Pisani</strong>
     conference_short: Chewy
-    conference: Production ML System at Chewy - <strong>Mitigating $35M+ Monthly Revenue Loss</strong>
+    conference: Production ML System at Chewy - <strong> Processing ~1M monthly prescriptions </strong>
     image: ./assets/img/chewy_vet_care.webp
     image_alt: Chewy veterinary care system dashboard showing prescription triage workflow
     notes: 95% Prediction Accuracy
