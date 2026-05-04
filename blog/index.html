@@ -1,0 +1,108 @@
+---
+layout: post
+title: Blog
+---
+
+<style>
+.blog-page .pub-row {
+  margin-bottom: 20px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+.pagination button {
+  padding: 6px 14px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.pagination button.active {
+  background: #0066cc;
+  color: #fff;
+  border-color: #0066cc;
+}
+.pagination button:hover:not(.active) {
+  background: #f0f0f0;
+}
+@media (prefers-color-scheme: dark) {
+  .pagination button {
+    background: #1e1e1e;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+  .pagination button.active {
+    background: #4a9eff;
+    border-color: #4a9eff;
+    color: #fff;
+  }
+  .pagination button:hover:not(.active) {
+    background: #2a2a2a;
+  }
+}
+</style>
+
+<div class="blog-page">
+<div class="bibliography">
+
+{% for post in site.data.blog.posts %}
+<div class="pub-row blog-item" style="display: none;">
+  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+    <div class="title" style="margin-top: 30px;"><a href="{{ post.url }}">{{ post.title }}</a></div>
+    <div class="author">{{ post.date }} &bull; {{ post.read_time }}</div>
+    <div class="periodical" style="margin-top: 8px;">{{ post.excerpt }}</div>
+    <div class="links" style="margin-top: 8px;">
+      <a href="{{ post.url }}" class="btn btn-sm z-depth-0" role="button" style="font-size:12px;">Read More</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+</div>
+
+<div class="pagination" id="pagination"></div>
+</div>
+
+<script>
+(function() {
+  var POSTS_PER_PAGE = 5;
+  var items = document.querySelectorAll('.blog-item');
+  var total = items.length;
+  var totalPages = Math.ceil(total / POSTS_PER_PAGE);
+  var currentPage = 1;
+
+  function showPage(page) {
+    currentPage = page;
+    var start = (page - 1) * POSTS_PER_PAGE;
+    var end = start + POSTS_PER_PAGE;
+    items.forEach(function(item, i) {
+      item.style.display = (i >= start && i < end) ? '' : 'none';
+    });
+    renderPagination();
+  }
+
+  function renderPagination() {
+    var container = document.getElementById('pagination');
+    container.innerHTML = '';
+    if (totalPages <= 1) {
+      items.forEach(function(item) { item.style.display = ''; });
+      return;
+    }
+    for (var i = 1; i <= totalPages; i++) {
+      var btn = document.createElement('button');
+      btn.textContent = i;
+      if (i === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', (function(page) {
+        return function() { showPage(page); };
+      })(i));
+      container.appendChild(btn);
+    }
+  }
+
+  showPage(1);
+})();
+</script>

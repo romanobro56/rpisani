@@ -12,7 +12,7 @@ At **Chewy**, I worked on the team that developed ML and GenAI AI systems that h
 
 Previously at **Intuit Credit Karma**, I architected a secure, cross-platform user flow that **prevents $50K+ in monthly fraud losses** and **reduced customer service calls by 10%**.
 
-I'm passionate about leveraging AI and software engineering to solve complex, high-impact problems.
+I'm passionate about creating software to solve complex, high-impact problems.
 
 ## News
 

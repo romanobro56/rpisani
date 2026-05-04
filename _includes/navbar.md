@@ -21,7 +21,7 @@
     <span style="color: #e0e0e0;">|</span>
     <a href="#news" class="nav-link">News</a>
     <span style="color: #e0e0e0;">|</span>
-    <a href="#blog" class="nav-link">Blog</a>
+    <a href="/blog/" class="nav-link">Blog</a>
     <span style="color: #e0e0e0;">|</span>
     <a href="#projects" class="nav-link">Projects</a>
     <span style="color: #e0e0e0;">|</span>

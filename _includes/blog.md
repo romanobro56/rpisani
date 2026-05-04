@@ -3,7 +3,7 @@
 <div class="blog-posts">
 <div class="bibliography">
 
-{% for post in site.data.blog.posts limit:1 %}
+{% for post in site.data.blog.posts limit:2 %}
 <div class="pub-row">
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title" style="margin-top: 30px;"><a href="{{ post.url }}">{{ post.title }}</a></div>
@@ -16,6 +16,10 @@
 </div>
 <br>
 {% endfor %}
+
+<div style="text-align: center; margin-top: 10px;">
+  <a href="/blog/" class="btn btn-sm z-depth-0" role="button" style="font-size:12px;">View All Posts</a>
+</div>
 
 </div>
 </div>
