@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/resume",
+      "destination": "/assets/files/Roman_Pisani_resume.pdf",
+      "permanent": false
+    }
+  ]
+}
