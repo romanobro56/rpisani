@@ -409,6 +409,119 @@ section {
   padding-bottom:50px;
 }
 
+/* Homepage layout: a consistent reading column and section rhythm. */
+.page-nav {
+  margin: 0 0 2.5rem;
+}
+
+.page-nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.page-nav__links span {
+  color: #e0e0e0;
+}
+
+.page-nav + h2 {
+  margin-top: 0;
+}
+
+section > h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+section > h2 + p,
+section > h2 + ul {
+  margin-bottom: 1.5rem;
+}
+
+section > ul {
+  padding-left: 1.25rem;
+}
+
+.projects,
+.blog-posts {
+  margin-top: 0;
+}
+
+.projects .bibliography .pub-row,
+.blog-posts .pub-row {
+  margin: 0 0 1.75rem;
+}
+
+.blog-posts .pub-row {
+  margin-bottom: 0.875rem;
+}
+
+.projects .bibliography .pub-row {
+  align-items: flex-start;
+}
+
+.projects .bibliography .pub-row .abbr,
+.projects .bibliography .pub-row .col-sm-9,
+.blog-posts .col-sm-9 {
+  padding: 0;
+  position: relative;
+}
+
+.projects .bibliography .pub-row .col-sm-9 {
+  padding-left: 1.25rem;
+}
+
+.blog-posts .pub-row {
+  min-height: 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .blog-posts .pub-row {
+    border-color: #e5e5e5;
+  }
+}
+
+.blog-posts .title,
+.projects .title {
+  margin: 0 0 0.3rem;
+}
+
+.blog-posts .author,
+.blog-posts .periodical,
+.blog-posts .links {
+  margin-top: 0.45rem;
+}
+
+.blog-posts__all {
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+.resume-entry {
+  margin: 0 0 1.75rem;
+}
+
+.resume-entry h3 {
+  margin: 0 0 0.5rem;
+}
+
+.resume-entry ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+section > h2,
+.projects,
+.blog-posts,
+.resume-entry {
+  scroll-margin-top: 1.5rem;
+}
+
 small {
   font-size:11px;
 }
@@ -512,6 +625,22 @@ footer {
   .pub-row {
     display: block; 
     align-items: center;}
+
+  .page-nav {
+    margin-bottom: 2rem;
+  }
+
+  .page-nav__links {
+    gap: 0.45rem 0.7rem;
+  }
+
+  .projects .bibliography .pub-row .col-sm-9 {
+    padding-left: 0;
+  }
+
+  .projects .bibliography .pub-row .abbr {
+    margin-bottom: 0.75rem;
+  }
 
   body {
     padding:15px;

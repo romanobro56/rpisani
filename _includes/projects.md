@@ -1,11 +1,11 @@
-<h2 id="projects" style="margin: 2px 0px -15px;">Featured Projects & Impact</h2>
+<h2 id="projects">Featured Projects & Impact</h2>
 
 <div class="projects">
 <div class="bibliography">
 
 {% for link in site.data.projects.main %}
 <div class="pub-row">
-  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+  <div class="col-sm-3 abbr">
     {% if link.image %} 
     <img src="{{ link.image }}" alt="{{ link.image_alt }}" class="teaser img-fluid z-depth-1" style="width=100;height=40%">
     {% if link.conference_short %} 
@@ -13,7 +13,7 @@
     {% endif %}
     {% endif %}
   </div>
-  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+  <div class="col-sm-9">
       <div class="title"><a href="{{ link.pdf }}">{{ link.title }}</a></div>
       <div class="author">{{ link.authors }}</div>
       <div class="periodical"><em>{{ link.conference }}</em></div>
