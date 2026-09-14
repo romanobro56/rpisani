@@ -43,6 +43,7 @@ remote_theme: yaoyao-liu/minimal-light
 # The following files will be removed from the generated website.
 exclude:
   - automation
+  - api
   - Gemfile
   - Gemfile.lock
   - README.md

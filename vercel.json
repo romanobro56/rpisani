@@ -1,4 +1,16 @@
 {
+  "functions": {
+    "api/bike-weather*.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{assets/**,_site/**,.git/**,automation/test_*.py}"
+    }
+  },
+  "crons": [
+    { "path": "/api/bike-weather", "schedule": "0 16 * * *" },
+    { "path": "/api/bike-weather", "schedule": "0 17 * * *" },
+    { "path": "/api/bike-weather-backup", "schedule": "0 16 * * *" },
+    { "path": "/api/bike-weather-backup", "schedule": "0 17 * * *" }
+  ],
   "redirects": [
     {
       "source": "/resume",

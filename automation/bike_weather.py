@@ -36,14 +36,23 @@ def required(name):
     return value
 
 
-def request_json(request, service):
+def request_json(request, service, idempotent=False):
     for attempt in range(3):
         try:
-            with urlopen(request, timeout=25) as response:
+            with urlopen(request, timeout=7) as response:
                 return json.load(response)
         except HTTPError as error:
             # Never print response bodies, URLs, headers, or recipient details.
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            concurrent = False
+            if idempotent and error.code == 409:
+                try:
+                    name = json.load(error).get("name")
+                except (ValueError, AttributeError, UnicodeError):
+                    name = None
+                if name == "invalid_idempotent_request":
+                    return {"already_processed": True}
+                concurrent = name == "concurrent_idempotent_requests"
+            if (not concurrent and error.code not in (429, 500, 502, 503, 504)) or attempt == 2:
                 raise ReminderError(f"{service} request failed (HTTP {error.code}).") from None
         except (URLError, TimeoutError, OSError):
             if attempt == 2:
@@ -164,21 +173,24 @@ def send_email(subject, body, target, test=False):
         "Content-Type": "application/json", "Idempotency-Key": key,
         "User-Agent": "BikeWeatherReminder/1.0",
     })
-    result = request_json(request, "Email service")
+    result = request_json(request, "Email service", idempotent=True)
+    if isinstance(result, dict) and result.get("already_processed"):
+        print("Daily send key already processed; no second email requested.")
+        return "already-processed"
     if not isinstance(result, dict) or not result.get("id"):
         raise ReminderError("Email service did not confirm acceptance.")
     print("Test email accepted by provider." if test else "Reminder accepted by provider.")
+    return "test-accepted" if test else "reminder-accepted"
 
 
-def main():
-    mode = os.environ.get("REMINDER_MODE", "dry-run")
+def run(mode="dry-run", now=None):
     if mode not in ("dry-run", "test", "scheduled"):
         raise ReminderError("Invalid reminder mode.")
-    now = datetime.now(ZONE)
-    # Suppress unusually late queued jobs instead of surprising the recipient
-    # hours later or evaluating the wrong calendar day.
+    now = now or datetime.now(ZONE)
+    # Vercel cron is UTC. Two daily schedules cover EST and EDT; only the
+    # schedule that lands in the local noon hour does work.
     if mode == "scheduled" and now.hour != 12:
-        raise ReminderError("Scheduled run missed the noon-to-1-PM Eastern window.")
+        return "outside-noon-window"
     if mode != "dry-run":
         required("RESEND_API_KEY")
         required("BIKE_EMAIL_TO")
@@ -189,9 +201,15 @@ def main():
           "Forecast validated. Below alert threshold.")
     if mode == "dry-run":
         print("Dry run complete; no email sent.")
+        return "dry-run-alert" if alert else "dry-run-quiet"
     elif alert or mode == "test":
         subject, body = compose_email(hours, target, mode == "test")
-        send_email(subject, body, target, mode == "test")
+        return send_email(subject, body, target, mode == "test")
+    return "quiet"
+
+
+def main():
+    return run(os.environ.get("REMINDER_MODE", "dry-run"))
 
 
 if __name__ == "__main__":

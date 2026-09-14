@@ -121,10 +121,9 @@ class ReminderTests(unittest.TestCase):
     @patch.dict(os.environ, {"REMINDER_MODE": "scheduled"})
     @patch.object(bike, "datetime")
     @patch.object(bike, "fetch_forecast")
-    def test_late_scheduled_run_fails_before_forecast(self, fetch, clock):
+    def test_off_season_schedule_skips_before_forecast(self, fetch, clock):
         clock.now.return_value = datetime(2026, 9, 14, 13, 0, tzinfo=bike.ZONE)
-        with self.assertRaisesRegex(bike.ReminderError, "missed"):
-            bike.main()
+        self.assertEqual(bike.main(), "outside-noon-window")
         fetch.assert_not_called()
 
     @patch.dict(os.environ, {"REMINDER_MODE": "test", "RESEND_API_KEY": "test-key", "BIKE_EMAIL_TO": "recipient@example.invalid"})
@@ -168,6 +167,39 @@ class ReminderTests(unittest.TestCase):
         with self.assertRaisesRegex(bike.ReminderError, r"Email service request failed \(HTTP 403\)"):
             bike.request_json("request", "Email service")
         self.assertEqual(open_url.call_count, 1)
+
+    @patch.object(bike, "urlopen")
+    def test_backup_with_updated_forecast_does_not_duplicate_email(self, open_url):
+        body = io.BytesIO(b'{"name":"invalid_idempotent_request"}')
+        open_url.side_effect = HTTPError("private", 409, "private", {}, body)
+        self.assertEqual(bike.request_json("request", "Email service", idempotent=True),
+                         {"already_processed": True})
+        self.assertEqual(open_url.call_count, 1)
+
+    @patch.object(bike.time, "sleep")
+    @patch.object(bike, "urlopen")
+    def test_concurrent_sends_retry_without_changing_key(self, open_url, sleep):
+        error = HTTPError("private", 409, "private", {},
+                          io.BytesIO(b'{"name":"concurrent_idempotent_requests"}'))
+        response = unittest.mock.MagicMock()
+        response.__enter__.return_value = io.StringIO('{"id":"accepted"}')
+        open_url.side_effect = [error, response]
+        self.assertEqual(bike.request_json("request", "Email service", idempotent=True), {"id": "accepted"})
+        self.assertEqual(open_url.call_count, 2)
+
+    @patch.object(bike, "fetch_forecast")
+    @patch.object(bike, "send_email", return_value="reminder-accepted")
+    @patch.dict(os.environ, {"RESEND_API_KEY": "test", "BIKE_EMAIL_TO": "recipient@example.invalid"})
+    def test_utc_schedules_cover_both_seasons_once_per_endpoint(self, send, fetch):
+        from datetime import timezone
+        fetch.return_value = self.wet_hours
+        for month, active_utc_hour in [(1, 17), (7, 16)]:
+            for hour in (16, 17):
+                now = datetime(2026, month, 14, hour, 30, tzinfo=timezone.utc).astimezone(bike.ZONE)
+                with redirect_stdout(io.StringIO()):
+                    result = bike.run("scheduled", now=now)
+                self.assertEqual(result, "reminder-accepted" if hour == active_utc_hour else "outside-noon-window")
+        self.assertEqual(send.call_count, 2)
 
 
 if __name__ == "__main__":

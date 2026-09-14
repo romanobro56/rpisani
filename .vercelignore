@@ -1,0 +1,9 @@
+.env
+.env.*
+.vercel
+.git
+_site
+.sass-cache
+.jekyll-cache
+**/__pycache__
+automation/test_*.py
