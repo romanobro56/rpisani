@@ -10,3 +10,4 @@ git-update.sh
 __pycache__/
 *.pyc
 .vercel/
+misc/
