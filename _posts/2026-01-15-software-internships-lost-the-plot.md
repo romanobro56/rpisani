@@ -6,7 +6,7 @@ permalink: /posts/software-internships-lost-the-plot/
 
 [← Back to Home](/)
 
-**Software Internships Have Lost the Plot.**
+## Software Internships Have Lost the Plot
 
 I’m convinced that tech companies have forgotten the value of young professionals, and it’s going to come back to bite us all in the ass.
 

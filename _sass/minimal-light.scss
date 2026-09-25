@@ -695,3 +695,65 @@ footer {
   display:none;
   font-family: monospace;
 }
+
+/* Side notes: marked with *, †, ‡ in the text and set below their paragraph. */
+.side-note {
+  font-size: 0.9em;
+  color: #636363;
+  margin: -0.4em 0 1.6em;
+  padding-left: 0.9em;
+  text-indent: -0.9em;
+}
+
+section sup {
+  line-height: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .side-note {
+    color: #bbbcc3;
+  }
+}
+
+.notes-rule {
+  width: 4em;
+  margin: 2em 0 1.2em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .notes-rule {
+    background: #3a3b45;
+  }
+}
+
+/* Footnote markers link to their note; the note's marker links back. */
+section sup.note-ref {
+  font-size: 1.15em;
+  vertical-align: 0.15em;
+}
+
+.note-ref a {
+  padding: 0 0.15em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.side-note[id] {
+  scroll-margin-top: 1.5em;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.side-note:target {
+  background-color: rgba(64, 153, 255, 0.12);
+}
+
+[id^="ref-"] {
+  scroll-margin-top: 40vh;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
