@@ -8,8 +8,6 @@
     <span aria-hidden="true">|</span>
     <a href="#projects" class="nav-link">Projects</a>
     <span aria-hidden="true">|</span>
-    <a href="#experience" class="nav-link">Experience</a>
-    <span aria-hidden="true">|</span>
-    <a href="#skills" class="nav-link">Skills</a>
+    <a href="/resume" class="nav-link">Resume</a>
   </div>
 </nav>

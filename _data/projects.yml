@@ -1,34 +1,61 @@
+# Projects are shown grouped by `group`, in the order each group first appears.
 main:
-  - title: "AI-Driven Prescription Triage System: 10x Acceleration in Veterinary Approval Workflows"
-    authors: <strong>Roman Pisani</strong>
-    conference_short: Chewy
-    conference: Production ML System at Chewy - <strong> Processing ~1M monthly prescriptions </strong>
-    image: ./assets/img/chewy_vet_care.webp
-    image_alt: Chewy veterinary care system dashboard showing prescription triage workflow
-    notes: 95% Prediction Accuracy
-    
-  - title: "AWS Neptune Knowledge Graph for Clinical Intelligence"
-    authors: <strong>Roman Pisani</strong>
-    conference_short: Chewy
-    conference: Billion-Scale Graph Database Powering LLM Reasoning for Drug Interactions & Veterinary AI
-    image: ./assets/img/knowledge_graph.webp
-    image_alt: Network visualization of AWS Neptune knowledge graph with clinical data nodes
-    notes: 800M+ Records Processed
-    
-  - title: "Fraud Detection UI System Preventing $50K+ in Monthly Fraud Losses"
-    authors: <strong>Roman Pisani</strong>
-    conference_short: Credit Karma
-    conference: Cross-Platform TypeScript React Application with GCP Analytics Integration
-    image: ./assets/img/intuit_credit_karma.jpg
-    image_alt: Credit Karma fraud detection user interface with analytics dashboard
-    notes: 1000+ Fraudulent Attempts Deterred
-  
-  - title: "RocketReels: Automated Generative Media Pipeline for Short-Form Video Creation"
-    authors: <strong>Roman Pisani</strong>
-    conference_short: Personal Project
-    conference: End-to-End Content Generation System
-    pdf: https://github.com/romanobro56
+  - group: Personal
+    title: "Drip Screen Time: Screen Time That Replenishes"
+    date: Jul 2026 – Present
+    subtitle: Balance-Based App Blocking Built on Apple's Family Controls & Managed Settings
+    link: https://www.dripscreentime.app
+    image: ./assets/img/drip_screen_time.webp
+    image_alt: Drip Screen Time app icon, a blue water drop
+    notes: Live on the App Store
+
+  - group: Personal
+    title: "RocketReels: Automated Generative Media Pipeline for Short-Form Video Creation"
+    date: Sep – Dec 2024
+    subtitle: End-to-End Content Generation System
+    link: https://github.com/romanobro56
     code: https://github.com/romanobro56
     image: ./assets/img/rocketreels.webp
     image_alt: RocketReels video generation pipeline interface showing automated content creation
     notes: Production Pipeline
+
+  - group: Capital One
+    title: "Remote Deposit Capture: iOS Validation Flow for $2.8B+ in Annual Deposits"
+    date: Jun – Aug 2026
+    subtitle: Swift Frontend Architecture & Asynchronous Check-Processing Microservice
+    image: ./assets/img/capital_one.webp
+    image_alt: Capital One logo
+    notes: 63% Latency Reduction (9s → 3.3s)
+
+  - group: Chewy
+    title: "AI Vision Pipeline for Veterinary Documents: 50K+ Documents Processed Monthly"
+    date: Aug – Dec 2025
+    subtitle: OpenCV Preprocessing, LLM Schema Extraction & Fuzzy-Match Validation Against Snowflake
+    image: ./assets/img/chewy_document_ai.webp
+    image_alt: Document icon with a scan line, representing AI document extraction
+    notes: 92% Extraction Accuracy
+
+  - group: Chewy
+    title: "AI-Driven Prescription Triage System: 10x Acceleration in Veterinary Approval Workflows"
+    date: Jun – Aug 2025
+    subtitle: Production ML System at Chewy - <strong>Processing ~1M monthly prescriptions</strong>
+    image: ./assets/img/chewy_vet_care.webp
+    image_alt: Chewy veterinary care system dashboard showing prescription triage workflow
+    notes: 95% Prediction Accuracy
+
+  - group: Chewy
+    title: "AWS Neptune Knowledge Graph for Clinical Intelligence"
+    date: Jun – Aug 2025
+    subtitle: Billions-Scale Graph Database Powering LLM Reasoning for Drug Interactions & Veterinary AI
+    image: ./assets/img/knowledge_graph.webp
+    image_alt: Network visualization of AWS Neptune knowledge graph with clinical data nodes
+    notes: 800M+ Records Processed
+
+  - group: Credit Karma
+    title: "Fraud Detection UI System Preventing $50K+ in Monthly Fraud Losses"
+    date: May – Aug 2024
+    subtitle: Cross-Platform TypeScript React Application with GCP Analytics Integration
+    image: ./assets/img/intuit_credit_karma.jpg
+    image_alt: Credit Karma fraud detection user interface with analytics dashboard
+    fit: contain
+    notes: 1000+ Fraudulent Attempts Deterred
