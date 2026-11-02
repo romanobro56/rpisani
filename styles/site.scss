@@ -732,23 +732,15 @@ $dark-accent: rgb(74, 158, 255);
 
 // ---- Phones and small tablets ---------------------------------------------------------------
 // The theme stacks the sidebar above the content at this width. Here the sidebar becomes a
-// compact card pinned to the top: photo on the left; name, email, links, and theme switch beside it.
+// compact card: photo on the left; name, email, links, and theme switch beside it.
 
 @media screen and (max-width: 960px) {
-  html {
-    // Jump links land below the pinned card.
-    scroll-padding-top: 128px;
-  }
-
   body {
     margin: 0;
     padding: 0 16px 24px;
   }
 
   .wrapper > header {
-    position: sticky;
-    top: 8px;
-    z-index: 50;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
@@ -762,10 +754,8 @@ $dark-accent: rgb(74, 158, 255);
     text-align: left;
     border: 1px solid $border;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.94);
+    background: #fff;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    -webkit-backdrop-filter: saturate(1.4) blur(10px);
-    backdrop-filter: saturate(1.4) blur(10px);
   }
 
   .wrapper > header br {
@@ -866,7 +856,7 @@ $dark-accent: rgb(74, 158, 255);
   @media (prefers-color-scheme: dark) {
     .wrapper > header {
       border-color: $dark-border;
-      background: rgba(37, 38, 50, 0.94);
+      background: #252632;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 
