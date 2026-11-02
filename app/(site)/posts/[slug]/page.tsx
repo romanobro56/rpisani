@@ -37,7 +37,7 @@ export default async function BlogPostPage({ params }: Props) {
       {post.status === "draft" && <DraftBanner editHref={`/admin/blog/${post.id}/`} />}
       {/* Parsed rather than wrapped, so post markup stays a direct child of <section> as the theme CSS expects. */}
       {parse(post.bodyHtml)}
-      <p className="post-share">
+      <p className="post-link-copy">
         <ShareButton path={`/posts/${post.slug}/`} />
       </p>
       {post.status === "published" && post.allowComments && <Comments type="blog" id={post.id} />}

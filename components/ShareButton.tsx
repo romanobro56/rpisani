@@ -26,7 +26,7 @@ export function ShareButton({ path, className }: { path: string; className?: str
   };
 
   return (
-    <button type="button" className={`share-btn${className ? ` ${className}` : ""}`} onClick={copy}>
+    <button type="button" className={`link-copy${className ? ` ${className}` : ""}`} onClick={copy}>
       <i className={`fas ${copied ? "fa-check" : "fa-link"}`} aria-hidden="true"></i>{" "}
       <span aria-live="polite">{copied ? "Link copied" : "Share"}</span>
     </button>

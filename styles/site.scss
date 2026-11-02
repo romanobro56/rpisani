@@ -143,17 +143,17 @@ $dark-accent: rgb(74, 158, 255);
 }
 
 .feed-post__footer a,
-.share-btn {
+.link-copy {
   color: $muted;
 }
 
 .feed-post__footer a:hover,
-.share-btn:hover {
+.link-copy:hover {
   color: $link;
 }
 
 // Looks like the links beside it.
-.share-btn {
+.link-copy {
   padding: 0;
   border: 0;
   background: none;
@@ -161,12 +161,12 @@ $dark-accent: rgb(74, 158, 255);
   cursor: pointer;
 }
 
-.share-btn:focus-visible {
+.link-copy:focus-visible {
   outline: 2px solid $link;
   outline-offset: 2px;
 }
 
-.post-share {
+.post-link-copy {
   margin: 1.5rem 0 0;
   font-size: 0.85em;
 }
@@ -175,11 +175,11 @@ $dark-accent: rgb(74, 158, 255);
   .feed-post { border-color: $dark-border; }
   .feed-post__footer,
   .feed-post__footer a,
-  .share-btn { color: $dark-muted; }
+  .link-copy { color: $dark-muted; }
   .feed-post__footer a:hover,
-  .share-btn:hover,
+  .link-copy:hover,
   .feed-post__title a:hover { color: $dark-accent; }
-  .share-btn:focus-visible { outline-color: $dark-accent; }
+  .link-copy:focus-visible { outline-color: $dark-accent; }
   .feed-post__pin { color: #eeeff0; }
 }
 
