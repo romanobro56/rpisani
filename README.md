@@ -1,187 +1,148 @@
-# The Minimal Light Theme
+# rpisani.dev
 
-[![LICENSE](https://img.shields.io/github/license/yaoyao-liu/minimal-light?style=flat-square&logo=creative-commons&color=EF9421)](https://github.com/yaoyao-liu/minimal-light/blob/main/LICENSE)
+Personal site for Roman Pisani: homepage, markdown blog, a feed of photo/video/text posts, a photo & video gallery, comments, and an admin dashboard for writing, uploading, and site stats.
 
-\[[Demo the theme](https://minimal-light-theme.yliu.me/)\]  \[[简体中文](https://github.com/yaoyao-liu/minimal-light/blob/master/README_zh_Hans.md) | [繁體中文](https://github.com/yaoyao-liu/minimal-light/blob/master/README_zh_Hant.md) | [Deutsche](https://github.com/yaoyao-liu/minimal-light/blob/master/README_de.md)\]
- 
-*This is the source code of my homepage. I build this website based on [minimal](https://github.com/orderedlist/minimal).*
-<br>
-*Feel free to use and share the source code anywhere you like.*
+Built with Next.js (App Router) on Vercel. The look is the [Minimal Light](https://github.com/yaoyao-liu/minimal-light) Jekyll theme, carried over unchanged.
 
-An improved vision from [@Xiao-Chenguang](https://github.com/Xiao-Chenguang): [[link](https://github.com/Xiao-Chenguang/minimal-light)]
+## How it fits together
 
-**The latest version of my homepage is available here: <br><https://github.com/yaoyao-liu/yaoyaoliu-homepage>**
-
-## Features
-
-- Simple and elegant personal homepage theme
-- Jekyll theme, automatically deployed by GitHub Pages
-- Basic search engine optimization
-- Mobile friendly
-- Supporting Markdown 
-- Supporting dark mode
-
-## Project Architecture
+| Piece | Where | Cost |
+| --- | --- | --- |
+| Site and admin | Next.js on Vercel (Hobby) | Free |
+| Posts, comments, stats | Postgres on Neon, via the Vercel Marketplace | Free tier (0.5 GB) |
+| Photos and videos | Cloudflare R2, served from `media.rpisani.dev` | 10 GB free, then $0.015/GB-month; no bandwidth fees |
+| Bike-weather cron | Python functions in `api/` (unchanged) | Free |
 
 ```
-.
-├── _data                    
-|   └── publications.yml                      # the YAML file for publications
-├── _includes                    
-|   ├── publications.md                       # the Markdown file for publications
-|   └── services.md                           # the Markdown file for services
-├── _layouts                  
-|   └── homepage.html                         #  the html template for the homepage 
-├── _sass
-|   ├── minimal-light.scss                    #  this file will be compiled into a CSS file to control the style of the page              
-|   └── minimal-light-no-dark-mode.scss       #  this file is similar to minimal-light.scss with the dark mode disabled
-├── assets                                    #  some files
-├── html_source_file                          #  compiled HTML files
-├── .gitignore                                #  this file specifies intentionally untracked files that Git should ignore
-├── CNAME                                     #  the custom domain, will be used by GitHub page sevice
-├── Gemfile                                   #  a RubyGems related file
-├── LICENSE                                   #  the license file
-├── README.md                                 #  the readme file (English)
-├── README_de.md                              #  the readme file (German)
-├── README_zh_Hans.md                         #  the readme file (Simplified Chinese)
-├── README_zh_Hant.md                         #  the readme file (Traditional Chinese)
-├── _config.yml                               #  the Jekyll configuration file, including some options of the page  
-└── index.md                                  #  the content of the index page, using Markdown
+app/(site)/        public pages: /, /blog/, /posts/<slug>/, /feed/, /feed/<id>/, /gallery/
+app/admin/         admin: dashboard, posts, blog, media, comments (password protected)
+app/actions/       Server Actions: saving, uploads, comments, page-view tracking
+components/        page pieces; components/admin/ for the dashboard
+db/                Drizzle schema and SQL migrations
+lib/               data access, markdown, storage (R2), auth, stats, browser upload pipeline
+styles/            the theme's original CSS, plus site.scss (feed, gallery) and admin.scss
+content/blog/      the original markdown posts, imported into the database on first deploy
+api/, automation/  bike-weather reminder (Python, Vercel Cron)
 ```
 
-## Getting Started
+**Feed vs. blog.** Blog posts are long-form markdown at `/posts/<slug>/`. Feed posts are short: text, up to 20 photos/videos, or any mix, shown newest first at `/feed/`, with a page per post for comments. `/gallery/` shows every photo and video from published feed posts as a grid with a full-screen viewer.
 
-This template can be used in the following two ways: 
-- **Using with the GitHub Pages Service.** GitHub will provide you with a server to generate and host web pages.
-- **Using locally with Jekyll.** You may install Jekyll on your own computer and generate static web pages (i.e., HTML files) with this template. After that, you may upload the HTML files to your server.
+**Uploads.** The browser does the heavy lifting: it resizes photos to a 2048px web copy and a 640px thumbnail (re-encoding strips EXIF/GPS), grabs a poster frame from videos, checks videos are 20 minutes or less, blanks the GPS location phones write into MP4/MOV files, then uploads straight to R2 in parallel 16 MB chunks with retries. Large videos never pass through Vercel. Photo originals are kept under a private, unguessable path as a backup.
 
-The detailed instructions are available below.
+**Videos** are served as uploaded, with no transcoding. H.264 MP4 plays everywhere; iPhone HEVC `.mov` files play in Safari and most Chrome installs, and the uploader warns if your own browser can't play a file. If you later want YouTube-style adaptive quality, Cloudflare Stream (about $5 per 1,000 minutes stored) is the upgrade path.
 
+**Stats** are first-party and cookie-free: one row per page view, with visitors counted by a daily-rotating hash (no raw IPs stored, no consent banner needed). Your own visits aren't counted while you're signed in.
 
-### Using with the GitHub Pages Service
+**Comments** need a name and text, no account. Spam is filtered with a hidden honeypot field, a minimum fill time, and a per-visitor rate limit. You can hide or delete any comment from the admin.
 
-There are two ways to use this template on GitHub:
-
-#### Fork this repository
-- Fork this repository (or [use this repository as a template](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template)) and change the name to `your-username.github.io`.
-
-- Enable the GitHub pages for that repository following the steps [here](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site).
-
-#### Using this repository as a remote theme
-To use this theme, add the following to your repository's `_config.yml`:
-
-```yaml
-remote_theme: yaoyao-liu/minimal-light
-```
-
-Please note that adding the above line will directly apply all the default settings in this repository to yours.
-
-If you hope to edit any files (e.g., `index.md`), you still need to copy them to your repository.
-
-### Using Locally with Jekyll
-
-First, install [Ruby](https://www.ruby-lang.org/en/) and [Jekyll](https://jekyllrb.com/). The install instructions can be found here: <https://jekyllrb.com/docs/installation/#guides>
-
-Then, clone this repository:
+## Local development
 
 ```bash
-git clone https://github.com/yaoyao-liu/minimal-light.git
-cd minimal-light
+npm install
+npm run dev
 ```
-Install and run:
+
+Open http://localhost:3000. With no database or R2 settings, development uses an embedded Postgres in `.data/pglite` (migrated and seeded with the blog posts automatically) and stores uploads in `.data/uploads`. Delete `.data/` to start over.
+
+The admin is at http://localhost:3000/admin/. The local password is `ADMIN_PASSWORD` in `.env.local` (gitignored). See `.env.example` for every setting.
+
+Other commands: `npm run build`, `npm run typecheck`, `npm run db:generate` (after editing `db/schema.ts`), `npm run hash-password -- 'password'`.
+
+## Deploying
+
+The repo is already linked to the `rpisani` Vercel project, and `vercel.json` overrides the old Jekyll settings (framework, install, build, and output), so nothing needs changing under Build & Development Settings. What's left is creating the database and media bucket and adding their settings. Do steps 1 to 5 before merging to `main`: production builds will fail without a database.
+
+### 1. Move DNS for rpisani.dev to Cloudflare (free, about 15 minutes)
+
+R2 can only serve a bucket from your own domain if that domain's DNS is on Cloudflare. Today it's on Namecheap's nameservers.
+
+1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com) and choose **Add a domain**: `rpisani.dev`, Free plan. Cloudflare imports your existing records.
+2. On the DNS records page, check that the records pointing at Vercel are there (the `A` record for `rpisani.dev` → `216.198.79.1`, and `www` if you use it). Set each Vercel record to **DNS only** (grey cloud). Vercel issues its own certificates, and proxying through Cloudflare on top can break them.
+3. Keep any email records (MX/TXT) Cloudflare imported, and delete any record you don't recognise. If you use Namecheap's email forwarding, it stops working once Namecheap no longer runs the DNS. Recreate the forwards in Cloudflare's free **Email Routing** after the move.
+4. In Namecheap: **Domain List → Manage** next to rpisani.dev → the **Domain** tab (not Advanced DNS) → the **Nameservers** row. Change "Namecheap BasicDNS" to **Custom DNS**, enter the two nameservers Cloudflare gives you, and click the green checkmark. Ignore "Personal DNS Server" at the bottom of Advanced DNS; that is for hosting your own nameservers.
+5. Wait for Cloudflare to email that the domain is active (often minutes, up to a day). The site keeps working throughout.
+
+> In a hurry? You can skip this step and use the bucket's `r2.dev` URL (step 2.3) for now. Cloudflare rate-limits `r2.dev` and doesn't cache it, so switch to the custom domain before posting much.
+
+### 2. Create the R2 bucket
+
+1. In Cloudflare, open **R2 Object Storage**. Enabling R2 asks for a payment method even on the free tier; you aren't charged under 10 GB.
+2. **Create bucket** → name `rpisani-media`, location Automatic.
+3. Bucket → **Settings → Custom Domains → Connect Domain** → `media.rpisani.dev`. (Or, if you skipped step 1: **Public Development URL → Allow**, and copy the `https://pub-….r2.dev` URL.)
+4. Bucket → **Settings → CORS Policy → Edit**, paste:
+
+   ```json
+   [
+     {
+       "AllowedOrigins": ["https://rpisani.dev", "https://www.rpisani.dev", "http://localhost:3000"],
+       "AllowedMethods": ["GET", "PUT", "HEAD"],
+       "AllowedHeaders": ["*"],
+       "ExposeHeaders": ["ETag"],
+       "MaxAgeSeconds": 3600
+     }
+   ]
+   ```
+
+   `ExposeHeaders: ETag` is required for large video uploads. To upload from a Vercel preview deployment, add its URL to `AllowedOrigins`.
+5. Back on the R2 overview: **Manage API tokens → Create API token**. Permission: **Object Read & Write**, applied to **`rpisani-media` only**. Copy the **Access Key ID**, **Secret Access Key**, and your **Account ID** (shown on the R2 overview page). The secret is shown once.
+
+### 3. Create the database
+
+1. Vercel dashboard → `rpisani` project → **Storage → Create Database → Neon** (Serverless Postgres) → Free plan, region `Washington, D.C., USA (iad1)` to sit next to Vercel's default functions.
+2. Connect it to the `rpisani` project for **Production** and **Preview**. This adds `DATABASE_URL` and related variables automatically.
+
+### 4. Make the admin password and session secret
+
+Run these locally:
 
 ```bash
-bundle install
-bundle add webrick
-bundle exec jekyll server
+npm run hash-password -- 'choose-a-long-password-here'
 ```
-View the live page using `localhost`:
-<http://localhost:4000>. You can get the HTML files in `_site` folder.
 
-### Using the HTML version
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
+```
 
-The compiled HTML files are available in the `html_source_file` folder. If you don't like Jekyll, you may directly edit and use the HTML version.
+The first prints the `ADMIN_PASSWORD_HASH` value (keep the password itself in your password manager). The second prints a `SESSION_SECRET`.
 
-## Customizing
+### 5. Add the environment variables to Vercel
 
-### Configuration variables
+In the dashboard (**Settings → Environment Variables**), add each of these for **Production and Preview**, marked Sensitive:
 
-The Minimal Light theme will respect the following variables, if set in your site's `_config.yml`:
+| Name | Value |
+| --- | --- |
+| `ADMIN_PASSWORD_HASH` | output of `npm run hash-password` |
+| `SESSION_SECRET` | the random string from step 4 |
+| `R2_ACCOUNT_ID` | Cloudflare account ID |
+| `R2_ACCESS_KEY_ID` | from the R2 API token |
+| `R2_SECRET_ACCESS_KEY` | from the R2 API token |
+| `R2_BUCKET` | `rpisani-media` |
+| `MEDIA_PUBLIC_URL` | `https://media.rpisani.dev` (or the `r2.dev` URL) |
 
-  ```yaml
-# Basic Information 
-title: Your Name
-position: Ph.D. Student
-affiliation: Your Affiliation
-email: yourname (at) example.edu
+Or from this folder with the CLI, one at a time (it prompts for the value):
 
-# Search Engine Optimization (SEO)
-# The following information is used to improve the website traffic from search engines, e.g., Google.
-keywords: minimal light
-description: The Minimal Light is a simple and elegant jekyll theme for academic personal homepage.
-canonical: https://minimal-light-theme.yliu.me/
+```bash
+vercel env add ADMIN_PASSWORD_HASH production --sensitive
+```
 
-# Links 
-# If you don't need one of them, you may delete the corresponding line.
-google_scholar: https://scholar.google.com/
-cv_link: assets/files/curriculum_vitae.pdf
-github_link: https://github.com/
-linkedin: https://www.linkedin.com/
-twitter: https://twitter.com/
+The existing bike-weather variables stay as they are.
 
-# Images (e.g., your profile picture and your website's favicon) 
-# "favicon" and "favicon_dark" are used for the light and dark modes, respectively. 
-avatar: ./assets/img/avatar.png
-favicon: ./assets/img/favicon.png
-favicon_dark: ./assets/img/favicon-dark.png
+### 6. Deploy
 
-# Footnote
-# You may use the option to disable the footnote, "Powered by Jekyll and Minimal Light theme."
-enable_footnote: true
+Merge the `nextjs-migration` branch into `main` (or run `vercel --prod`). The build runs `npm run db:migrate`, which creates the tables and imports the three posts from `content/blog/` once. Look for `Imported 3 legacy blog posts` in the build log.
 
-# Auto Dark Mode
-# You may use the option to disable the automatic dark theme
-auto_dark_mode: true
+### 7. Check it
 
-# Font
-# You can use this option to choose between Serif or Sans Serif fonts.
-font: "Serif" # or "Sans Serif"
+1. https://rpisani.dev looks as before, with the new About Me, Feed and Gallery links, and Drip Screen Time as the only project.
+2. https://rpisani.dev/admin/ → sign in.
+3. **Posts → New post**, add a photo, **Save draft**, then **Preview**. The image URL should start with `https://media.rpisani.dev/`. Delete the test post.
+4. **Blog**: “How to Talk to Anyone” is waiting as a draft. Finish it and press **Publish**; it gets dated the day you publish unless you set a date.
+5. Vercel → **Settings → Cron Jobs** still lists the four bike-weather jobs.
+6. After some visits, the admin **Dashboard** shows views, top pages, referrers, and countries.
 
-# Google Analytics ID
-# Please remove this if you don't use Google Analytics
-google_analytics: UA-111540567-4
-  ```
-### Edit `index.md`
+## Writing
 
-Create `index.md` and add your personal information. It supports **Markdown** and **HTML** syntax.
-
-### Edit included files
-
-There are two markdown files included in `index.md`. They are `_includes/publications.md` and `_includes/service.md`, respectively. These two files also support **Markdown** and **HTML** syntax. If you don't hope to include these two files, you may remove the following lines in `index.md`:
-https://github.com/yaoyao-liu/minimal-light/blob/b38070cd0b6bce45d8a885f3828549af8f82b7cb/index.md?plain=1#L21-L23
-
-If you hope to edit the publication list without changing the format, you may edit `_data/publications.yml`:
-https://github.com/yaoyao-liu/minimal-light/blob/77b1b3b31d4561091bcd739f37a2e1880e8b5ca5/_data/publications.yml#L3-L11
-
-
-### Stylesheet
-
-If you'd like to add your own custom styles, you may edit `_sass/minimal-light.scss`.
-
-### Layouts
-
-If you'd like to change the theme's HTML layout, you may edit `_layout/homepage.html`.
-
-## License
-
-This work is licensed under a [Creative Commons Zero v1.0 Universal](https://github.com/yaoyao-liu/minimal-light/blob/master/LICENSE) License.
-
-## Acknowledgements
-
-Our project uses the source code from the following repositories:
-
-* [pages-themes/minimal](https://github.com/pages-themes/minimal)
-
-* [orderedlist/minimal](https://github.com/orderedlist/minimal)
-
-* [al-folio](https://github.com/alshedivat/al-folio)
+- **Feed post**: Admin → Posts → New post. Text is optional if there's media and vice versa. Drag tiles to reorder (the first is the cover), add alt text under each, and leave the date empty to use the publish time. Save draft or Publish; ⌘S saves.
+- **Blog post**: Admin → Blog → New blog post. Markdown with HTML allowed, a live preview that uses the real post styles, toolbar buttons for formatting, uploads (inserted at the cursor), and footnotes in the style of the existing posts. Kramdown attributes like `{: .side-note #note-1}` still work.
+- **Media**: Admin → Media lists every upload, where it's used, and its size. **Unused** finds uploads no post uses (for example from a discarded draft) so you can delete them from storage.
+- Unpublishing moves a post back to drafts; drafts are only visible to you, with a banner, at their normal URL.

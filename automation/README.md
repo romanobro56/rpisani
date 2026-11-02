@@ -8,7 +8,7 @@ probabilities are not independent events to add together.
 
 ## Deployment and private configuration
 
-This runs alongside the Jekyll site as Python Vercel Functions. There is no
+This runs alongside the Next.js site as Python Vercel Functions. There is no
 GitHub Actions schedule. Deploy `main` to the existing Vercel project.
 
 Set these **Production environment variables in Vercel**, marking them sensitive.

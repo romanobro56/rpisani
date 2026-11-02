@@ -2,8 +2,7 @@
 .env.*
 .vercel
 .git
-_site
-.sass-cache
-.jekyll-cache
+.next
+.data
 **/__pycache__
 automation/test_*.py

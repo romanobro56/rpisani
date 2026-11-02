@@ -1,13 +1,18 @@
-_site
-.sass-cache
-Gemfile.lock
-*.gem
 .DS_Store
-.jekyll-cache
 git-update.sh
 .env
 .env.*
+!.env.example
 __pycache__/
 *.pyc
 .vercel/
 misc/
+
+# Next.js
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local database and uploads (dev only)
+.data/

@@ -1,0 +1,701 @@
+// Public pages added with the Next.js move: feed, gallery, lightbox, comments.
+// Colors, borders, and type follow minimal-light.scss so new pages read as part of the same site.
+// Dark styles stay in prefers-color-scheme blocks so the theme toggle can force them.
+
+$text: #595959;
+$muted: #636363;
+$border: #e5e5e5;
+$heading: #043361;
+$link: #0066cc;
+$dark-bg: #20212b;
+$dark-text: #dadbdf;
+$dark-muted: #bbbcc3;
+$dark-border: #3a3b45;
+$dark-accent: rgb(74, 158, 255);
+
+// ---- Project rows that link as a whole --------------------------------------------------------
+
+// The title link stretches over the row, so the image and text are one click target.
+.projects .bibliography .pub-row--linked {
+  position: relative;
+}
+
+.projects .bibliography .pub-row--linked .col-sm-9 {
+  position: static;
+}
+
+.projects .bibliography .pub-row--linked .title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.projects .bibliography .pub-row--linked:hover .title a {
+  color: $link;
+}
+
+@media (prefers-color-scheme: dark) {
+  .projects .bibliography .pub-row--linked:hover .title a { color: $dark-accent; }
+}
+
+// ---- Feed / gallery switch ------------------------------------------------------------------
+
+.page-nav--tabs {
+  margin: -0.25rem 0 1.75rem;
+}
+
+.page-nav__links a[aria-current="page"] {
+  color: $heading;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-nav__links a[aria-current="page"] { color: #eeeff0; }
+}
+
+.feed-empty {
+  color: $muted;
+}
+
+// ---- Feed posts -----------------------------------------------------------------------------
+
+.feed-post {
+  border: 1px solid $border;
+  border-radius: 3px;
+  padding: 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.feed-post--standalone {
+  margin-bottom: 2rem;
+}
+
+.feed-post__meta {
+  font-size: 0.85em;
+  color: $muted;
+  margin-bottom: 0.6rem;
+}
+
+.feed-post__meta a {
+  color: $muted;
+}
+
+.feed-post__meta a:hover {
+  color: $link;
+}
+
+.feed-post__title {
+  margin: 0 0 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.feed-post__title a {
+  color: inherit;
+}
+
+.feed-post__title a:hover {
+  color: $link;
+}
+
+.feed-post__body {
+  font-size: calc(1.05em + 2pt);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.feed-post__body p {
+  margin: 0 0 0.75rem;
+}
+
+.feed-post__body p:last-child {
+  margin-bottom: 0;
+}
+
+.feed-post__title + .media,
+.feed-post__title + .feed-post__audio,
+.feed-post__body + .media,
+.feed-post__body + .feed-post__audio,
+.feed-post__audio + .media {
+  margin-top: 0.9rem;
+}
+
+.feed-post__pin {
+  color: $heading;
+  font-weight: 600;
+}
+
+.feed-post__pin i {
+  font-size: 0.8em;
+  transform: rotate(30deg);
+}
+
+.feed-post__footer {
+  margin-top: 0.9rem;
+  font-size: 0.85em;
+}
+
+.feed-post__footer a {
+  color: $muted;
+}
+
+.feed-post__footer a:hover {
+  color: $link;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feed-post { border-color: $dark-border; }
+  .feed-post__meta,
+  .feed-post__meta a,
+  .feed-post__footer a { color: $dark-muted; }
+  .feed-post__meta a:hover,
+  .feed-post__footer a:hover,
+  .feed-post__title a:hover { color: $dark-accent; }
+  .feed-post__pin { color: #eeeff0; }
+}
+
+// ---- Audio player ---------------------------------------------------------------------------
+
+.feed-post__audio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.audio {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem;
+  border: 1px solid $border;
+  border-radius: 3px;
+}
+
+.audio__art {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+
+.audio__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audio__art--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $link;
+}
+
+.audio__wave {
+  width: 60%;
+  height: auto;
+}
+
+.audio__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio__title {
+  margin-bottom: 0.35rem;
+  color: $heading;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audio__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.audio__play {
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: $link;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.audio__play .fa-play {
+  margin-left: 2px; // optical centering
+}
+
+.audio__play:focus-visible,
+.audio__seek:focus-visible {
+  outline: 2px solid $link;
+  outline-offset: 2px;
+}
+
+.audio__seek {
+  --progress: 0%;
+  --fill: #{$link};
+  --rest: #{$border};
+  flex: 1;
+  min-width: 0;
+  height: 1.2rem;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.audio__seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--fill) var(--progress), var(--rest) var(--progress));
+}
+
+.audio__seek::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--fill) var(--progress), var(--rest) var(--progress));
+}
+
+.audio__seek::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill);
+  appearance: none;
+}
+
+.audio__seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill);
+}
+
+.audio__time {
+  flex: 0 0 auto;
+  color: $muted;
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-color-scheme: dark) {
+  .audio { border-color: $dark-border; }
+  .audio__art { background: #191a22; }
+  .audio__art--empty { color: $dark-accent; }
+  .audio__title { color: #eeeff0; }
+  .audio__play { background: $dark-accent; }
+  .audio__seek { --fill: #{$dark-accent}; --rest: #{$dark-border}; }
+  .audio__time { color: $dark-muted; }
+}
+
+// ---- Feed preview on the homepage -----------------------------------------------------------
+
+.feed-preview__all {
+  margin-bottom: 1rem;
+}
+
+// ---- Media (single item or carousel) --------------------------------------------------------
+
+.media {
+  position: relative;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+
+.media__img,
+.media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f4f4f4;
+}
+
+.media__video {
+  background: #000;
+}
+
+.media--single {
+  max-height: 80vh;
+}
+
+.media__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.media__track::-webkit-scrollbar {
+  display: none;
+}
+
+.media__slide {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+.media__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.media__nav--prev { left: 0.6rem; }
+.media__nav--next { right: 0.6rem; }
+
+.media__count {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.media__dots {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.media__dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+.media__dots span.is-active {
+  background: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .media,
+  .media__img { background: #191a22; }
+}
+
+// ---- Gallery grid ---------------------------------------------------------------------------
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.gallery__tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: #f4f4f4;
+  cursor: zoom-in;
+}
+
+.gallery__tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.gallery__tile:hover img {
+  transform: scale(1.03);
+}
+
+.gallery__tile:focus-visible {
+  outline: 2px solid $dark-accent;
+  outline-offset: 2px;
+}
+
+.gallery__badge {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.72rem;
+}
+
+.gallery__badge i {
+  font-size: 0.6rem;
+  margin-right: 0.15rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gallery__tile { background: #191a22; }
+}
+
+// ---- Lightbox -------------------------------------------------------------------------------
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 14, 0.94);
+  outline: none;
+}
+
+.lightbox__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(92vw, 1400px);
+  margin: 0;
+}
+
+.lightbox__figure .media__img,
+.lightbox__figure .media__video {
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: calc(100vh - 7rem);
+  background: transparent;
+}
+
+.lightbox__caption {
+  max-width: 650px;
+  margin-top: 0.8rem;
+  text-align: center;
+  color: #dadbdf;
+  font-size: 0.9rem;
+}
+
+.lightbox__text {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.lightbox__meta {
+  color: #9a9ba3;
+  font-size: 0.8rem;
+}
+
+.lightbox__meta a {
+  color: $dark-accent;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lightbox__close { top: 1rem; right: 1rem; }
+.lightbox__nav { top: 50%; transform: translateY(-50%); }
+.lightbox__nav--prev { left: 1rem; }
+.lightbox__nav--next { right: 1rem; }
+
+// ---- Pager ----------------------------------------------------------------------------------
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+// ---- Comments -------------------------------------------------------------------------------
+
+.comments {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border;
+}
+
+.comments h3 {
+  margin-bottom: 1rem;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.comment {
+  padding: 0.85rem 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.comment:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.comment__meta {
+  font-size: 0.85em;
+  color: $muted;
+  margin-bottom: 0.25rem;
+}
+
+.comment__body p {
+  margin: 0 0 0.5rem;
+}
+
+.comment__body p:last-child {
+  margin-bottom: 0;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+}
+
+.comment-form__label {
+  font-size: 0.85em;
+  color: $muted;
+  margin: 0.6rem 0 0.25rem;
+}
+
+.comment-form input,
+.comment-form textarea {
+  font: inherit;
+  color: inherit;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: $link;
+}
+
+.comment-form__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.comment-form__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+// Same look as the blog page's active pagination button.
+.comment-form__submit {
+  padding: 6px 14px;
+  border: 1px solid $link;
+  border-radius: 4px;
+  background: $link;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.comment-form__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.comment-form__status {
+  font-size: 0.85em;
+  color: $muted;
+}
+
+.comment-form__error {
+  color: #b3261e;
+}
+
+@media (prefers-color-scheme: dark) {
+  .comments { border-top-color: $dark-border; }
+  .comment { border-top-color: #2e2f39; }
+  .comment__meta,
+  .comment-form__label,
+  .comment-form__status { color: $dark-muted; }
+  .comment-form input,
+  .comment-form textarea { background: #1e1e1e; border-color: #444; color: #e0e0e0; }
+  .comment-form input:focus,
+  .comment-form textarea:focus { border-color: $dark-accent; }
+  .comment-form__submit { background: $dark-accent; border-color: $dark-accent; }
+  .comment-form__error { color: #ff8a80; }
+}
+
+// ---- Draft preview banner -------------------------------------------------------------------
+
+.draft-banner {
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed #e0a650;
+  border-radius: 3px;
+  background: #fff8ec;
+  font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .draft-banner { background: rgba(224, 166, 80, 0.12); border-color: #b98437; }
+}
+
+@media print, screen and (max-width: 480px) {
+  .feed-post { padding: 1rem; }
+  .audio__art { width: 64px; height: 64px; }
+  .gallery { gap: 2px; }
+  .lightbox__nav { display: none; }
+}
