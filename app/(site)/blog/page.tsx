@@ -58,6 +58,9 @@ export default async function BlogPage() {
   return (
     <SiteShell>
       <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
+      <p>
+        <a href="/">← Back to Home</a>
+      </p>
       <BlogList posts={posts} />
     </SiteShell>
   );
