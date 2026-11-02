@@ -94,7 +94,7 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
 .projects .bibliography .pub-row .title { font-weight: 600; font-size: 1.02em; line-height: 1.35; color: #043361; }
 .projects .bibliography .pub-row .title a { color: #043361; }
 .projects .bibliography .pub-row .date { margin-top: 0.2rem; font-size: 0.85em; color: #636363; }
-.projects .bibliography .pub-row .periodical { margin-top: 0.35rem; color: #595959; }
+.projects .bibliography .pub-row .periodical { margin-top: 0.35rem; color: #414141; }
 .projects .bibliography .pub-row .periodical strong { font-weight: 600; color: #444; }
 .projects .bibliography .pub-row .links { margin-top: 0.55rem; }
 .projects .bibliography .pub-row .metric { display: inline-block; padding: 0.15em 0.6em; border-radius: 4px; background: #eef3fa; color: #043361; font-size: 0.82em; font-weight: 600; }

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Comments } from "@/components/Comments";
 import { DraftBanner } from "@/components/DraftBanner";
+import { ShareButton } from "@/components/ShareButton";
 import { SiteShell } from "@/components/SiteShell";
 import { isAdmin } from "@/lib/auth";
 import { getBlogPostForPreview, getPublishedBlogPost } from "@/lib/queries";
@@ -36,6 +37,9 @@ export default async function BlogPostPage({ params }: Props) {
       {post.status === "draft" && <DraftBanner editHref={`/admin/blog/${post.id}/`} />}
       {/* Parsed rather than wrapped, so post markup stays a direct child of <section> as the theme CSS expects. */}
       {parse(post.bodyHtml)}
+      <p className="post-share">
+        <ShareButton path={`/posts/${post.slug}/`} />
+      </p>
       {post.status === "published" && post.allowComments && <Comments type="blog" id={post.id} />}
     </SiteShell>
   );

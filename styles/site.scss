@@ -2,7 +2,7 @@
 // Colors, borders, and type follow minimal-light.scss so new pages read as part of the same site.
 // Dark styles stay in prefers-color-scheme blocks so the theme toggle can force them.
 
-$text: #595959;
+$text: #414141;
 $muted: #636363;
 $border: #e5e5e5;
 $heading: #043361;
@@ -70,22 +70,12 @@ $dark-accent: rgb(74, 158, 255);
   margin-bottom: 2rem;
 }
 
-.feed-post__meta {
-  font-size: 0.85em;
-  color: $muted;
-  margin-bottom: 0.6rem;
-}
-
-.feed-post__meta a {
-  color: $muted;
-}
-
-.feed-post__meta a:hover {
-  color: $link;
-}
-
+// Same color as the post text, a touch smaller than the theme's h2, and bold.
 .feed-post__title {
   margin: 0 0 0.6rem;
+  color: inherit;
+  font-size: calc(1.57em - 2px);
+  font-weight: 700;
   overflow-wrap: anywhere;
 }
 
@@ -120,7 +110,9 @@ $dark-accent: rgb(74, 158, 255);
 }
 
 .feed-post__pin {
+  margin-bottom: 0.5rem;
   color: $heading;
+  font-size: 0.85em;
   font-weight: 600;
 }
 
@@ -130,26 +122,64 @@ $dark-accent: rgb(74, 158, 255);
 }
 
 .feed-post__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
   margin-top: 0.9rem;
   font-size: 0.85em;
-}
-
-.feed-post__footer a {
   color: $muted;
 }
 
-.feed-post__footer a:hover {
+.feed-post__actions {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+}
+
+.feed-post__date {
+  margin-left: auto;
+}
+
+.feed-post__footer a,
+.share-btn {
+  color: $muted;
+}
+
+.feed-post__footer a:hover,
+.share-btn:hover {
   color: $link;
+}
+
+// Looks like the links beside it.
+.share-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.share-btn:focus-visible {
+  outline: 2px solid $link;
+  outline-offset: 2px;
+}
+
+.post-share {
+  margin: 1.5rem 0 0;
+  font-size: 0.85em;
 }
 
 @media (prefers-color-scheme: dark) {
   .feed-post { border-color: $dark-border; }
-  .feed-post__meta,
-  .feed-post__meta a,
-  .feed-post__footer a { color: $dark-muted; }
-  .feed-post__meta a:hover,
+  .feed-post__footer,
+  .feed-post__footer a,
+  .share-btn { color: $dark-muted; }
   .feed-post__footer a:hover,
+  .share-btn:hover,
   .feed-post__title a:hover { color: $dark-accent; }
+  .share-btn:focus-visible { outline-color: $dark-accent; }
   .feed-post__pin { color: #eeeff0; }
 }
 
