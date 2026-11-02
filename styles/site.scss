@@ -729,3 +729,164 @@ $dark-accent: rgb(74, 158, 255);
   .gallery { gap: 2px; }
   .lightbox__nav { display: none; }
 }
+
+// ---- Phones and small tablets ---------------------------------------------------------------
+// The theme stacks the sidebar above the content at this width. Here the sidebar becomes a
+// compact card pinned to the top: photo on the left; name, email, links, and theme switch beside it.
+
+@media screen and (max-width: 960px) {
+  html {
+    // Jump links land below the pinned card.
+    scroll-padding-top: 128px;
+  }
+
+  body {
+    margin: 0;
+    padding: 0 16px 24px;
+  }
+
+  .wrapper > header {
+    position: sticky;
+    top: 8px;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "avatar name name"
+      "avatar email email"
+      "avatar icons toggle";
+    align-items: center;
+    column-gap: 14px;
+    margin: 8px 0;
+    padding: 12px 14px;
+    text-align: left;
+    border: 1px solid $border;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+  }
+
+  .wrapper > header br {
+    display: none;
+  }
+
+  .wrapper > header .image.avatar {
+    grid-area: avatar;
+    display: block;
+    line-height: 0;
+  }
+
+  .wrapper > header .image.avatar img {
+    width: 76px;
+    height: 76px;
+    padding: 0;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .wrapper > header h1 {
+    grid-area: name;
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  .wrapper > header email {
+    grid-area: email;
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: $muted;
+  }
+
+  .wrapper > header .social-icons {
+    grid-area: icons;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 4px 0 0 -6px; // line the first icon's glyph up with the text above
+  }
+
+  .wrapper > header .social-icons a {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 !important;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  .wrapper > header .social-icons .ai-cv {
+    font-size: 1.15rem !important;
+  }
+
+  .wrapper > header .theme-toggle {
+    grid-area: toggle;
+    align-self: center;
+    margin: 4px 0 0;
+  }
+
+  // The card's border replaces the theme's rule above the content.
+  section {
+    margin: 0;
+    padding: 20px 0 0;
+    border: 0;
+  }
+
+  section > h2 {
+    margin-top: 2.25rem;
+  }
+
+  .page-nav {
+    margin-bottom: 1.75rem;
+  }
+
+  .page-nav + h2,
+  section > h2:first-child {
+    margin-top: 0;
+  }
+
+  .feed-post {
+    margin-bottom: 1rem;
+  }
+
+  // The homepage separates blog cards with <br>s; a margin is enough here.
+  .blog-posts .bibliography > br {
+    display: none;
+  }
+
+  .blog-posts .bibliography .pub-row {
+    margin-bottom: 1rem;
+  }
+
+  .comments {
+    margin-top: 2rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .wrapper > header {
+      border-color: $dark-border;
+      background: rgba(37, 38, 50, 0.94);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .wrapper > header email {
+      color: $dark-muted;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .wrapper > header {
+    column-gap: 12px;
+  }
+
+  .wrapper > header .image.avatar img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .wrapper > header h1 {
+    font-size: 19px;
+  }
+}
