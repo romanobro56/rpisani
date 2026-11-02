@@ -38,17 +38,17 @@ const pageStyles = `
 }
 @media (prefers-color-scheme: dark) {
   .pagination button {
-    background: #1e1e1e;
-    border-color: #444;
-    color: #e0e0e0;
+    background: var(--dk-sunken);
+    border-color: var(--dk-border);
+    color: var(--dk-text);
   }
   .pagination button.active {
-    background: #4a9eff;
-    border-color: #4a9eff;
-    color: #fff;
+    background: var(--dk-accent);
+    border-color: var(--dk-accent);
+    color: var(--dk-on-accent);
   }
   .pagination button:hover:not(.active) {
-    background: #2a2a2a;
+    background: var(--dk-surface);
   }
 }
 `;

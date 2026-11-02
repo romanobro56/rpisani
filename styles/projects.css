@@ -20,7 +20,7 @@
 
 :root { --global-bg-color: #ffffff; --global-code-bg-color: rgba(181, 9, 172, 0.05); --global-text-color: #000000; --global-text-color-light: #828282; --global-theme-color: #002D72; --global-hover-color: #ffb81c; --global-footer-bg-color: #1c1c1c; --global-footer-text-color: #e8e8e8; --global-footer-link-color: #ffffff; --global-distill-app-color: #828282; }
 
-@media (prefers-color-scheme: dark) { :root { --global-theme-color: rgb(74, 158, 255);}}
+@media (prefers-color-scheme: dark) { :root { --global-theme-color: var(--dk-link);}}
 
 blockquote { background: var(--global-bg-color); border-left: 2px solid var(--global-theme-color); margin: 1.5em 10px; padding: 0.5em 10px; font-size: 1.2rem; }
 
@@ -61,7 +61,7 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
 .projects .bibliography .pub-row .links a.btn { color: #333333; border: 1px solid #333333; padding-left: 0.5rem; padding-right: 0.5rem; padding-top: 0.1rem; padding-bottom: 0.1rem; }
 
 @media (prefers-color-scheme: dark) {
-.projects .bibliography .pub-row .links a.btn { color: #FFFFFF; border: 1px solid #FFFFFF; padding-left: 0.5rem; padding-right: 0.5rem; padding-top: 0.1rem; padding-bottom: 0.1rem; }
+.projects .bibliography .pub-row .links a.btn { color: var(--dk-text-strong); border: 1px solid var(--dk-text-strong); padding-left: 0.5rem; padding-right: 0.5rem; padding-top: 0.1rem; padding-bottom: 0.1rem; }
 }
 
 .projects .bibliography .pub-row .links a.btn:hover { color: var(--global-theme-color); border-color: var(--global-theme-color); }
@@ -100,14 +100,14 @@ blockquote { background: var(--global-bg-color); border-left: 2px solid var(--gl
 .projects .bibliography .pub-row .metric { display: inline-block; padding: 0.15em 0.6em; border-radius: 4px; background: #eef3fa; color: #043361; font-size: 0.82em; font-weight: 600; }
 
 @media (prefers-color-scheme: dark) {
-.projects .group-label { color: #bbbcc3; }
-.projects .group-label::after { background: #3a3b45; }
-.projects .bibliography .pub-row { border-top-color: #2e2f39; }
-.projects .bibliography .pub-row .teaser { border-color: #3a3b45; }
+.projects .group-label { color: var(--dk-muted); }
+.projects .group-label::after { background: var(--dk-border); }
+.projects .bibliography .pub-row { border-top-color: var(--dk-border-soft); }
+.projects .bibliography .pub-row .teaser { border-color: var(--dk-border); }
 .projects .bibliography .pub-row .title,
-.projects .bibliography .pub-row .title a { color: #eeeff0; }
-.projects .bibliography .pub-row .date { color: #bbbcc3; }
-.projects .bibliography .pub-row .periodical { color: #c9cad0; }
-.projects .bibliography .pub-row .periodical strong { color: #dadbdf; }
-.projects .bibliography .pub-row .metric { background: rgba(74, 158, 255, 0.14); color: #8cc2ff; }
+.projects .bibliography .pub-row .title a { color: var(--dk-text-strong); }
+.projects .bibliography .pub-row .date { color: var(--dk-muted); }
+.projects .bibliography .pub-row .periodical { color: var(--dk-text); }
+.projects .bibliography .pub-row .periodical strong { color: var(--dk-text-strong); }
+.projects .bibliography .pub-row .metric { background: var(--dk-accent-soft); color: var(--dk-accent-soft-text); }
 }
