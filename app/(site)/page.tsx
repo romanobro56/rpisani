@@ -72,6 +72,20 @@ export default async function HomePage() {
 
       <p>I’m a Software Engineer and gym bro. My superpower is thinking. I want to fix the internet and have fun.</p>
 
+      <a
+        href="https://chargescreentime.app/?utm_source=rpisani&utm_medium=referral&utm_campaign=homepage"
+        className="charge-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="/assets/img/download-charge-screen-time.webp"
+          alt="Download Charge Screen Time"
+          width={3706}
+          height={1040}
+        />
+      </a>
+
       <h2 id="blog">Recent Blog Posts</h2>
 
       <div className="blog-posts">

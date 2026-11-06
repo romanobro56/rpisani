@@ -550,6 +550,32 @@ section > ul {
   margin-top: 0.25rem;
 }
 
+.charge-cta {
+  display: block;
+  width: 60%;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.charge-cta img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.charge-cta:hover,
+.charge-cta:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.charge-cta:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 .resume-entry {
   margin: 0 0 1.75rem;
 }
