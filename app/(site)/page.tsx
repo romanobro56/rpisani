@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import { FeedPost } from "@/components/FeedPost";
 import { SiteShell } from "@/components/SiteShell";
-import { groupProjects } from "@/data/projects";
+import { projects } from "@/data/projects";
 import { formatLongDate } from "@/lib/format";
 import { getFeedPage, getPublishedBlogPosts } from "@/lib/queries";
 import { site } from "@/lib/site";
@@ -141,30 +141,25 @@ export default async function HomePage() {
 
       <div className="projects">
         <div className="bibliography">
-          {groupProjects().map((group) => (
-            <Fragment key={group.name}>
-              <div className="group-label">{group.name}</div>
-              {group.items.map((p) => (
-                <div className={p.link ? "pub-row pub-row--linked" : "pub-row"} key={p.title}>
-                  <div className="col-sm-3 abbr">
-                    {p.image && <img src={p.image} alt={p.imageAlt} className="teaser" data-fit={p.fit} />}
-                  </div>
-                  <div className="col-sm-9">
-                    <div className="title">{p.link ? <a href={p.link}>{p.title}</a> : p.title}</div>
-                    {p.date && <div className="date">{p.date}</div>}
-                    <div className="periodical" dangerouslySetInnerHTML={{ __html: p.subtitle }} />
-                    <div className="links">
-                      {p.code && (
-                        <a href={p.code} className="btn btn-sm z-depth-0" role="button" target="_blank" style={{ fontSize: 12 }}>
-                          GitHub
-                        </a>
-                      )}
-                      {p.notes && <span className="metric">{p.notes}</span>}
-                    </div>
-                  </div>
+          {projects.map((p) => (
+            <div className={p.link ? "pub-row pub-row--linked" : "pub-row"} key={p.title}>
+              <div className="col-sm-3 abbr">
+                {p.image && <img src={p.image} alt={p.imageAlt} className="teaser" data-fit={p.fit} />}
+              </div>
+              <div className="col-sm-9">
+                <div className="title">{p.link ? <a href={p.link}>{p.title}</a> : p.title}</div>
+                {p.date && <div className="date">{p.date}</div>}
+                <div className="periodical" dangerouslySetInnerHTML={{ __html: p.subtitle }} />
+                <div className="links">
+                  {p.code && (
+                    <a href={p.code} className="btn btn-sm z-depth-0" role="button" target="_blank" style={{ fontSize: 12 }}>
+                      GitHub
+                    </a>
+                  )}
+                  {p.notes && <span className="metric">{p.notes}</span>}
                 </div>
-              ))}
-            </Fragment>
+              </div>
+            </div>
           ))}
         </div>
       </div>
