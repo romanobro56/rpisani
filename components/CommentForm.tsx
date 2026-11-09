@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { addComment, type CommentFormState } from "@/app/actions/comments";
+import { site } from "@/lib/site";
 
 const NAME_KEY = "comment-name";
 
@@ -56,11 +57,19 @@ export function CommentForm({ type, id }: { type: "feed" | "blog"; id: string })
       </label>
       <textarea id={`comment-body-${id}`} name="body" required maxLength={2000} rows={4} ref={bodyRef} />
       <div className="comment-form__actions">
-        <button type="submit" className="comment-form__submit" disabled={pending}>
+        <button type="submit" className="comment-form__submit" disabled={pending || site.commentsPaused}>
           {pending ? "Posting…" : "Post comment"}
         </button>
         <span className="comment-form__status" role="status">
-          {state.error ? <span className="comment-form__error">{state.error}</span> : state.ok ? "Thanks, your comment is up." : ""}
+          {site.commentsPaused ? (
+            "Comments are paused for now."
+          ) : state.error ? (
+            <span className="comment-form__error">{state.error}</span>
+          ) : state.ok ? (
+            "Thanks, your comment is up."
+          ) : (
+            ""
+          )}
         </span>
       </div>
     </form>

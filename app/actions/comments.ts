@@ -7,6 +7,7 @@ import { getDb } from "@/db";
 import { blogPosts, comments, feedPosts } from "@/db/schema";
 import { clientIp, hashIp } from "@/lib/auth";
 import { TAGS } from "@/lib/queries";
+import { site } from "@/lib/site";
 
 export type CommentFormState = { ok: boolean; error?: string; nonce?: number };
 
@@ -20,11 +21,13 @@ const schema = z.object({
   renderedAt: z.coerce.number(),
 });
 
+const PAUSED_MESSAGE = "Comments are paused for now.";
 const MIN_FILL_MS = 3_000;
 const LIMIT_PER_WINDOW = 5;
 const WINDOW_MS = 10 * 60 * 1000;
 
 export async function addComment(_prev: CommentFormState, form: FormData): Promise<CommentFormState> {
+  if (site.commentsPaused) return { ok: false, error: PAUSED_MESSAGE };
   const parsed = schema.safeParse(Object.fromEntries(form));
   if (!parsed.success) return { ok: false, error: parsed.error.issues[0]?.message ?? "Invalid comment." };
   const { type, id, name, body, website, renderedAt } = parsed.data;
