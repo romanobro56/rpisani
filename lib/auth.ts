@@ -14,15 +14,27 @@ export async function requireAdmin(): Promise<void> {
   if (!(await isAdmin())) redirect("/admin/login/");
 }
 
+// Marks a browser the owner has signed in on. It outlives the session (and sign-out) so the owner's
+// visits stay out of the analytics. Unsigned on purpose: forging it only opts that browser out of the stats.
+const OWN_DEVICE_COOKIE = "own_device";
+const OWN_DEVICE_DAYS = 400; // the longest lifetime browsers allow
+
 export async function startSession(): Promise<void> {
   const jar = await cookies();
-  jar.set(SESSION_COOKIE, await signSession(), {
+  const base = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: SESSION_DAYS * 24 * 60 * 60,
-  });
+  } as const;
+  jar.set(SESSION_COOKIE, await signSession(), { ...base, maxAge: SESSION_DAYS * 24 * 60 * 60 });
+  jar.set(OWN_DEVICE_COOKIE, "1", { ...base, maxAge: OWN_DEVICE_DAYS * 24 * 60 * 60 });
+}
+
+/** True for the signed-in owner and for any browser the owner has signed in on before. */
+export async function isOwnDevice(): Promise<boolean> {
+  const jar = await cookies();
+  return jar.has(OWN_DEVICE_COOKIE) || verifySession(jar.get(SESSION_COOKIE)?.value);
 }
 
 export async function endSession(): Promise<void> {

@@ -20,7 +20,7 @@ function RankTable({ title, rows, empty, format }: { title: string; rows: Ranked
             <tr>
               <th></th>
               <th className="num">Views</th>
-              <th className="num">Visitors</th>
+              <th className="num" title="Daily unique visitors, added up over the 30 days">Visitor-days</th>
             </tr>
           </thead>
           <tbody>
@@ -70,7 +70,7 @@ export default async function DashboardPage() {
         <div className="stat-tile">
           <span className="stat-tile__label">Views today</span>
           <span className="stat-tile__value">{nf.format(totals.today)}</span>
-          <span className="stat-tile__sub">{nf.format(totals.visitorsToday)} visitors</span>
+          <span className="stat-tile__sub">{nf.format(totals.visitorsToday)} {totals.visitorsToday === 1 ? "visitor" : "visitors"}</span>
         </div>
         <div className="stat-tile">
           <span className="stat-tile__label">Last 7 days</span>
@@ -80,7 +80,7 @@ export default async function DashboardPage() {
         <div className="stat-tile">
           <span className="stat-tile__label">Last 30 days</span>
           <span className="stat-tile__value">{nf.format(totals.month)}</span>
-          <span className="stat-tile__sub">{nf.format(totals.visitorsMonth)} visitors</span>
+          <span className="stat-tile__sub">{nf.format(totals.visitorsMonth)} visitor-days</span>
         </div>
         <div className="stat-tile">
           <span className="stat-tile__label">All time</span>
@@ -93,7 +93,9 @@ export default async function DashboardPage() {
         <h3>Page views, last 30 days</h3>
         <ViewsChart data={stats.daily} />
         <p className="admin-muted admin-small">
-          Your own visits aren’t counted while you’re signed in. Visitors are counted per day without cookies.
+          Visitors are counted per day without cookies, so someone who comes back on three days is three visitor-days:
+          the 30-day figures are an upper bound on people, not a head count. Your own visits aren’t counted on any
+          browser you’ve signed in on.
         </p>
       </div>
 

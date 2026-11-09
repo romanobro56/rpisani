@@ -4,7 +4,8 @@ import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { getDb } from "@/db";
 import { pageViews } from "@/db/schema";
-import { clientIp, isAdmin } from "@/lib/auth";
+import { clientIp, isOwnDevice } from "@/lib/auth";
+import { site } from "@/lib/site";
 
 const BOT = /bot|crawl|spider|slurp|preview|monitor|headless|lighthouse|curl|wget|python|axios|node-fetch|go-http/i;
 
@@ -18,9 +19,10 @@ export async function trackView(path: string, referrer: string): Promise<void> {
   const h = await headers();
   const ua = h.get("user-agent") ?? "";
   if (!ua || BOT.test(ua)) return;
-  if (await isAdmin()) return; // don't count your own visits
+  if (await isOwnDevice()) return; // don't count your own visits, signed in or not
 
-  const day = new Date().toISOString().slice(0, 10);
+  // The site's local day, matching how the dashboard groups views, so one visitor is one hash per dashboard day.
+  const day = new Date().toLocaleDateString("en-CA", { timeZone: site.timeZone });
   const secret = process.env.SESSION_SECRET ?? "dev";
   const visitorHash = createHash("sha256")
     .update(`${secret}:${day}:${await clientIp()}:${ua}`)
