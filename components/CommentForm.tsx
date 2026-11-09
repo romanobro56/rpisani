@@ -2,7 +2,6 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { addComment, type CommentFormState } from "@/app/actions/comments";
-import { flashbang, unlockAudio } from "./flashbang";
 
 const NAME_KEY = "comment-name";
 
@@ -11,8 +10,6 @@ export function CommentForm({ type, id }: { type: "feed" | "blog"; id: string })
   const [renderedAt] = useState(() => Date.now());
   const [name, setName] = useState("");
   const bodyRef = useRef<HTMLTextAreaElement>(null);
-  const audioRef = useRef<AudioContext | null>(null);
-  const [pranked, setPranked] = useState(false);
 
   useEffect(() => {
     try {
@@ -22,18 +19,11 @@ export function CommentForm({ type, id }: { type: "feed" | "blog"; id: string })
 
   useEffect(() => {
     if (state.ok && bodyRef.current) bodyRef.current.value = "";
-    const audio = audioRef.current;
-    audioRef.current = null;
-    if (state.prank && flashbang(audio)) setPranked(true);
-    else void audio?.close();
   }, [state]);
 
   return (
     <form
       className="comment-form"
-      onSubmit={() => {
-        audioRef.current = unlockAudio();
-      }}
       action={(fd) => {
         try {
           localStorage.setItem(NAME_KEY, String(fd.get("name") ?? ""));
@@ -70,7 +60,7 @@ export function CommentForm({ type, id }: { type: "feed" | "blog"; id: string })
           {pending ? "Posting…" : "Post comment"}
         </button>
         <span className="comment-form__status" role="status">
-          {state.error ? <span className="comment-form__error">{state.error}</span> : state.ok ? (pranked ? "Flashbang out. Your comment is up." : "Thanks, your comment is up.") : ""}
+          {state.error ? <span className="comment-form__error">{state.error}</span> : state.ok ? "Thanks, your comment is up." : ""}
         </span>
       </div>
     </form>

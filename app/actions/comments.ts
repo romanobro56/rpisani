@@ -5,11 +5,10 @@ import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { getDb } from "@/db";
 import { blogPosts, comments, feedPosts } from "@/db/schema";
-import { clientIp, hashIp, isOwnDevice } from "@/lib/auth";
-import { isMysteryCommenter } from "@/lib/prank";
+import { clientIp, hashIp } from "@/lib/auth";
 import { TAGS } from "@/lib/queries";
 
-export type CommentFormState = { ok: boolean; error?: string; nonce?: number; prank?: boolean };
+export type CommentFormState = { ok: boolean; error?: string; nonce?: number };
 
 const schema = z.object({
   type: z.enum(["feed", "blog"]),
@@ -48,9 +47,8 @@ export async function addComment(_prev: CommentFormState, form: FormData): Promi
     .where(and(eq(comments.ipHash, ipHash), gt(comments.createdAt, new Date(Date.now() - WINDOW_MS))));
   if (n >= LIMIT_PER_WINDOW) return { ok: false, error: "You're commenting a lot. Try again in a few minutes." };
 
-  const prank = !(await isOwnDevice()) && (await isMysteryCommenter(db, name, ipHash));
   await db.insert(comments).values({ targetType: type, targetId: id, authorName: name, body, ipHash });
   revalidateTag(TAGS.comments(type, id), { expire: 0 });
   if (type === "feed") revalidateTag(TAGS.feed, { expire: 0 }); // comment counts on feed cards
-  return { ok: true, nonce: Date.now(), prank };
+  return { ok: true, nonce: Date.now() };
 }
