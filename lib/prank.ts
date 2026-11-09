@@ -7,7 +7,14 @@ import { comments } from "@/db/schema";
 // app/actions/comments.ts and components/flashbang.ts to remove it.
 
 /** Names the mystery commenter posted under, lower-cased. */
-const MYSTERY_NAMES = ["guess who", "real real roman", "realest roman", "roman 2.0 spencer combo"];
+const MYSTERY_NAMES = [
+  "guess who",
+  "real real roman",
+  "realest roman",
+  "roman 2.0 spencer combo",
+  "hi roman",
+  "realer roman",
+];
 
 /** True when this comment uses one of those names, or comes from an IP that has posted under one. */
 export async function isMysteryCommenter(db: Db, name: string, ipHash: string): Promise<boolean> {
