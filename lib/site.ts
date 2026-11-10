@@ -18,7 +18,7 @@ export const site = {
   /** Dates are shown in this zone so a post dated Oct 7 never renders as Oct 6. */
   timeZone: "America/New_York",
   /** While true the comment form is disabled and new comments are rejected. Set to false to reopen. */
-  commentsPaused: true,
+  commentsPaused: false,
 } as const;
 
 export const MAX_VIDEO_SECONDS = 20 * 60;

@@ -175,7 +175,13 @@ export default async function DashboardPage() {
                 <td>
                   <a href="/admin/comments/">Comments</a>
                 </td>
-                <td className="num">{content.comments} visible</td>
+                <td className="num">
+                  {content.pendingComments ? (
+                    <a href="/admin/comments/?status=pending">{content.pendingComments} to approve</a>
+                  ) : (
+                    `${content.comments} visible`
+                  )}
+                </td>
                 <td className="num">{content.hiddenComments} hidden</td>
               </tr>
               <tr>
@@ -196,6 +202,7 @@ export default async function DashboardPage() {
                 <li key={c.id}>
                   <strong>{c.authorName}</strong> <span className="admin-muted">{formatShortDate(c.createdAt)}</span>
                   {c.status === "hidden" && <span className="badge-status badge-status--draft">Hidden</span>}
+                  {c.status === "pending" && <span className="badge-status badge-status--draft">Awaiting approval</span>}
                   <div>{truncate(c.body, 120)}</div>
                 </li>
               ))}

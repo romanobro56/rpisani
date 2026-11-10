@@ -15,6 +15,13 @@
       "when": 1793630906267,
       "tag": "0001_feed_titles_pins_audio",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794281905401,
+      "tag": "0002_comment_moderation",
+      "breakpoints": true
     }
   ]
 }

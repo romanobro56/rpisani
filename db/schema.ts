@@ -18,7 +18,9 @@ export const postStatus = pgEnum("post_status", ["draft", "published"]);
 export const mediaKind = pgEnum("media_kind", ["image", "video", "audio"]);
 export const mediaStatus = pgEnum("media_status", ["uploading", "ready"]);
 export const commentTarget = pgEnum("comment_target", ["feed", "blog"]);
-export const commentStatus = pgEnum("comment_status", ["visible", "hidden"]);
+// "pending" comments wait for approval. Code that inserts a comment always sets the status itself;
+// the column default stays "visible" because Postgres can't use a new enum value in the migration that adds it.
+export const commentStatus = pgEnum("comment_status", ["visible", "hidden", "pending"]);
 
 const timestamps = {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
@@ -111,9 +113,33 @@ export const comments = pgTable(
     body: text("body").notNull(),
     status: commentStatus("status").notNull().default("visible"),
     ipHash: text("ip_hash").notNull(),
+    /** Random id from the commenter's cookie. Null on comments made before the cookie existed. */
+    visitorId: text("visitor_id"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [index("comments_target_idx").on(t.targetType, t.targetId, t.createdAt)],
+  (t) => [
+    index("comments_target_idx").on(t.targetType, t.targetId, t.createdAt),
+    index("comments_visitor_idx").on(t.visitorId),
+  ],
+);
+
+/**
+ * Blocked commenters, matched by network (ipHash) or browser (visitorId). Their comments are saved
+ * as hidden. When a blocked commenter turns up with a new network or browser, that is added as a
+ * row pointing at the original block (originId), so unblocking removes them together.
+ */
+export const commentBlocks = pgTable(
+  "comment_blocks",
+  {
+    id: serial("id").primaryKey(),
+    ipHash: text("ip_hash"),
+    visitorId: text("visitor_id"),
+    /** The name on the comment that was blocked, to recognise the entry later. */
+    label: text("label").notNull().default(""),
+    originId: integer("origin_id"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("comment_blocks_ip_idx").on(t.ipHash), index("comment_blocks_visitor_idx").on(t.visitorId)],
 );
 
 /** One row per public page view. No cookies; visitors are a daily-rotating hash. */

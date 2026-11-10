@@ -1,10 +1,10 @@
 "use server";
 
-import { and, eq, inArray, ne } from "drizzle-orm";
-import { revalidateTag } from "next/cache";
+import { and, eq, inArray, ne, or } from "drizzle-orm";
+import { refresh, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { getDb } from "@/db";
-import { blogPosts, comments, feedPostMedia, feedPosts, media } from "@/db/schema";
+import { blogPosts, commentBlocks, comments, feedPostMedia, feedPosts, media } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth";
 import { fromDateInput, slugify, toDateInput } from "@/lib/format";
 import { getMediaUsage } from "@/lib/media-usage";
@@ -203,6 +203,50 @@ export async function deleteComment(id: string): Promise<void> {
   const db = await getDb();
   await db.delete(comments).where(eq(comments.id, id));
   done?.();
+}
+
+/**
+ * Blocks whoever wrote this comment, by network and by browser. It hides this comment, everything
+ * else from the same browser, and anything from the same network that is still awaiting approval.
+ * Their future comments are saved as hidden, and they keep seeing their own comments as if posted.
+ */
+export async function blockCommenter(commentId: string): Promise<void> {
+  await requireAdmin();
+  const db = await getDb();
+  const [c] = await db.select().from(comments).where(eq(comments.id, commentId));
+  if (!c) return;
+
+  const sameCommenter = c.visitorId
+    ? or(eq(commentBlocks.ipHash, c.ipHash), eq(commentBlocks.visitorId, c.visitorId))
+    : eq(commentBlocks.ipHash, c.ipHash);
+  const theirComments = or(
+    eq(comments.id, c.id),
+    c.visitorId ? eq(comments.visitorId, c.visitorId) : undefined,
+    and(eq(comments.ipHash, c.ipHash), eq(comments.status, "pending")),
+  );
+  const hidden = await db.transaction(async (tx) => {
+    const existing = await tx.select({ id: commentBlocks.id }).from(commentBlocks).where(sameCommenter);
+    if (!existing.length) {
+      await tx.insert(commentBlocks).values({ ipHash: c.ipHash, visitorId: c.visitorId, label: c.authorName });
+    }
+    return tx
+      .update(comments)
+      .set({ status: "hidden" })
+      .where(and(theirComments, ne(comments.status, "hidden")))
+      .returning({ targetType: comments.targetType, targetId: comments.targetId });
+  });
+
+  for (const h of hidden) revalidateTag(TAGS.comments(h.targetType, h.targetId), NOW);
+  if (hidden.some((h) => h.targetType === "feed")) revalidateTag(TAGS.feed, NOW);
+  refresh(); // the block list changed even when no comment did
+}
+
+/** Lifts a block, including the networks and browsers it picked up later. Hidden comments stay hidden. */
+export async function unblockCommenter(blockId: number): Promise<void> {
+  await requireAdmin();
+  const db = await getDb();
+  await db.delete(commentBlocks).where(or(eq(commentBlocks.id, blockId), eq(commentBlocks.originId, blockId)));
+  refresh();
 }
 
 // ---- Media --------------------------------------------------------------------------------

@@ -1,9 +1,12 @@
 import { formatLongDate } from "@/lib/format";
-import { getComments } from "@/lib/queries";
+import { readCommenterId } from "@/lib/comment-moderation";
+import { getComments, getOwnUnlistedComments } from "@/lib/queries";
 import { CommentForm } from "./CommentForm";
 
 export async function Comments({ type, id }: { type: "feed" | "blog"; id: string }) {
-  const list = await getComments(type, id);
+  const visitorId = await readCommenterId();
+  const [listed, own] = await Promise.all([getComments(type, id), visitorId ? getOwnUnlistedComments(type, id, visitorId) : []]);
+  const list = own.length ? [...listed, ...own].sort((a, b) => a.createdAt.localeCompare(b.createdAt)) : listed;
   return (
     <div className="comments" id="comments">
       <h3>

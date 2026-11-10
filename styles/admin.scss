@@ -275,6 +275,11 @@ $dark-accent: rgb(74, 158, 255);
   color: #8a5a00;
 }
 
+.badge-status--blocked {
+  background: #fde8e6;
+  color: #a3261c;
+}
+
 .admin-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -1014,7 +1019,18 @@ section.admin-preview {
 
 .comment-admin__actions {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-size: 0.9em;
+}
+
+.comment-blocks {
+  margin-top: 2rem;
+}
+
+.comment-blocks form {
+  display: inline;
+  margin-left: 0.75rem;
   font-size: 0.9em;
 }
 
@@ -1069,6 +1085,7 @@ section.admin-preview {
   .admin-link-button { color: $dark-accent; }
   .badge-status--published { background: rgba(123, 214, 156, 0.15); color: #7bd69c; }
   .badge-status--draft { background: rgba(224, 166, 80, 0.15); color: #f0c27b; }
+  .badge-status--blocked { background: rgba(255, 138, 128, 0.15); color: #ff8a80; }
   .admin-notice { background: rgba(224, 166, 80, 0.12); border-color: #b98437; }
   .admin-list li,
   .comment-admin li { border-top-color: #2e2f39; }

@@ -23,6 +23,7 @@ export type DashboardStats = {
     feedPublished: number;
     feedDrafts: number;
     comments: number;
+    pendingComments: number;
     hiddenComments: number;
     mediaCount: number;
     mediaBytes: number;
@@ -102,6 +103,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
       feedPublished: statusCount(feedCounts, "published"),
       feedDrafts: statusCount(feedCounts, "draft"),
       comments: statusCount(commentCounts, "visible"),
+      pendingComments: statusCount(commentCounts, "pending"),
       hiddenComments: statusCount(commentCounts, "hidden"),
       mediaCount: mediaTotals[0]?.n ?? 0,
       mediaBytes: mediaTotals[0]?.bytes ?? 0,

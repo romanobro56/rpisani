@@ -1,11 +1,14 @@
 "use server";
 
 import { and, count, eq, gt, sql } from "drizzle-orm";
-import { revalidateTag } from "next/cache";
+import { refresh, revalidateTag } from "next/cache";
+import { after } from "next/server";
 import { z } from "zod";
 import { getDb } from "@/db";
 import { blogPosts, comments, feedPosts } from "@/db/schema";
 import { clientIp, hashIp } from "@/lib/auth";
+import { queueCommentEmail } from "@/lib/comment-digest";
+import { ensureCommenterId, statusForNewComment } from "@/lib/comment-moderation";
 import { TAGS } from "@/lib/queries";
 import { site } from "@/lib/site";
 
@@ -17,7 +20,7 @@ const schema = z.object({
   name: z.string().trim().min(1, "Please add your name.").max(60, "Name is too long."),
   body: z.string().trim().min(1, "Comment can't be empty.").max(2000, "Comments are limited to 2,000 characters."),
   // Spam traps: a hidden field people never fill, and the time the form was shown.
-  website: z.string().max(0).optional().or(z.literal("")),
+  website: z.string().optional(),
   renderedAt: z.coerce.number(),
 });
 
@@ -48,6 +51,7 @@ export async function addComment(_prev: CommentFormState, form: FormData): Promi
   if (!target || !target.allowComments) return { ok: false, error: CLOSED_MESSAGE };
 
   const ipHash = hashIp(await clientIp(), "comments");
+  const visitorId = await ensureCommenterId();
   const saved = await db.transaction(async (tx) => {
     // One comment at a time per visitor, so parallel posts can't all read the same count and slip past the limit.
     await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${ipHash}))`);
@@ -55,13 +59,25 @@ export async function addComment(_prev: CommentFormState, form: FormData): Promi
       .select({ n: count() })
       .from(comments)
       .where(and(eq(comments.ipHash, ipHash), gt(comments.createdAt, new Date(Date.now() - WINDOW_MS))));
-    if (n >= LIMIT_PER_WINDOW) return false;
-    await tx.insert(comments).values({ targetType: type, targetId: id, authorName: name, body, ipHash });
-    return true;
+    if (n >= LIMIT_PER_WINDOW) return null;
+    const status = await statusForNewComment(tx, ipHash, visitorId);
+    const [row] = await tx
+      .insert(comments)
+      .values({ targetType: type, targetId: id, authorName: name, body, ipHash, visitorId, status })
+      .returning({ id: comments.id });
+    return { id: row.id, status };
   });
   if (!saved) return { ok: false, error: "You're commenting a lot. Try again in a few minutes." };
 
-  revalidateTag(TAGS.comments(type, id), { expire: 0 });
-  if (type === "feed") revalidateTag(TAGS.feed, { expire: 0 }); // comment counts on feed cards
+  if (saved.status === "visible") {
+    revalidateTag(TAGS.comments(type, id), { expire: 0 });
+    if (type === "feed") revalidateTag(TAGS.feed, { expire: 0 }); // comment counts on feed cards
+  }
+  // Held and hidden comments still show to their author, so the page re-renders either way.
+  refresh();
+  // Blocked commenters don't get to ping the inbox.
+  if (saved.status !== "hidden") {
+    after(() => queueCommentEmail(saved.id).catch((err) => console.error("Comment email failed:", err)));
+  }
   return { ok: true, nonce: Date.now() };
 }

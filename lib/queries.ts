@@ -237,6 +237,27 @@ export const getGalleryPage = unstable_cache(
 
 // ---- Comments -----------------------------------------------------------------------------
 
+type CommentRow = typeof comments.$inferSelect;
+
+function toCommentView(c: CommentRow): CommentView {
+  return { id: c.id, authorName: c.authorName, bodyHtml: renderPlainText(c.body), createdAt: c.createdAt.toISOString() };
+}
+
+/**
+ * A commenter's own comments on a post that nobody else can see: held for approval, or hidden.
+ * Shown back to them alongside the public ones, so a held or blocked comment looks posted. Uncached.
+ */
+export async function getOwnUnlistedComments(type: "feed" | "blog", id: string, visitorId: string): Promise<CommentView[]> {
+  const db = await getDb();
+  const rows = await db
+    .select()
+    .from(comments)
+    .where(
+      and(eq(comments.targetType, type), eq(comments.targetId, id), eq(comments.visitorId, visitorId), ne(comments.status, "visible")),
+    );
+  return rows.map(toCommentView);
+}
+
 export function getComments(type: "feed" | "blog", id: string): Promise<CommentView[]> {
   return unstable_cache(
     async () => {
@@ -246,12 +267,7 @@ export function getComments(type: "feed" | "blog", id: string): Promise<CommentV
         .from(comments)
         .where(and(eq(comments.targetType, type), eq(comments.targetId, id), eq(comments.status, "visible")))
         .orderBy(asc(comments.createdAt));
-      return rows.map((c) => ({
-        id: c.id,
-        authorName: c.authorName,
-        bodyHtml: renderPlainText(c.body),
-        createdAt: c.createdAt.toISOString(),
-      }));
+      return rows.map(toCommentView);
     },
     ["comments", V, type, id],
     { tags: [TAGS.comments(type, id)], revalidate: HOUR },

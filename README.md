@@ -33,7 +33,9 @@ api/, automation/  bike-weather reminder (Python, Vercel Cron)
 
 **Stats** are first-party and cookie-free: one row per page view, with visitors counted by a daily-rotating hash (no raw IPs stored, no consent banner needed). Your own visits aren't counted while you're signed in.
 
-**Comments** need a name and text, no account. Spam is filtered with a hidden honeypot field, a minimum fill time, and a per-visitor rate limit. You can hide or delete any comment from the admin.
+**Comments** need a name and text, no account. A first comment waits for your approval under Admin → Comments; once you've approved someone, their later comments go live straight away. Commenters aren't told about the hold: a cookie set when they comment shows their own comments back to them, so a held or hidden comment looks posted to its author and to nobody else. **Block commenter** matches by network and browser, saves that person's future comments as hidden, and follows them if they switch one of the two. Spam is filtered with a hidden honeypot field, a minimum fill time, and a per-visitor rate limit. To pause comments entirely, set `commentsPaused` in `lib/site.ts`.
+
+**Comment emails** tell you about new comments in one email per burst: the email goes out 10 minutes after the last comment, or straight away once 10 are waiting (`lib/comment-digest.ts`). They use the same Resend account as the bike-weather reminder and are sent to `BIKE_EMAIL_TO` unless `COMMENT_EMAIL_TO` is set. Without `RESEND_API_KEY` no email is sent and comments still queue for approval.
 
 ## Local development
 
@@ -125,7 +127,7 @@ Or from this folder with the CLI, one at a time (it prompts for the value):
 vercel env add ADMIN_PASSWORD_HASH production --sensitive
 ```
 
-The existing bike-weather variables stay as they are.
+The existing bike-weather variables stay as they are. Comment emails reuse `RESEND_API_KEY`, `BIKE_EMAIL_TO` and `BIKE_EMAIL_FROM`; set `COMMENT_EMAIL_TO` or `COMMENT_EMAIL_FROM` only to send them somewhere else.
 
 ### 6. Deploy
 
