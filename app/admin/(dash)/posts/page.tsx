@@ -2,6 +2,7 @@ import { and, asc, count, desc, eq, inArray, sql } from "drizzle-orm";
 import { StatusTabs } from "@/components/admin/StatusTabs";
 import { getDb } from "@/db";
 import { comments, feedPostMedia, feedPosts, media } from "@/db/schema";
+import { requireAdmin } from "@/lib/auth";
 import { toAdminMedia } from "@/lib/admin-media";
 import { MediaThumb } from "@/components/admin/MediaThumb";
 import { formatShortDate, truncate } from "@/lib/format";
@@ -12,6 +13,7 @@ export const metadata = { title: "Posts" };
 type Props = { searchParams: Promise<{ status?: string }> };
 
 export default async function PostsPage({ searchParams }: Props) {
+  await requireAdmin();
   const { status } = await searchParams;
   const filter = status === "draft" || status === "published" ? status : undefined;
   const db = await getDb();

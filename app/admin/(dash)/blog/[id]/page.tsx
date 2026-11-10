@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BlogEditor } from "@/components/admin/BlogEditor";
 import { getDb } from "@/db";
 import { blogPosts } from "@/db/schema";
+import { requireAdmin } from "@/lib/auth";
 import { toDateInput } from "@/lib/format";
 
 export const metadata = { title: "Edit blog post" };
@@ -10,6 +11,7 @@ export const metadata = { title: "Edit blog post" };
 type Props = { params: Promise<{ id: string }> };
 
 export default async function EditBlogPostPage({ params }: Props) {
+  await requireAdmin();
   const { id } = await params;
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
   const db = await getDb();

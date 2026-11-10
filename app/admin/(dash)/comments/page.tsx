@@ -3,6 +3,7 @@ import { deleteComment, setCommentVisibility } from "@/app/actions/admin";
 import { ConfirmButton } from "@/components/admin/ConfirmButton";
 import { getDb } from "@/db";
 import { blogPosts, comments, feedPosts } from "@/db/schema";
+import { requireAdmin } from "@/lib/auth";
 import { formatShortDate, truncate } from "@/lib/format";
 
 export const metadata = { title: "Comments" };
@@ -10,6 +11,7 @@ export const metadata = { title: "Comments" };
 type Props = { searchParams: Promise<{ status?: string }> };
 
 export default async function CommentsPage({ searchParams }: Props) {
+  await requireAdmin();
   const { status } = await searchParams;
   const filter = status === "hidden" || status === "visible" ? status : undefined;
   const db = await getDb();

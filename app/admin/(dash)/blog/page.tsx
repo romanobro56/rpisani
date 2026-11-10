@@ -2,6 +2,7 @@ import { and, count, desc, eq, sql } from "drizzle-orm";
 import { StatusTabs } from "@/components/admin/StatusTabs";
 import { getDb } from "@/db";
 import { blogPosts, comments } from "@/db/schema";
+import { requireAdmin } from "@/lib/auth";
 import { estimateReadTime, formatShortDate } from "@/lib/format";
 import { getViewsByPath } from "@/lib/stats";
 
@@ -10,6 +11,7 @@ export const metadata = { title: "Blog" };
 type Props = { searchParams: Promise<{ status?: string }> };
 
 export default async function BlogAdminPage({ searchParams }: Props) {
+  await requireAdmin();
   const { status } = await searchParams;
   const filter = status === "draft" || status === "published" ? status : undefined;
   const db = await getDb();

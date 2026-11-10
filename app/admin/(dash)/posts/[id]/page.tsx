@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PostEditor } from "@/components/admin/PostEditor";
 import { getDb } from "@/db";
 import { feedPostMedia, feedPosts, media } from "@/db/schema";
+import { requireAdmin } from "@/lib/auth";
 import { toAdminMedia } from "@/lib/admin-media";
 import { toDateInput } from "@/lib/format";
 
@@ -11,6 +12,7 @@ export const metadata = { title: "Edit post" };
 type Props = { params: Promise<{ id: string }> };
 
 export default async function EditPostPage({ params }: Props) {
+  await requireAdmin();
   const { id } = await params;
   const db = await getDb();
   const [post] = await db.select().from(feedPosts).where(eq(feedPosts.id, id));

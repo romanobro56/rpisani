@@ -2,7 +2,8 @@ import { desc } from "drizzle-orm";
 import { ViewsChart } from "@/components/admin/ViewsChart";
 import { getDb } from "@/db";
 import { comments } from "@/db/schema";
-import { formatBytes, formatShortDate, truncate } from "@/lib/format";
+import { requireAdmin } from "@/lib/auth";
+import { formatBytes, formatShortDate, isSitePath, truncate } from "@/lib/format";
 import { getDashboardStats, type Ranked } from "@/lib/stats";
 
 export const metadata = { title: "Dashboard" };
@@ -46,6 +47,7 @@ function RankTable({ title, rows, empty, format }: { title: string; rows: Ranked
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
 export default async function DashboardPage() {
+  await requireAdmin();
   const stats = await getDashboardStats();
   const db = await getDb();
   const recentComments = await db.select().from(comments).orderBy(desc(comments.createdAt)).limit(5);
@@ -104,11 +106,16 @@ export default async function DashboardPage() {
           title="Top pages (30 days)"
           rows={stats.topPages}
           empty="No views yet."
-          format={(p) => (
-            <a href={p} target="_blank" rel="noopener">
-              {p}
-            </a>
-          )}
+          format={(p) =>
+            // Paths are reported by visitors' browsers; only link the ones that are plainly on this site.
+            isSitePath(p) ? (
+              <a href={p} target="_blank" rel="noopener">
+                {p}
+              </a>
+            ) : (
+              p
+            )
+          }
         />
         <RankTable title="Referrers (30 days)" rows={stats.referrers} empty="No outside referrers yet." />
         <RankTable

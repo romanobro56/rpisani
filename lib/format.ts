@@ -77,6 +77,15 @@ export function slugify(input: string): string {
     .slice(0, 80);
 }
 
+/**
+ * True for a plain path on this site, such as "/posts/my-post/". Page-view paths come from the
+ * visitor's browser and the dashboard links to them, so "//evil.example" and "/\evil.example"
+ * (both of which a browser opens as another site) must never pass.
+ */
+export function isSitePath(path: string): boolean {
+  return path.length <= 300 && /^\/(?:[A-Za-z0-9._~-]+\/)*[A-Za-z0-9._~-]*$/.test(path);
+}
+
 export function truncate(text: string, max: number): string {
   const flat = text.replace(/\s+/g, " ").trim();
   return flat.length > max ? `${flat.slice(0, max - 1).trimEnd()}…` : flat;

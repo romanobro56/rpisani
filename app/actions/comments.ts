@@ -1,6 +1,6 @@
 "use server";
 
-import { and, count, eq, gt } from "drizzle-orm";
+import { and, count, eq, gt, sql } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { getDb } from "@/db";
@@ -22,6 +22,7 @@ const schema = z.object({
 });
 
 const PAUSED_MESSAGE = "Comments are paused for now.";
+const CLOSED_MESSAGE = "Comments are closed on this post.";
 const MIN_FILL_MS = 3_000;
 const LIMIT_PER_WINDOW = 5;
 const WINDOW_MS = 10 * 60 * 1000;
@@ -35,22 +36,31 @@ export async function addComment(_prev: CommentFormState, form: FormData): Promi
   // Bots that fill everything in, or submit instantly, get a quiet success and nothing is saved.
   if (website || Date.now() - renderedAt < MIN_FILL_MS) return { ok: true, nonce: Date.now() };
 
+  // Blog ids are UUIDs; anything else would make the database reject the query with an error.
+  if (type === "blog" && !z.uuid().safeParse(id).success) return { ok: false, error: CLOSED_MESSAGE };
+
   const db = await getDb();
   const table = type === "feed" ? feedPosts : blogPosts;
   const [target] = await db
     .select({ id: table.id, allowComments: table.allowComments })
     .from(table)
     .where(and(eq(table.id, id), eq(table.status, "published")));
-  if (!target || !target.allowComments) return { ok: false, error: "Comments are closed on this post." };
+  if (!target || !target.allowComments) return { ok: false, error: CLOSED_MESSAGE };
 
   const ipHash = hashIp(await clientIp(), "comments");
-  const [{ n }] = await db
-    .select({ n: count() })
-    .from(comments)
-    .where(and(eq(comments.ipHash, ipHash), gt(comments.createdAt, new Date(Date.now() - WINDOW_MS))));
-  if (n >= LIMIT_PER_WINDOW) return { ok: false, error: "You're commenting a lot. Try again in a few minutes." };
+  const saved = await db.transaction(async (tx) => {
+    // One comment at a time per visitor, so parallel posts can't all read the same count and slip past the limit.
+    await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${ipHash}))`);
+    const [{ n }] = await tx
+      .select({ n: count() })
+      .from(comments)
+      .where(and(eq(comments.ipHash, ipHash), gt(comments.createdAt, new Date(Date.now() - WINDOW_MS))));
+    if (n >= LIMIT_PER_WINDOW) return false;
+    await tx.insert(comments).values({ targetType: type, targetId: id, authorName: name, body, ipHash });
+    return true;
+  });
+  if (!saved) return { ok: false, error: "You're commenting a lot. Try again in a few minutes." };
 
-  await db.insert(comments).values({ targetType: type, targetId: id, authorName: name, body, ipHash });
   revalidateTag(TAGS.comments(type, id), { expire: 0 });
   if (type === "feed") revalidateTag(TAGS.feed, { expire: 0 }); // comment counts on feed cards
   return { ok: true, nonce: Date.now() };
